@@ -28,3 +28,11 @@ class UserProfile(Profile):
 class EmployerProfile(Profile):
     # Add fields specific for employer profile here
     pass
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(owner=instance)
+
+
+post_save.connect(create_user_profile, sender=User)
