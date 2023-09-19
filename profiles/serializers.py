@@ -47,4 +47,5 @@ class EmployerProfileSerializer(serializers.ModelSerializer):
             'name',
             'content',
             'image',
+            'job_description',
         ]

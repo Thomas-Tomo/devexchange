@@ -27,7 +27,7 @@ class UserProfile(Profile):
 
 class EmployerProfile(Profile):
     # Add fields specific for employer profile here
-    pass
+    job_description = models.TextField(blank=True)
 
 
 def create_user_profile(sender, instance, created, **kwargs):
