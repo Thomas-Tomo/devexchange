@@ -7,4 +7,5 @@ urlpatterns = [
     path('user-profiles/', views.UserProfileList.as_view()),
     path('user-profiles/<int:pk>/', views.UserProfileDetail.as_view()),
     path('employer-profiles/', views.EmployerProfileList.as_view()),
+    path('employer-profiles/<int:pk>/', views.EmployerProfileDetail.as_view()),
 ]

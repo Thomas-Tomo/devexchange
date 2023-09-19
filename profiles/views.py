@@ -56,3 +56,17 @@ class UserProfileDetail(APIView):
         profile = self.get_object(pk)
         serializer = UserProfileSerializer(profile)
         return Response(serializer.data)
+
+
+class EmployerProfileDetail(APIView):
+    def get_object(self, pk):
+        try:
+            profile = EmployerProfile.objects.get(pk=pk)
+            return profile
+        except EmployerProfile.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        profile = self.get_object(pk)
+        serializer = EmployerProfileSerializer(profile)
+        return Response(serializer.data)
