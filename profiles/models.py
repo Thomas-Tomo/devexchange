@@ -23,3 +23,8 @@ class Profile(models.Model):
 class UserProfile(Profile):
     # Add fields specific for user profile here
     pass
+
+
+class EmployerProfile(Profile):
+    # Add fields specific for employer profile here
+    pass
