@@ -47,6 +47,14 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'content',
             'image',
             'is_owner',
+            'education',
+            'work_experience',
+            'skills',
+            'certifications',
+            'languages',
+            'linkedin_profile',
+            'github_profile',
+            'portfolio_website',
         ]
 
 
