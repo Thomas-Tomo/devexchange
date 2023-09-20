@@ -1,7 +1,4 @@
-from django.http import Http404
-from rest_framework import status
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import generics
 from .models import Profile, UserProfile, EmployerProfile
 from .serializers import (
     ProfileSerializer,
@@ -11,124 +8,34 @@ from .serializers import (
 from devexchange.permissions import IsOwnerOrReadOnly
 
 
-class ProfileList(APIView):
-    def get(self, request):
-        profiles = Profile.objects.all()
-        serializer = ProfileSerializer(
-            profiles,
-            many=True,
-            context={'request': request}
-        )
-        return Response(serializer.data)
+class ProfileList(generics.ListAPIView):
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
 
 
-class UserProfileList(APIView):
-    def get(self, request):
-        profiles = UserProfile.objects.all()
-        serializer = UserProfileSerializer(
-            profiles,
-            many=True,
-            context={'request': request}
-        )
-        return Response(serializer.data)
+class UserProfileList(generics.ListAPIView):
+    serializer_class = UserProfileSerializer
+    queryset = UserProfile.objects.all()
 
 
-class EmployerProfileList(APIView):
-    def get(self, request):
-        profiles = EmployerProfile.objects.all()
-        serializer = EmployerProfileSerializer(
-            profiles,
-            many=True,
-            context={'request': request}
-        )
-        return Response(serializer.data)
+class EmployerProfileList(generics.ListAPIView):
+    serializer_class = EmployerProfileSerializer
+    queryset = EmployerProfile.objects.all()
 
 
-class ProfileDetail(APIView):
+class ProfileDetail(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
-
-    def get_object(self, pk):
-        try:
-            profile = Profile.objects.get(pk=pk)
-            self.check_object_permissions(self.request, profile)
-            return profile
-        except Profile.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk):
-        profile = self.get_object(pk)
-        serializer = ProfileSerializer(profile)
-        return Response(serializer.data)
-
-    def put(self, request, pk):
-        profile = self.get_object(pk)
-        serializer = ProfileSerializer(
-            profile,
-            data=request.data,
-            context={'request': request}
-        )
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    queryset = Profile.objects.all()
 
 
-class UserProfileDetail(APIView):
+class UserProfileDetail(generics.RetrieveUpdateAPIView):
     serializer_class = UserProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
-
-    def get_object(self, pk):
-        try:
-            profile = UserProfile.objects.get(pk=pk)
-            self.check_object_permissions(self.request, profile)
-            return profile
-        except UserProfile.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk):
-        profile = self.get_object(pk)
-        serializer = UserProfileSerializer(profile)
-        return Response(serializer.data)
-
-    def put(self, request, pk):
-        profile = self.get_object(pk)
-        serializer = UserProfileSerializer(
-            profile,
-            data=request.data,
-            context={'request': request}
-        )
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    queryset = UserProfile.objects.all()
 
 
-class EmployerProfileDetail(APIView):
+class EmployerProfileDetail(generics.RetrieveUpdateAPIView):
     serializer_class = EmployerProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
-
-    def get_object(self, pk):
-        try:
-            profile = EmployerProfile.objects.get(pk=pk)
-            self.check_object_permissions(self.request, profile)
-            return profile
-        except EmployerProfile.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk):
-        profile = self.get_object(pk)
-        serializer = EmployerProfileSerializer(profile)
-        return Response(serializer.data)
-
-    def put(self, request, pk):
-        profile = self.get_object(pk)
-        serializer = EmployerProfileSerializer(
-            profile,
-            data=request.data,
-            context={'request': request}
-        )
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    queryset = EmployerProfile.objects.all()
