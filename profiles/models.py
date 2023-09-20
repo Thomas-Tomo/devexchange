@@ -27,7 +27,11 @@ class UserProfile(Profile):
 
 class EmployerProfile(Profile):
     # Add fields specific for employer profile here
-    job_description = models.TextField(blank=True)
+    company_name = models.CharField(max_length=255, blank=True)
+    employees_count = models.PositiveIntegerField(blank=True, null=True)
+    recruiting_status = models.BooleanField(default=False)
+    technologies_used = models.TextField(blank=True)
+    company_description = models.TextField(blank=True)
 
 
 def create_user_profile(sender, instance, created, **kwargs):

@@ -72,6 +72,10 @@ class EmployerProfileSerializer(serializers.ModelSerializer):
             'name',
             'content',
             'image',
-            'job_description',
             'is_owner',
+            'company_name',
+            'employees_count',
+            'recruiting_status',
+            'technologies_used',
+            'company_description',
         ]
