@@ -8,6 +8,7 @@ from .serializers import (
     UserProfileSerializer,
     EmployerProfileSerializer
 )
+from devexchange.permissions import IsOwnerOrReadOnly
 
 
 class ProfileList(APIView):
@@ -33,10 +34,12 @@ class EmployerProfileList(APIView):
 
 class ProfileDetail(APIView):
     serializer_class = ProfileSerializer
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_object(self, pk):
         try:
             profile = Profile.objects.get(pk=pk)
+            self.check_object_permissions(self.request, profile)
             return profile
         except Profile.DoesNotExist:
             raise Http404
@@ -57,10 +60,12 @@ class ProfileDetail(APIView):
 
 class UserProfileDetail(APIView):
     serializer_class = UserProfileSerializer
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_object(self, pk):
         try:
             profile = UserProfile.objects.get(pk=pk)
+            self.check_object_permissions(self.request, profile)
             return profile
         except UserProfile.DoesNotExist:
             raise Http404
@@ -81,10 +86,12 @@ class UserProfileDetail(APIView):
 
 class EmployerProfileDetail(APIView):
     serializer_class = EmployerProfileSerializer
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_object(self, pk):
         try:
             profile = EmployerProfile.objects.get(pk=pk)
+            self.check_object_permissions(self.request, profile)
             return profile
         except EmployerProfile.DoesNotExist:
             raise Http404
