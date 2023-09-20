@@ -14,21 +14,33 @@ from devexchange.permissions import IsOwnerOrReadOnly
 class ProfileList(APIView):
     def get(self, request):
         profiles = Profile.objects.all()
-        serializer = ProfileSerializer(profiles, many=True)
+        serializer = ProfileSerializer(
+            profiles,
+            many=True,
+            context={'request': request}
+        )
         return Response(serializer.data)
 
 
 class UserProfileList(APIView):
     def get(self, request):
         profiles = UserProfile.objects.all()
-        serializer = UserProfileSerializer(profiles, many=True)
+        serializer = UserProfileSerializer(
+            profiles,
+            many=True,
+            context={'request': request}
+        )
         return Response(serializer.data)
 
 
 class EmployerProfileList(APIView):
     def get(self, request):
         profiles = EmployerProfile.objects.all()
-        serializer = EmployerProfileSerializer(profiles, many=True)
+        serializer = EmployerProfileSerializer(
+            profiles,
+            many=True,
+            context={'request': request}
+        )
         return Response(serializer.data)
 
 
@@ -51,7 +63,11 @@ class ProfileDetail(APIView):
 
     def put(self, request, pk):
         profile = self.get_object(pk)
-        serializer = ProfileSerializer(profile, data=request.data)
+        serializer = ProfileSerializer(
+            profile,
+            data=request.data,
+            context={'request': request}
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -77,7 +93,11 @@ class UserProfileDetail(APIView):
 
     def put(self, request, pk):
         profile = self.get_object(pk)
-        serializer = UserProfileSerializer(profile, data=request.data)
+        serializer = UserProfileSerializer(
+            profile,
+            data=request.data,
+            context={'request': request}
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -103,7 +123,11 @@ class EmployerProfileDetail(APIView):
 
     def put(self, request, pk):
         profile = self.get_object(pk)
-        serializer = EmployerProfileSerializer(profile, data=request.data)
+        serializer = EmployerProfileSerializer(
+            profile,
+            data=request.data,
+            context={'request': request}
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
