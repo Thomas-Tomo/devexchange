@@ -10,8 +10,18 @@ class Profile(models.Model):
     name = models.CharField(max_length=255, blank=True)
     content = models.TextField(blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_profile_icon_dq1crk'
-    )
+        upload_to='images/',
+        default='../default_profile_icon_dq1crk')
+
+    # Add the user_type field to the base Profile model
+    USER_TYPE_CHOICES = [
+        ('regular', 'Regular User'),
+        ('employer', 'Employer'),
+    ]
+    user_type = models.CharField(
+        max_length=10,
+        choices=USER_TYPE_CHOICES,
+        default='regular')
 
     class Meta:
         ordering = ['-created_at']
@@ -43,13 +53,13 @@ class EmployerProfile(Profile):
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.create(owner=instance)
-
-
-def create_employer_profile(sender, instance, created, **kwargs):
-    if created:
-        EmployerProfile.objects.create(owner=instance)
+        # Determine user_type based on instance
+        if hasattr(instance, 'userprofile'):
+            instance.userprofile.user_type = 'regular'
+            instance.userprofile.save()
+        elif hasattr(instance, 'employerprofile'):
+            instance.employerprofile.user_type = 'employer'
+            instance.employerprofile.save()
 
 
 post_save.connect(create_user_profile, sender=User)
-post_save.connect(create_employer_profile, sender=User)
