@@ -30,27 +30,6 @@ class Profile(models.Model):
         return f"{self.owner}'s profile"
 
 
-class UserProfile(Profile):
-    # Add fields specific for user profile here
-    education = models.TextField(blank=True)
-    work_experience = models.TextField(blank=True)
-    skills = models.TextField(blank=True)
-    certifications = models.TextField(blank=True)
-    languages = models.TextField(blank=True)
-    linkedin_profile = models.URLField(max_length=255, blank=True)
-    github_profile = models.URLField(max_length=255, blank=True)
-    portfolio_website = models.URLField(max_length=255, blank=True)
-
-
-class EmployerProfile(Profile):
-    # Add fields specific for employer profile here
-    company_name = models.CharField(max_length=255, blank=True)
-    employees_count = models.PositiveIntegerField(blank=True, null=True)
-    recruiting_status = models.BooleanField(default=False)
-    technologies_used = models.TextField(blank=True)
-    company_description = models.TextField(blank=True)
-
-
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         # Determine user_type based on instance
