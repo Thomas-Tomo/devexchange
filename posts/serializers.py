@@ -9,6 +9,8 @@ class PostSerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     like_id = serializers.SerializerMethodField()
+    comments_count = serializers.ReadOnlyField()
+    likes_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
         if value.size > 2 * 1024 * 1024:
@@ -23,6 +25,10 @@ class PostSerializer(serializers.ModelSerializer):
             )
         return value
 
+    def get_is_owner(self, obj):
+        request = self.context['request']
+        return request.user == obj.owner
+
     def get_like_id(self, obj):
         user = self.context['request'].user
         if user.is_authenticated:
@@ -31,10 +37,6 @@ class PostSerializer(serializers.ModelSerializer):
             ).first()
             return like.id if like else None
         return None
-
-    def get_is_owner(self, obj):
-        request = self.context['request']
-        return request.user == obj.owner
 
     class Meta:
         model = Post
@@ -51,4 +53,6 @@ class PostSerializer(serializers.ModelSerializer):
             'image',
             'image_filter',
             'like_id',
+            'comments_count',
+            'likes_count',
         ]
