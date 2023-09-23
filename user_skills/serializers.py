@@ -37,3 +37,23 @@ class UserSkillSerializer(serializers.ModelSerializer):
         max_length=255,
         allow_blank=True,
         required=False)
+
+    def get_is_owner(self, obj):
+        request = self.context['request']
+        return request.user == obj.owner
+
+    class Meta:
+        model = UserSkill
+        fields = [
+            'id',
+            'owner',
+            'is_owner',
+            'education',
+            'work_experience',
+            'skills',
+            'certifications',
+            'languages',
+            'linkedin_profile',
+            'github_profile',
+            'portfolio_website',
+        ]
