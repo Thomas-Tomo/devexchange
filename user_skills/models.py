@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class UserSkill(models.Model):
+    owner = models.OneToOneField(User, on_delete=models.CASCADE, default=1)
     education = models.TextField(blank=True)
     work_experience = models.TextField(blank=True)
     skills = models.TextField(blank=True)
