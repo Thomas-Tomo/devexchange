@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'followers',
     'company_bio',
     'user_skills',
+    'job_posts',
 ]
 
 MIDDLEWARE = [
