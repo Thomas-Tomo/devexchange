@@ -26,4 +26,5 @@ urlpatterns = [
     path('', include('followers.urls')),
     path('', include('company_bio.urls')),
     path('', include('user_skills.urls')),
+    path('', include('job_posts.urls')),
 ]
