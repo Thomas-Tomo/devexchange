@@ -9,5 +9,6 @@ urlpatterns = [
     path(
         'replies/<int:parent_comment_id>/<int:pk>/',
         views.ReplyDetail.as_view()),
+    path('job-post-comments/', views.JobPostCommentList.as_view()),
 
 ]

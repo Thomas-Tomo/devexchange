@@ -1,9 +1,10 @@
 from rest_framework import generics, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from devexchange.permissions import IsOwnerOrReadOnly
-from .models import Comment, Reply
+from .models import Comment, Reply, JobPostComment
 from .serializers import (
-    CommentSerializer, CommentDetailSerializer, ReplySerializer
+    CommentSerializer, CommentDetailSerializer, ReplySerializer,
+    JobPostCommentSerializer
 )
 
 
@@ -48,3 +49,12 @@ class ReplyDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ReplySerializer
     queryset = Reply.objects.all()
+
+
+class JobPostCommentList(generics.ListCreateAPIView):
+    queryset = JobPostComment.objects.all()
+    serializer_class = JobPostCommentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
