@@ -10,7 +10,7 @@ from .serializers import (
 
 class CommentList(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     queryset = Comment.objects.all()
     filter_backends = [
         DjangoFilterBackend,
@@ -24,14 +24,14 @@ class CommentList(generics.ListCreateAPIView):
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = CommentDetailSerializer
     queryset = Comment.objects.all()
 
 
 class ReplyList(generics.ListCreateAPIView):
     serializer_class = ReplySerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
     def get_queryset(self):
         # Assuming you want to filter replies based on the parent comment
@@ -46,7 +46,7 @@ class ReplyList(generics.ListCreateAPIView):
 
 
 class ReplyDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = ReplySerializer
     queryset = Reply.objects.all()
 
