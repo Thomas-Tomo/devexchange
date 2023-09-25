@@ -4,7 +4,7 @@ from devexchange.permissions import IsOwnerOrReadOnly
 from .models import Comment, Reply, JobPostComment
 from .serializers import (
     CommentSerializer, CommentDetailSerializer, ReplySerializer,
-    JobPostCommentSerializer
+    JobPostCommentSerializer, JobPostCommentDetailSerializer
 )
 
 
@@ -54,7 +54,13 @@ class ReplyDetail(generics.RetrieveUpdateDestroyAPIView):
 class JobPostCommentList(generics.ListCreateAPIView):
     queryset = JobPostComment.objects.all()
     serializer_class = JobPostCommentSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class JobPostCommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    serializer_class = JobPostCommentDetailSerializer
+    queryset = JobPostComment.objects.all()

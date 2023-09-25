@@ -93,3 +93,7 @@ class JobPostCommentSerializer(serializers.ModelSerializer):
             'id', 'owner', 'is_owner', 'job_post', 'profile_id',
             'profile_image', 'updated_at',
             'created_at', 'content')
+
+
+class JobPostCommentDetailSerializer(JobPostCommentSerializer):
+    job_post = serializers.ReadOnlyField(source='job_post.id')
