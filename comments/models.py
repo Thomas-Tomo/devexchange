@@ -54,3 +54,20 @@ class JobPostComment(models.Model):
 
     def __str__(self):
         return self.content
+
+
+class JobPostCommentReply(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    parent_comment = models.ForeignKey(
+        JobPostComment, on_delete=models.CASCADE,
+        related_name='replies_to_reply'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    content = models.TextField()
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.content
