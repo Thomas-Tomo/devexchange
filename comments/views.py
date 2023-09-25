@@ -1,4 +1,6 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
+from django.http import Http404
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from devexchange.permissions import IsOwnerOrReadOnly
 from .models import Comment, Reply, JobPostComment, JobPostCommentReply
@@ -35,9 +37,24 @@ class ReplyList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
     def get_queryset(self):
-        # Assuming you want to filter replies based on the parent comment
         parent_comment_id = self.kwargs['parent_comment_id']
-        return Reply.objects.filter(parent_comment__id=parent_comment_id)
+        queryset = Reply.objects.filter(
+            parent_comment__id=parent_comment_id)
+        return queryset
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+
+        if queryset.exists():
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        elif (Comment.objects
+              .filter(id=self.kwargs['parent_comment_id']).exists()):
+            return Response([], status=status.HTTP_200_OK)
+        else:
+            return Response({
+                'message': 'Invalid replies url'},
+                status=status.HTTP_404_NOT_FOUND)
 
     def perform_create(self, serializer):
         # Assuming you want to associate the reply with a parent comment
@@ -72,10 +89,24 @@ class JobPostCommentReplyList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
     def get_queryset(self):
-        # Assuming you want to filter replies based on the parent comment
         parent_comment_id = self.kwargs['parent_comment_id']
-        return JobPostCommentReply.objects.filter(
+        queryset = JobPostCommentReply.objects.filter(
             parent_comment__id=parent_comment_id)
+        return queryset
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+
+        if queryset.exists():
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        elif (JobPostComment.objects
+              .filter(id=self.kwargs['parent_comment_id']).exists()):
+            return Response([], status=status.HTTP_200_OK)
+        else:
+            return Response({
+                'message': 'Invalid replies url'},
+                status=status.HTTP_404_NOT_FOUND)
 
     def perform_create(self, serializer):
         # Assuming you want to associate the reply with a parent comment
