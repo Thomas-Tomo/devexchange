@@ -1,10 +1,11 @@
 from rest_framework import generics, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from devexchange.permissions import IsOwnerOrReadOnly
-from .models import Comment, Reply, JobPostComment
+from .models import Comment, Reply, JobPostComment, JobPostCommentReply
 from .serializers import (
     CommentSerializer, CommentDetailSerializer, ReplySerializer,
-    JobPostCommentSerializer, JobPostCommentDetailSerializer
+    JobPostCommentSerializer, JobPostCommentDetailSerializer,
+    JobPostCommentReplySerializer
 )
 
 
@@ -64,3 +65,26 @@ class JobPostCommentDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = JobPostCommentDetailSerializer
     queryset = JobPostComment.objects.all()
+
+
+class JobPostCommentReplyList(generics.ListCreateAPIView):
+    serializer_class = JobPostCommentReplySerializer
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+
+    def get_queryset(self):
+        # Assuming you want to filter replies based on the parent comment
+        parent_comment_id = self.kwargs['parent_comment_id']
+        return JobPostCommentReply.objects.filter(
+            parent_comment__id=parent_comment_id)
+
+    def perform_create(self, serializer):
+        # Assuming you want to associate the reply with a parent comment
+        parent_comment_id = self.kwargs['parent_comment_id']
+        parent_comment = JobPostComment.objects.get(pk=parent_comment_id)
+        serializer.save(owner=self.request.user, parent_comment=parent_comment)
+
+
+class JobPostCommentReplyDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    serializer_class = JobPostCommentReplySerializer
+    queryset = JobPostCommentReply.objects.all()
