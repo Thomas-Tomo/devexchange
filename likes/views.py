@@ -8,7 +8,7 @@ from .serializers import (
 
 
 class LikeList(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = LikeSerializer
     queryset = Like.objects.all()
 
@@ -23,7 +23,7 @@ class LikeDetail(generics.RetrieveDestroyAPIView):
 
 
 class CommentLikeList(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = CommentLikeSerializer
     queryset = CommentLike.objects.all()
 
@@ -32,13 +32,13 @@ class CommentLikeList(generics.ListCreateAPIView):
 
 
 class CommentLikeDetail(generics.RetrieveDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = CommentLikeSerializer
     queryset = CommentLike.objects.all()
 
 
 class JobPostLikeList(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = JobPostLikeSerializer
     queryset = JobPostLike.objects.all()
 
@@ -47,13 +47,13 @@ class JobPostLikeList(generics.ListCreateAPIView):
 
 
 class JobPostLikeDetail(generics.RetrieveDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = JobPostLikeSerializer
     queryset = JobPostLike.objects.all()
 
 
 class JobPostCommentLikeList(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = JobPostCommentLikeSerializer
     queryset = JobPostCommentLike.objects.all()
 
@@ -62,6 +62,6 @@ class JobPostCommentLikeList(generics.ListCreateAPIView):
 
 
 class JobPostCommentLikeDetail(generics.RetrieveDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = JobPostCommentLikeSerializer
     queryset = JobPostCommentLike.objects.all()
