@@ -7,7 +7,7 @@ class JobPostSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     like_id = serializers.SerializerMethodField()
-    comments_count = serializers.ReadOnlyField()
+    likes_count = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -44,5 +44,5 @@ class JobPostSerializer(serializers.ModelSerializer):
             'allows_remote_work',
             'benefits',
             'like_id',
-            'comments_count',
+            'likes_count',
         ]
