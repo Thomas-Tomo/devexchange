@@ -11,7 +11,8 @@ class JobPostList(generics.ListCreateAPIView):
     serializer_class = JobPostSerializer
     permission_classes = [IsAuthenticated, IsEmployerOrReadOnly]
     queryset = JobPost.objects.annotate(
-        likes_count=Count('likes', distinct=True)
+        likes_count=Count('likes', distinct=True),
+        comments_count=Count('jobpostcomment', distinct=True)
     ).order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter,
@@ -27,6 +28,7 @@ class JobPostList(generics.ListCreateAPIView):
     ordering_fields = [
         'likes_count',
         'likes_created_at',
+        'comments_count',
     ]
 
     def perform_create(self, serializer):

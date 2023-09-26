@@ -8,6 +8,7 @@ class JobPostSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     like_id = serializers.SerializerMethodField()
     likes_count = serializers.ReadOnlyField()
+    comments_count = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -45,4 +46,5 @@ class JobPostSerializer(serializers.ModelSerializer):
             'benefits',
             'like_id',
             'likes_count',
+            'comments_count',
         ]
