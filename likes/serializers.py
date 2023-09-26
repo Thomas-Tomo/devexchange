@@ -1,6 +1,6 @@
 from django.db import IntegrityError
 from rest_framework import serializers
-from likes.models import Like, CommentLike, JobPostLike
+from likes.models import Like, CommentLike, JobPostLike, JobPostCommentLike
 
 
 class LikeSerializer(serializers.ModelSerializer):
@@ -55,6 +55,27 @@ class JobPostLikeSerializer(serializers.ModelSerializer):
             'created_at',
             'owner',
             'job_post',
+        ]
+
+    def create(self, validated_data):
+        try:
+            return super().create(validated_data)
+        except IntegrityError:
+            raise serializers.ValidationError({
+                'detail': 'possible duplicate'
+            })
+
+
+class JobPostCommentLikeSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+
+    class Meta:
+        model = JobPostCommentLike
+        fields = [
+            'id',
+            'created_at',
+            'owner',
+            'job_post_comment',
         ]
 
     def create(self, validated_data):

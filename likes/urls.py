@@ -8,4 +8,8 @@ urlpatterns = [
     path('comment-likes/<int:pk>/', views.CommentLikeDetail.as_view()),
     path('job-post-likes/', views.JobPostLikeList.as_view()),
     path('job-post-likes/<int:pk>/', views.JobPostLikeDetail.as_view()),
+    path('job-post-comment-likes/', views.JobPostCommentLikeList.as_view()),
+    path(
+        'job-post-comment-likes/<int:pk>/',
+        views.JobPostCommentLikeDetail.as_view()),
 ]
