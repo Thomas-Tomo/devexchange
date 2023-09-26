@@ -44,3 +44,9 @@ class JobPostLikeList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class JobPostLikeDetail(generics.RetrieveDestroyAPIView):
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = JobPostLikeSerializer
+    queryset = JobPostLike.objects.all()
