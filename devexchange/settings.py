@@ -37,7 +37,7 @@ SECRET_KEY = 'django-insecure-=d5$3m0f$_y5!p3o(6h!3^5*0=qj87dn#ch8fd^f=0)e&!3co(
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-thomastomo-devexchange-jefk3asfkvl.ws-eu104.gitpod.io'
+    '8000-thomastomo-devexchange-jefk3asfkvl.ws-eu105.gitpod.io'
     ]
 
 
