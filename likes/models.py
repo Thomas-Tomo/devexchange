@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from posts.models import Post
 from job_posts.models import JobPost
-from comments.models import Comment
+from comments.models import Comment, JobPostComment
 
 
 class Like(models.Model):
@@ -48,3 +48,18 @@ class JobPostLike(models.Model):
 
     def __str__(self):
         return f"{self.owner} {self.job_post}"
+
+
+class JobPostCommentLike(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    job_post_comment = models.ForeignKey(
+        JobPostComment, related_name='likes', on_delete=models.CASCADE
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        unique_together = ['owner', 'job_post_comment']
+
+    def __str__(self):
+        return f"{self.owner} likes {self.Job_post_comment}"
