@@ -21,6 +21,8 @@ class JobPostList(generics.ListCreateAPIView):
     search_fields = [
         'owner__username',
         'title',
+        'location',
+        'company_name',
     ]
     ordering_fields = [
         'likes_count',
