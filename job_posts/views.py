@@ -1,3 +1,4 @@
+from django.db.models import Count
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
@@ -9,7 +10,9 @@ from .serializers import JobPostSerializer
 class JobPostList(generics.ListCreateAPIView):
     serializer_class = JobPostSerializer
     permission_classes = [IsAuthenticated, IsEmployerOrReadOnly]
-    queryset = JobPost.objects.all()
+    queryset = JobPost.objects.annotate(
+        comments_count=Count('likes', distinct=True)
+    )
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
