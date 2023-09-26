@@ -6,4 +6,5 @@ urlpatterns = [
     path('likes/<int:pk>/', views.LikeDetail.as_view()),
     path('comment-likes/', views.CommentLikeList.as_view()),
     path('comment-likes/<int:pk>/', views.CommentLikeDetail.as_view()),
+    path('job-post-likes/', views.JobPostLikeList.as_view()),
 ]
