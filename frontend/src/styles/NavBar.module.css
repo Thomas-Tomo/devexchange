@@ -1,4 +1,9 @@
 .NavBar {
     background-color: #121212;
-    border: #333333;
+    font-size: 1rem;
+    border: 3px solid #333333;
+}
+
+.NavLink i {
+    margin-right: 5px;
 }
