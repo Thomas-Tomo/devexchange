@@ -5,8 +5,20 @@
     border: 3px solid #333333;
 }
 
+.NavLink {
+    padding: 5px;
+    color: rgb(151, 148, 148);
+}
+
+.NavLink:hover {
+    color: #ffffff;
+}
+
 .NavLink i {
     margin-right: 5px;
 }
 
+.Active i {
+    color: #ffffff;
+}
 
