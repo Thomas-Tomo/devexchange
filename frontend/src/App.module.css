@@ -3,3 +3,18 @@
     background-color: #202124;
     min-height: 100vh;
 }
+
+a:hover {
+    text-decoration: none;
+}
+
+a:hover i {
+    color: #ffffff;
+    transition: color ease-in-out 0.3s;
+}
+
+i {
+    color: #28a745;
+    font-size: 1.5rem;
+    transition: color ease-in-out 0.3s;
+}

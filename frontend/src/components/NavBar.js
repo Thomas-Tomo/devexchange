@@ -20,19 +20,22 @@ const NavBar = () => {
               <i className="fas fa-suitcase"></i>Jobs
             </NavLink>
             <NavLink className={styles.NavLink}>
-            <i class="fas fa-list"></i>Feed
+            <i className="fas fa-list"></i>Feed
             </NavLink>
             <NavLink className={styles.NavLink}>
-            <i class="fas fa-thumbs-up"></i>Liked
+            <i className="fas fa-thumbs-up"></i>Liked
             </NavLink>
             <NavLink className={styles.NavLink}>
-            <i class="fas fa-bookmark"></i>Saved Jobs
+            <i className="fas fa-bookmark"></i>Saved Jobs
             </NavLink>
             <NavLink className={styles.NavLink}>
-            <i class="fas fa-user"></i>Profile
+            <i className="fas fa-user"></i>Profile
             </NavLink>
             <NavLink className={styles.NavLink}>
               <i className="fas fa-sign-in-alt"></i>Sign In
+            </NavLink>
+            <NavLink className={styles.NavLink}>
+            <i className="fas fa-sign-out-alt"></i>Sign Out
             </NavLink>
             <NavLink className={styles.NavLink}>
               <i className="fas fa-user-plus"></i>Sign Up
