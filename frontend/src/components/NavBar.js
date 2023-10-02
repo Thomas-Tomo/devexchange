@@ -12,7 +12,7 @@ const NavBar = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto text-left">
+          <Nav className="ml-auto text-left mt-3">
             <NavLink className={styles.NavLink}>
               <i className="fas fa-home"></i>Home
             </NavLink>

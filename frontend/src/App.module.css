@@ -1,7 +1,16 @@
 .App {
     font-family: 'AR One Sans', sans-serif;
     background-color: #202124;
+    color: #ffffff;
     min-height: 100vh;
+}
+
+.Main {
+    padding-top: 10rem;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 a:hover {
@@ -17,4 +26,5 @@ i {
     color: #28a745;
     font-size: 1.5rem;
     transition: color ease-in-out 0.3s;
+    vertical-align: bottom;
 }
