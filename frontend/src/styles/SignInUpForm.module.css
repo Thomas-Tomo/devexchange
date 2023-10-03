@@ -1,0 +1,44 @@
+.Row {
+  background-color: #333333;
+  border: 2px solid #121212;
+  border-radius: 10px;
+}
+
+.Input {
+  border: 2px solid #121212;
+  background: #f0f1f9;
+  box-sizing: border-box;
+  border-radius: 2px;
+  text-align: left;
+  padding: 8px;
+}
+
+.Input:active {
+  border: 2px solid #121212;
+}
+
+.Header {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: #28a745;
+}
+
+.Link {
+  text-decoration: none;
+  color: #f0f1f9;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.Link:hover {
+  color: #28a745;
+  transition: color ease-in-out 0.3s;
+}
+
+.Link span {
+  color: #28a745;
+}
