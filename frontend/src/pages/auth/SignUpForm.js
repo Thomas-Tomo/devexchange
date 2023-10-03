@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 import { Form, Button, Col, Row, Container } from "react-bootstrap";
 
 const SignUpForm = () => {
   return (
     <Row className={`${styles.Row} m-2`}>
-      <Col className="m-auto py-2 p-md-2" md={8}>
+      <Col className="m-auto py-2 p-md-2" md={8} >
         <Container className="p-4">
           <h1 className={styles.Header}>Create an account</h1>
 
@@ -38,13 +39,13 @@ const SignUpForm = () => {
                 placeholder="Confirm Password"
               />
             </Form.Group>
-            <Button variant="danger" type="submit">
+            <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} type="submit">
               Sign Up
             </Button>
           </Form>
         </Container>
-        <Container className="mt-3 mb-2">
-          <Link className={styles.Link} to="/signin">
+        <Container className="mt-3 mb-2 text-center">
+          <Link className={`${styles.Link} ${styles.ContainerLink}`} to="/signin">
             Already have an account? <span>Sign in</span>
           </Link>
         </Container>

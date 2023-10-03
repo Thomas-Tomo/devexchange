@@ -1,0 +1,23 @@
+.Button {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  background-color: #28a745;
+  border: 2px solid #121212;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.Button:hover {
+    background-color: #ffffff;
+    border-color: #121212;
+    color: #121212;
+}
+
+.Button:active {
+    background-color: #28a745 !important;
+    border-color: #121212 !important;
+  }
+
+.Wide {
+  width: 100%;
+}
