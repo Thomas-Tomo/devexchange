@@ -13,6 +13,10 @@
   padding: 8px;
 }
 
+.Input:focus {
+  border-color: #28a745;
+}
+
 .Input:active {
   border: 2px solid #121212;
 }
