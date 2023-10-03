@@ -30,15 +30,10 @@ class Profile(models.Model):
         return f"{self.owner}'s profile"
 
 
-def create_user_profile(sender, instance, created, **kwargs):
+def create_profile(sender, instance, created, **kwargs):
     if created:
-        # Determine user_type based on instance
-        if hasattr(instance, 'userprofile'):
-            instance.userprofile.user_type = 'regular'
-            instance.userprofile.save()
-        elif hasattr(instance, 'employerprofile'):
-            instance.employerprofile.user_type = 'employer'
-            instance.employerprofile.save()
+        # Create a profile for the newly created user
+        Profile.objects.create(owner=instance)
 
 
-post_save.connect(create_user_profile, sender=User)
+post_save.connect(create_profile, sender=User)
