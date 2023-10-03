@@ -13,30 +13,31 @@ const SignUpForm = () => {
     username: "",
     password1: "",
     password2: "",
+    user_type: "regular",
   });
 
-  const { username, password1, password2 } = signUpData;
+  const { username, password1, password2, user_type } = signUpData;
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   const history = useHistory();
 
   const handleChange = (event) => {
     setSignUpData({
-        ...signUpData,
-        [event.target.name]: event.target.value,
-    })
-  }
+      ...signUpData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-        await axios.post('dj-rest-auth/registration/', signUpData)
-        history.push('/signin')
-    } catch(err) {
-        setErrors(err.response?.data)
+      await axios.post("dj-rest-auth/registration/", signUpData);
+      history.push("/signin");
+    } catch (err) {
+      setErrors(err.response?.data);
     }
-  }
+  };
 
   return (
     <Row className={`${styles.Row} m-2`}>
@@ -96,6 +97,20 @@ const SignUpForm = () => {
               </Alert>
             ))}
 
+            <Form.Group controlId="user_type">
+              <Form.Label>Account Type</Form.Label>
+              <Form.Control
+                as="select"
+                className={styles.Input}
+                name="user_type"
+                value={user_type}
+                onChange={handleChange}
+              >
+                <option value="regular" >Regular User</option>
+                <option value="employer">Employer</option>
+              </Form.Control>
+            </Form.Group>
+
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide}`}
               type="submit"
@@ -107,7 +122,6 @@ const SignUpForm = () => {
                 {message}
               </Alert>
             ))}
-            
           </Form>
         </Container>
         <Container className="mt-3 mb-2 text-center">
