@@ -5,6 +5,8 @@ import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 import { Form, Button, Col, Row, Container } from "react-bootstrap";
+import axios from "axios";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
@@ -14,6 +16,7 @@ const SignUpForm = () => {
   });
 
   const { username, password1, password2 } = signUpData;
+  const history = useHistory();
 
   const handleChange = (event) => {
     setSignUpData({
@@ -22,13 +25,21 @@ const SignUpForm = () => {
     })
   }
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+        await axios.post('dj-rest-auth/registration/', signUpData)
+        history.push('/signin')
+    } catch(err) {}
+  }
+
   return (
     <Row className={`${styles.Row} m-2`}>
       <Col className="m-auto py-2 p-md-2" md={8}>
         <Container className="p-4">
           <h1 className={styles.Header}>Create an account</h1>
 
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label>Username</Form.Label>
               <Form.Control
