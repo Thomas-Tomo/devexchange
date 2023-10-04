@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // IMPORTANT!!
 // Because this React app is running in the same workspace as the API,
 
@@ -6,4 +8,4 @@
 // Setting a baseURL before you reach deployment will cause errors
 
 export const axiosReq = axios.create();
-export const axiosRes = axion.create();
+export const axiosRes = axios.create();
