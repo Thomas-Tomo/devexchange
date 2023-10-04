@@ -4,3 +4,6 @@
 // there is no need to set a separate baseURL until you reach deployment.
 
 // Setting a baseURL before you reach deployment will cause errors
+
+export const axiosReq = axios.create();
+export const axiosRes = axion.create();
