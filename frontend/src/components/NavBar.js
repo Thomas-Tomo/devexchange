@@ -4,10 +4,51 @@ import logo from "../assets/devexchange-logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import Avatar from "./Avatar";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-  const loggedInIcons = <>{currentUser?.username}</>;
+  const loggedInIcons = (
+    <>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/jobs"
+      >
+        <i className="fas fa-suitcase"></i>Jobs
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/feed"
+      >
+        <i className="fas fa-list"></i>Feed
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/liked"
+      >
+        <i className="fas fa-thumbs-up"></i>Liked
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/savedjobs"
+      >
+        <i className="fas fa-bookmark"></i>Saved Jobs
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <Avatar src={currentUser?.profile_image} text="Profile" height={28.8} />
+      </NavLink>
+      <NavLink className={styles.NavLink} onClick={() => {}} to="/">
+        <i className="fas fa-sign-out-alt"></i>Sign Out
+      </NavLink>
+    </>
+  );
 
   const loggedOutIcons = (
     <>
@@ -39,7 +80,7 @@ const NavBar = () => {
         </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto text-left mt-3">
+          <Nav className="ml-auto">
             <NavLink
               className={styles.NavLink}
               activeClassName={styles.Active}
@@ -48,48 +89,7 @@ const NavBar = () => {
             >
               <i className="fas fa-home"></i>Home
             </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/jobs"
-            >
-              <i className="fas fa-suitcase"></i>Jobs
-            </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/feed"
-            >
-              <i className="fas fa-list"></i>Feed
-            </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/liked"
-            >
-              <i className="fas fa-thumbs-up"></i>Liked
-            </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/savedjobs"
-            >
-              <i className="fas fa-bookmark"></i>Saved Jobs
-            </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/profile"
-            >
-              <i className="fas fa-user"></i>Profile
-            </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/signout"
-            >
-              <i className="fas fa-sign-out-alt"></i>Sign Out
-            </NavLink>
+
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>

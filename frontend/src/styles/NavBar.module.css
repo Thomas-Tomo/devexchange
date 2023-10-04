@@ -1,12 +1,14 @@
 .NavBar {
+    display: flex;
     background-color: #121212;
     font-size: 1rem;
     font-weight: 700;
     border: 3px solid #333333;
+    align-items: right;
 }
 
 .NavLink {
-    padding: 5px;
+    padding: 10px;
     color: rgb(151, 148, 148);
 }
 

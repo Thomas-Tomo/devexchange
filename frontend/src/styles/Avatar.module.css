@@ -1,0 +1,6 @@
+.Avatar {
+    display: inline-flex;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+  }
