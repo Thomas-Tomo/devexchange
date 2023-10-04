@@ -13,10 +13,9 @@ const SignUpForm = () => {
     username: "",
     password1: "",
     password2: "",
-    user_type: "regular",
   });
 
-  const { username, password1, password2, user_type } = signUpData;
+  const { username, password1, password2} = signUpData;
 
   const [errors, setErrors] = useState({});
 
@@ -96,20 +95,6 @@ const SignUpForm = () => {
                 {message}
               </Alert>
             ))}
-
-            <Form.Group controlId="user_type">
-              <Form.Label>Account Type</Form.Label>
-              <Form.Control
-                as="select"
-                className={styles.Input}
-                name="user_type"
-                value={user_type}
-                onChange={handleChange}
-              >
-                <option value="regular" >Regular User</option>
-                <option value="employer">Employer</option>
-              </Form.Control>
-            </Form.Group>
 
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide}`}
