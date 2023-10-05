@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/devexchange-logo.png";
 import styles from "../styles/NavBar.module.css";
@@ -14,6 +14,21 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
 
   const setCurrentUser = useSetCurrentUser();
+
+  const [expanded, setExpanded] = useState(false)
+
+  const ref = useRef(null)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setExpanded(false)
+      }
+    }
+    document.addEventListener('mouseup', handleClickOutside)
+    return () => {
+      document.removeEventListener('mouseup')
+    }
+  }, [ref])
 
   const handleSignOut = async () => {
     try {
@@ -60,11 +75,7 @@ const NavBar = () => {
       >
         <Avatar src={currentUser?.profile_image} text="Profile" height={28.8} />
       </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        onClick= {handleSignOut}
-        to="/"
-      >
+      <NavLink className={styles.NavLink} onClick={handleSignOut} to="/">
         <i className="fas fa-sign-out-alt"></i>Sign Out
       </NavLink>
     </>
@@ -91,14 +102,14 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar className={styles.NavBar} expand="md" fixed="top" variant="dark">
+    <Navbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top" variant="dark">
       <Container>
         <NavLink to="/">
           <Navbar.Brand>
             <img src={logo} alt="logo" height="90" />
           </Navbar.Brand>
         </NavLink>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle ref={ref} onClick={() => setExpanded(!expanded)} aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <NavLink
