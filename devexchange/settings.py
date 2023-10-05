@@ -70,6 +70,8 @@ CORS_ALLOWED_ORIGINS = [
     os.environ.get('CLIENT_ORIGIN')
 ]
 
+CSRF_COOKIE_NAME = 'csrftoken'
+
 
 # Application definition
 
