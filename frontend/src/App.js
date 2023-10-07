@@ -13,7 +13,7 @@ function App() {
       <Container className={styles.Main}>
         <Row>
           {/* Left Column */}
-          <Col md={3}>
+          <Col md={2}>
             <Card>
               <Card.Body>
                 <Button variant="primary">Add Post</Button>
@@ -28,7 +28,7 @@ function App() {
           </Col>
 
           {/* Center Content */}
-          <Col md={6}>
+          <Col md={7}>
             <Switch>
               <Route exact path="/" render={() => <h1>Home</h1>} />
               <Route exact path="/jobs" render={() => <h1>Jobs</h1>} />
