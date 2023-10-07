@@ -1,0 +1,28 @@
+.SideBar {
+  margin-top: 10px;
+}
+
+.CustomCard {
+  background-color: #333333;
+  border: 2px solid #121212;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.NavLink {
+  padding: 10px;
+  color: #979794;
+}
+
+.NavLink:hover {
+  color: #ffffff;
+}
+
+.NavLink i {
+  margin-right: 2px;
+  font-size: 1.5rem;
+}
+
+.Active i {
+  color: #ffffff;
+}
