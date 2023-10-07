@@ -5,17 +5,24 @@
   padding: 1rem;
 }
 
-.NavLink {
-  padding: 10px;
+.Link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 8px 0;
   color: #979794;
 }
 
-.NavLink:hover {
+.LinkContainer {
+  margin-bottom: 10px;
+}
+
+.Link:hover {
   color: #ffffff;
 }
 
-.NavLink i {
-  margin-right: 2px;
+.Link i {
+  margin-right: 4px;
   font-size: 1.5rem;
 }
 
@@ -25,7 +32,7 @@
 
 /* Media query for screens with a maximum width of 767px */
 @media (max-width: 767px) {
-    .CardBody {
-      text-align: center;
-    }
+  .CardBody {
+    text-align: center;
   }
+}
