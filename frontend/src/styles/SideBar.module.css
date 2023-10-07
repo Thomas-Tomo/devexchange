@@ -1,7 +1,3 @@
-.SideBar {
-  margin-top: 10px;
-}
-
 .CustomCard {
   background-color: #333333;
   border: 2px solid #121212;
@@ -26,3 +22,10 @@
 .Active i {
   color: #ffffff;
 }
+
+/* Media query for screens with a maximum width of 767px */
+@media (max-width: 767px) {
+    .CardBody {
+      text-align: center;
+    }
+  }
