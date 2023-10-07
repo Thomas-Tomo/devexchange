@@ -11,14 +11,12 @@ const SideBar = () => {
           <div className={styles.CardBody}>
             <NavLink
               className={styles.NavLink}
-              activeClassName={styles.Active}
               to="/posts/create"
             >
               <i className="fas fa-pencil-alt"></i>Add Post
             </NavLink>
             <NavLink
               className={styles.NavLink}
-              activeClassName={styles.Active}
               to="/posts/create"
             >
               <i className="fas fa-code"></i> Add Job
