@@ -1,24 +1,21 @@
 import React from "react";
 import { Col, NavLink } from "react-bootstrap";
 import styles from "../styles/SideBar.module.css";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const SideBar = () => {
-  return (
+  const currentUser = useCurrentUser();
+
+  const addPostsSideBar = (
     <>
       {/* Left Column */}
       <Col md={2} className={styles.SideBar}>
         <div className={styles.CustomCard}>
           <div className={styles.CardBody}>
-            <NavLink
-              className={styles.NavLink}
-              to="/posts/create"
-            >
+            <NavLink className={styles.NavLink} to="/posts/create">
               <i className="fas fa-pencil-alt"></i>Add Post
             </NavLink>
-            <NavLink
-              className={styles.NavLink}
-              to="/posts/create"
-            >
+            <NavLink className={styles.NavLink} to="/posts/create">
               <i className="fas fa-code"></i> Add Job
             </NavLink>
           </div>
@@ -29,6 +26,8 @@ const SideBar = () => {
       </Col>
     </>
   );
+
+  return <>{currentUser && addPostsSideBar}</>;
 };
 
 export default SideBar;
