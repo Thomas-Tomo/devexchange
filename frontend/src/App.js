@@ -1,10 +1,11 @@
 import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card} from 'react-bootstrap';
 import NavBar from "./components/NavBar";
 import styles from "./App.module.css";
 import { Route, Switch } from "react-router-dom";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
+import SideBar from './components/SideBar';
 
 function App() {
   return (
@@ -12,20 +13,7 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Row>
-          {/* Left Column */}
-          <Col md={2}>
-            <Card>
-              <Card.Body>
-                <Button variant="primary">Add Post</Button>
-                <Button variant="secondary">Add Job Post</Button>
-              </Card.Body>
-            </Card>
-            <Card className="mt-3">
-              <Card.Body style={{ color: 'red' }}>
-                Copyright &copy; Your Company
-              </Card.Body>
-            </Card>
-          </Col>
+          <SideBar />
 
           {/* Center Content */}
           <Col md={7}>
