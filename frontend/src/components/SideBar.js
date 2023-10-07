@@ -1,5 +1,6 @@
 import React from "react";
-import { Col, NavLink } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { Col } from "react-bootstrap";
 import styles from "../styles/SideBar.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
@@ -12,12 +13,16 @@ const SideBar = () => {
       <Col md={2} className={styles.SideBar}>
         <div className={styles.CustomCard}>
           <div className={styles.CardBody}>
-            <NavLink className={styles.NavLink} to="/posts/create">
-              <i className="fas fa-pencil-alt"></i>Add Post
-            </NavLink>
-            <NavLink className={styles.NavLink} to="/posts/create">
-              <i className="fas fa-code"></i> Add Job
-            </NavLink>
+            <div className={styles.LinkContainer}>
+              <NavLink className={styles.Link} to="/posts/create">
+                <i className="fas fa-pencil-alt"></i>Add Post
+              </NavLink>
+            </div>
+            <div className={styles.LinkContainer}>
+              <NavLink className={styles.Link} to="/">
+                <i className="fas fa-code"></i> Add Job
+              </NavLink>
+            </div>
           </div>
         </div>
         <div className={`mt-3 ${styles.CustomCard}`}>
