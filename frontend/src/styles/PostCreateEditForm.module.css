@@ -1,5 +1,9 @@
 .Form {
-    background-color: #121212;
+  background-color: #333333;
+  padding: 1rem;
+  border: 2px solid #121212;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 
 .FormLabel {
@@ -12,26 +16,23 @@
 }
 
 .FormControl {
-    padding: 10px;
-    background-color: red;
+  padding: 10px;
 }
 
 .CustomFileInput {
-    display: inline-block;
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+  display: inline-block;
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-  }
-  
-  .CustomFileInput:hover {
-    background-color: #ffffff;
-    color: #121212;
-  }
-  
-  .FileInput {
-    display: none; /* Hide the actual file input */
-  }
-  
+.CustomFileInput:hover {
+  background-color: #ffffff;
+  color: #121212;
+}
+
+.FileInput {
+  display: none; /* Hide the actual file input */
+}
