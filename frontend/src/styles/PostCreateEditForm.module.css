@@ -26,6 +26,7 @@
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .CustomFileInput:hover {
@@ -33,6 +34,3 @@
   color: #121212;
 }
 
-.FileInput {
-  display: none; /* Hide the actual file input */
-}
