@@ -21,3 +21,7 @@
 .Wide {
   width: 100%;
 }
+
+.Pointer {
+  cursor: pointer;
+}
