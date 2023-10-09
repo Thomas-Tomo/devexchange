@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -22,8 +23,8 @@ function PostCreateForm() {
 
   const { title, content, image } = postData;
 
-  const imageInput = useRef(null)
-  const history = useHistory()
+  const imageInput = useRef(null);
+  const history = useHistory();
 
   const handleChange = (event) => {
     setPostData({
@@ -43,23 +44,23 @@ function PostCreateForm() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const formData = new FormData();
 
-    formData.append('title', title)
-    formData.append('content', content)
-    formData.append('image', imageInput.current.files[0])
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image", imageInput.current.files[0]);
 
     try {
-      const {data} = await axiosReq.post('/posts/', formData)
-      history.push(`/posts/${data.id}`)
-    } catch(err) {
-      console.log(err)
+      const { data } = await axiosReq.post("/posts/", formData);
+      history.push(`/posts/${data.id}`);
+    } catch (err) {
+      console.log(err);
       if (err.response?.status !== 401) {
-        setErrors(err.response?.data)
+        setErrors(err.response?.data);
       }
     }
-  }
+  };
 
   return (
     <Form onSubmit={handleSubmit} className={styles.Form}>
@@ -93,9 +94,14 @@ function PostCreateForm() {
             accept="image/*"
             onChange={handleChangeImage}
             ref={imageInput}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
           />
         </Form.Group>
+        {errors?.image?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
       </Container>
 
       <Form.Group controlId="title">
@@ -108,6 +114,12 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
       <Form.Group controlId="content">
         <Form.Label className={styles.FormLabel}>Post Content</Form.Label>
         <Form.Control
@@ -119,11 +131,19 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.content?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button className={`${btnStyles.Button}`} type="submit">
         Create
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => history.goBack()}>
+      <Button
+        className={`${btnStyles.Button}`}
+        onClick={() => history.goBack()}
+      >
         Cancel
       </Button>
     </Form>
