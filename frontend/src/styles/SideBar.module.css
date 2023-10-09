@@ -1,20 +1,23 @@
+.SideBar {
+  padding: 20px;
+  color: #ffffff;
+}
+
 .CustomCard {
   background-color: #333333;
   border: 2px solid #121212;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 20px;
+  text-align: center;
 }
 
 .Link {
-  display: flex;
-  align-items: center;
   text-decoration: none;
-  padding: 8px 0;
-  color: #979794;
-}
-
-.LinkContainer {
-  margin-bottom: 10px;
+  color: #ffffff;
+  display: block;
+  padding: 10px 0;
+  font-size: 18px;
+  transition: color 0.3s;
 }
 
 .Link:hover {
@@ -22,17 +25,31 @@
 }
 
 .Link i {
-  margin-right: 4px;
-  font-size: 1.5rem;
+  margin-right: 8px;
+  font-size: 24px;
 }
 
-.Active i {
-  color: #ffffff;
+.Copyright {
+  color: #999999;
+  font-size: 14px;
+  margin-top: 20px;
 }
 
-/* Media query for screens with a maximum width of 767px */
 @media (max-width: 767px) {
-  .CardBody {
+  .SideBar {
+    padding: 20px 10px;
+  }
+  .CustomCard {
+    padding: 20px;
+  }
+  .LinkContainer {
+    margin-bottom: 0;
     text-align: center;
+  }
+  .Link {
+    font-size: 16px;
+  }
+  .Link i {
+    font-size: 20px;
   }
 }

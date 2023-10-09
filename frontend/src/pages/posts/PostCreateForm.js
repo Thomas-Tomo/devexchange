@@ -62,7 +62,7 @@ function PostCreateForm() {
     }
   };
 
-  return (
+  return (<div className={styles.PostCreateEditForm}>
     <Form onSubmit={handleSubmit} className={styles.Form}>
       <Container className={`d-flex flex-column justify-content-center`}>
         <Form.Group className="text-center cursor">
@@ -147,6 +147,7 @@ function PostCreateForm() {
         Cancel
       </Button>
     </Form>
+    </div>
   );
 }
 

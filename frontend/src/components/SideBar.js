@@ -25,8 +25,10 @@ const SideBar = () => {
             </div>
           </div>
         </div>
-        <div className={`mt-3 ${styles.CustomCard}`}>
-          <div>Copyright &copy; Thomas-Tomo Domitrovic</div>
+        <div className={`mt-3 text-center ${styles.LinkContainer}`}>
+          <div className={styles.Copyright}>
+            Copyright &copy; Thomas-Tomo Domitrovic
+          </div>
         </div>
       </Col>
     </>

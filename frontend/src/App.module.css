@@ -1,36 +1,36 @@
 .App {
-    font-family: 'AR One Sans', sans-serif;
-    background-color: #202124;
-    color: #ffffff;
-    min-height: 100vh;
+  font-family: "AR One Sans", sans-serif;
+  background-color: #202124;
+  color: #ffffff;
+  min-height: 100vh;
 }
 
 .Main {
-    padding-top: 10rem;
+  padding-top: 9rem;
 }
 
 .Image {
-    max-height: 40vh;
-    max-width: 100%;
-    object-fit: contain;
-  }
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
+}
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover i {
-    color: #ffffff;
-    transition: color ease-in-out 0.3s;
+  color: #ffffff;
+  transition: color ease-in-out 0.3s;
 }
 
 i {
-    color: #28a745;
-    font-size: 1.5rem;
-    transition: color ease-in-out 0.3s;
-    vertical-align: middle;
+  color: #28a745;
+  font-size: 1.5rem;
+  transition: color ease-in-out 0.3s;
+  vertical-align: middle;
 }
