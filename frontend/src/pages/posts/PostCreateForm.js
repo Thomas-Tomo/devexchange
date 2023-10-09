@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { axiosReq } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
@@ -20,6 +22,9 @@ function PostCreateForm() {
 
   const { title, content, image } = postData;
 
+  const imageInput = useRef(null)
+  const history = useHistory()
+
   const handleChange = (event) => {
     setPostData({
       ...postData,
@@ -37,8 +42,27 @@ function PostCreateForm() {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const formData = new FormData();
+
+    formData.append('title', title)
+    formData.append('content', content)
+    formData.append('image', imageInput.current.files[0])
+
+    try {
+      const {data} = await axiosReq.post('/posts/', formData)
+      history.push(`/posts/${data.id}`)
+    } catch(err) {
+      console.log(err)
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data)
+      }
+    }
+  }
+
   return (
-    <Form className={styles.Form}>
+    <Form onSubmit={handleSubmit} className={styles.Form}>
       <Container className={`d-flex flex-column justify-content-center`}>
         <Form.Group className="text-center cursor">
           {image ? (
@@ -68,6 +92,7 @@ function PostCreateForm() {
             id="image-upload"
             accept="image/*"
             onChange={handleChangeImage}
+            ref={imageInput}
             style={{ display: 'none' }}
           />
         </Form.Group>
