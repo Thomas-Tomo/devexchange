@@ -34,7 +34,7 @@ const SideBar = () => {
     </>
   );
 
-  return <>{currentUser && addPostsSideBar}</>;
+  return <>{addPostsSideBar}</>; // currentUser && (reverse after PostPage is set up)
 };
 
 export default SideBar;
