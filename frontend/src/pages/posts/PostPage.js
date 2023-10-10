@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import Post from "./Post";
 
 function PostPage() {
   const { id } = useParams();
@@ -44,8 +45,7 @@ function PostPage() {
         </Col>
         <Col md={8}>
           {/* Post Component */}
-          <h1>{post.results[0]?.title}</h1>
-          <p>{post.results[0]?.content}</p>
+          <Post {...post.results[0]} setPosts={setPost} postPage />
           <Container>Comments</Container>
           <Container>Replies to comments</Container>
         </Col>
