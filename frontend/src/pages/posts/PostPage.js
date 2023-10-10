@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import appStyles from "../../App.module.css";
+import { useParams } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function PostPage() {
-  // Add your logic here
+  const { id } = useParams();
+  const [post, setPost] = useState({ results: [] });
+
+  useEffect(() => {
+    const handleMount = async () => {
+        try {
+            const [{data: post}] = await Promise.all([
+                axiosReq.get(`/posts/${id}`)
+            ])
+            setPost({results: [post]})
+            console.log(post)
+        } catch(err) {
+            console.log(err)
+        }
+    }
+    handleMount()
+  }, [id])
 
   return (
     <Container className={appStyles.Content}>
       <Row>
-      <Col lg={4} className="d-lg-none">
+        <Col lg={4} className="d-lg-none">
           {/* Popular Profiles for Mobile (Visible on Mobile) */}
           <Row>
             <Col className="p-0 p-lg-2">
@@ -26,13 +44,10 @@ function PostPage() {
         </Col>
         <Col md={8}>
           {/* Post Component */}
-          <p>Post component content</p>
-          <Container>
-            Comments
-          </Container>
-          <Container>
-            Replies to comments
-          </Container>
+          <h1>{post.results[0]?.title}</h1>
+          <p>{post.results[0]?.content}</p>
+          <Container>Comments</Container>
+          <Container>Replies to comments</Container>
         </Col>
         <Col lg={4} className="d-none d-lg-block">
           {/* Right Sidebar */}
