@@ -1,0 +1,70 @@
+/* Post.module.css */
+
+.PostCard {
+    background-color: #333333;
+    border: 2px solid #121212;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  .ProfileLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    text-decoration: none;
+    color: #f0f1f9;
+  }
+  
+  .ProfileLink:hover {
+    color: #28a745;
+    transition: color ease-in-out 0.3s;
+  }
+  
+  .ProfileImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .ProfileInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+  
+  .ProfileInfo h6 {
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    color: #28a745;
+    margin: 0;
+  }
+  
+  .ProfileInfo span {
+    font-size: 0.8rem;
+    color: #f0f1f9;
+  }
+  
+  .PostContent {
+    padding: 8px;
+  }
+  
+  .PostTitle {
+    font-size: 1.3rem;
+    text-align: center;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 10px;
+  }
+  
+  .PostText {
+    font-size: 1rem;
+    color: #f0f1f9;
+    text-align: center;
+  }
+  
