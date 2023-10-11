@@ -11,20 +11,20 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 const SignUpForm = () => {
   const setCurrentUser = useSetCurrentUser();
 
-  const [signUpData, setSignUpData] = useState({
+  const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
 
-  const { username, password } = signUpData;
+  const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
 
   const handleChange = (event) => {
-    setSignUpData({
-      ...signUpData,
+    setSignInData({
+      ...signInData,
       [event.target.name]: event.target.value,
     });
   };
@@ -32,7 +32,7 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axios.post("dj-rest-auth/login/", signUpData);
+      const { data } = await axios.post("dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       history.push("/");
     } catch (err) {
