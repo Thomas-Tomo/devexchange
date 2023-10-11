@@ -4,6 +4,7 @@ import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Post.module.css";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Post = (props) => {
   const {
@@ -19,16 +20,37 @@ const Post = (props) => {
     image,
     updated_at,
     postPage,
+    setPosts,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      console.log(err)
+    }
+  };
+
   return (
     <Card className={styles.PostCard}>
       <Media>
         <Link to={`/profiles/${profile_id}`} className={styles.ProfileLink}>
-          <Avatar src={profile_image} height={50} className={styles.ProfileImage} />
+          <Avatar
+            src={profile_image}
+            height={50}
+            className={styles.ProfileImage}
+          />
           <Media.Body className={styles.ProfileInfo}>
             <h6>{owner}</h6>
             <span>{updated_at}</span>
@@ -43,10 +65,15 @@ const Post = (props) => {
         <Card.Img src={image} alt={title} className={styles.PostImage} />
       </Link>
       <Card.Body className={styles.PostContent}>
-        {content && <Card.Text className={styles.PostText}>{content}</Card.Text>}
+        {content && (
+          <Card.Text className={styles.PostText}>{content}</Card.Text>
+        )}
         <div className={styles.iconContainer}>
           {is_owner ? (
-            <OverlayTrigger placement="top" overlay={<Tooltip>Can't like your own post</Tooltip>}>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Can't like your own post</Tooltip>}
+            >
               <i className="fas fa-thumbs-up" />
             </OverlayTrigger>
           ) : like_id ? (
@@ -54,20 +81,22 @@ const Post = (props) => {
               <i className="fas fa-thumbs-up" />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}} >
+            <span onClick={handleLike}>
               <i className="fas fa-thumbs-up" />
             </span>
           ) : (
-            <OverlayTrigger placement="top" overlay={<Tooltip>Log in to like posts</Tooltip>}>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Log in to like posts</Tooltip>}
+            >
               <i className="fas fa-thumbs-up" />
             </OverlayTrigger>
-          )
-        }
-        {likes_count}
-        <Link to={`/posts/${id}`}>
-        <i className="fas fa-comment"></i>
-        </Link>
-        {comments_count}
+          )}
+          {likes_count}
+          <Link to={`/posts/${id}`}>
+            <i className="fas fa-comment"></i>
+          </Link>
+          {comments_count}
         </div>
       </Card.Body>
     </Card>
