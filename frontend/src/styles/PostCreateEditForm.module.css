@@ -20,21 +20,26 @@
 }
 
 .FormControl {
+  display: flex;
   padding: 10px;
+  width: 60%;
+  margin: 0 auto;
+  background-color: #f0f1f9;
+  border-radius: 10px;
 }
 
-.CustomFileInput {
-  display: inline-block;
-  background-color: #28a745;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
+.FormControl:active {
+  background-color: #f0f1f9;
 }
 
-.CustomFileInput:hover {
-  background-color: #ffffff;
-  color: #121212;
+.FormControl:focus {
+  background-color: #f0f1f9;
+  border-color: #28a745;
+}
+
+@media (max-width: 767px) {
+  .FormControl {
+    width: 100%;
+  }
 }
 

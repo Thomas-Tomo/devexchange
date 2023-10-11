@@ -62,91 +62,94 @@ function PostCreateForm() {
     }
   };
 
-  return (<div className={styles.PostCreateEditForm}>
-    <Form onSubmit={handleSubmit} className={styles.Form}>
-      <Container className={`d-flex flex-column justify-content-center`}>
-        <Form.Group className="text-center cursor">
-          {image ? (
-            <>
-              <figure>
-                <Image className={appStyles.Image} src={image} rounded />
-              </figure>
-              <div>
-                <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Pointer}`}
-                  htmlFor="image-upload"
-                >
-                  Change the image
-                </Form.Label>
-              </div>
-            </>
-          ) : (
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image-upload"
-            >
-              <Asset src={Upload} message="Click here to upload an image" />
-            </Form.Label>
-          )}
+  return (
+    <div className={styles.PostCreateEditForm}>
+      <Form onSubmit={handleSubmit} className={styles.Form}>
+        <Container className={`d-flex flex-column justify-content-center`}>
+          <Form.Group controlId="title">
+            <div className="d-flex justify-content-center">
+              <Form.Label className={styles.FormLabel}>Post Title</Form.Label>
+            </div>
+            <Form.Control
+              className={styles.FormControl}
+              type="text"
+              name="title"
+              value={title}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          {errors?.title?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
 
-          <Form.File
-            id="image-upload"
-            accept="image/*"
-            onChange={handleChangeImage}
-            ref={imageInput}
-            style={{ display: "none" }}
+          <Form.Group className="text-center cursor">
+            {image ? (
+              <>
+                <figure>
+                  <Image className={appStyles.Image} src={image} rounded />
+                </figure>
+                <div>
+                  <Form.Label
+                    className={`${btnStyles.Button} ${btnStyles.Pointer}`}
+                    htmlFor="image-upload"
+                  >
+                    Change the image
+                  </Form.Label>
+                </div>
+              </>
+            ) : (
+              <Form.Label
+                className="d-flex justify-content-center"
+                htmlFor="image-upload"
+              >
+                <Asset src={Upload} message="Click here to upload an image" />
+              </Form.Label>
+            )}
+
+            <Form.File
+              id="image-upload"
+              accept="image/*"
+              onChange={handleChangeImage}
+              ref={imageInput}
+              style={{ display: "none" }}
+            />
+          </Form.Group>
+          {errors?.image?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
+        </Container>
+
+        <Form.Group controlId="content">
+          <div className="d-flex justify-content-center">
+            <Form.Label className={styles.FormLabel}>Post Content</Form.Label>
+          </div>
+          <Form.Control
+            className={styles.FormControl}
+            as="textarea"
+            rows={3}
+            name="content"
+            value={content}
+            onChange={handleChange}
           />
         </Form.Group>
-        {errors?.image?.map((message, idx) => (
+        {errors?.content?.map((message, idx) => (
           <Alert variant="warning" key={idx}>
             {message}
           </Alert>
         ))}
-      </Container>
-
-      <Form.Group controlId="title">
-        <Form.Label className={styles.FormLabel}>Post Title</Form.Label>
-        <Form.Control
-          className={styles.FormControl}
-          type="text"
-          name="title"
-          value={title}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      {errors?.title?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
-
-      <Form.Group controlId="content">
-        <Form.Label className={styles.FormLabel}>Post Content</Form.Label>
-        <Form.Control
-          className={styles.FormControl}
-          as="textarea"
-          rows={3}
-          name="content"
-          value={content}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      {errors?.content?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
-
-      <Button className={`${btnStyles.Button}`} type="submit">
-        Create
-      </Button>
-      <Button
-        className={`${btnStyles.Button}`}
-        onClick={() => history.goBack()}
-      >
-        Cancel
-      </Button>
-    </Form>
+        <div className="d-flex justify-content-center">
+          <Button className={`${btnStyles.Button} mr-2`} type="submit">
+            Create
+          </Button>
+          <Button className={btnStyles.Button} onClick={() => history.goBack()}>
+            Cancel
+          </Button>
+        </div>
+      </Form>
     </div>
   );
 }
