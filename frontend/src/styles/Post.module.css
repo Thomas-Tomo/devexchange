@@ -68,3 +68,14 @@
     text-align: center;
   }
   
+  .iconContainer {
+    border-top: 1px solid #121212;
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 18px;
+    color: white;
+  }
+  

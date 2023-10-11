@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media } from "react-bootstrap";
+import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Post.module.css";
@@ -19,7 +19,6 @@ const Post = (props) => {
     image,
     updated_at,
     postPage,
-    setPosts,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -33,6 +32,7 @@ const Post = (props) => {
           <Media.Body className={styles.ProfileInfo}>
             <h6>{owner}</h6>
             <span>{updated_at}</span>
+            {is_owner && postPage && "..."}
           </Media.Body>
         </Link>
       </Media>
@@ -44,6 +44,31 @@ const Post = (props) => {
       </Link>
       <Card.Body className={styles.PostContent}>
         {content && <Card.Text className={styles.PostText}>{content}</Card.Text>}
+        <div className={styles.iconContainer}>
+          {is_owner ? (
+            <OverlayTrigger placement="top" overlay={<Tooltip>Can't like your own post</Tooltip>}>
+              <i className="fas fa-thumbs-up" />
+            </OverlayTrigger>
+          ) : like_id ? (
+            <span onClick={() => {}}>
+              <i className="fas fa-thumbs-up" />
+            </span>
+          ) : currentUser ? (
+            <span onClick={() => {}} >
+              <i className="fas fa-thumbs-up" />
+            </span>
+          ) : (
+            <OverlayTrigger placement="top" overlay={<Tooltip>Log in to like posts</Tooltip>}>
+              <i className="fas fa-thumbs-up" />
+            </OverlayTrigger>
+          )
+        }
+        {likes_count}
+        <Link to={`/posts/${id}`}>
+        <i className="fas fa-comment"></i>
+        </Link>
+        {comments_count}
+        </div>
       </Card.Body>
     </Card>
   );
