@@ -20,7 +20,7 @@ const SideBar = () => {
             </div>
             <div className={styles.LinkContainer}>
               <NavLink className={styles.Link} to="/">
-                <i className="fas fa-code"></i> Add Job
+                <i className="fas fa-laptop-code"></i> Add Job
               </NavLink>
             </div>
           </div>
@@ -34,7 +34,7 @@ const SideBar = () => {
     </>
   );
 
-  return <>{addPostsSideBar}</>; // currentUser && (reverse after PostPage is set up)
+  return <>{currentUser && addPostsSideBar}</>; // currentUser && (reverse after PostPage is set up)
 };
 
 export default SideBar;
