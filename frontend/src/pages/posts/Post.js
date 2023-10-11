@@ -38,7 +38,23 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err)
+      console.log(err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -77,7 +93,7 @@ const Post = (props) => {
               <i className="fas fa-thumbs-up" />
             </OverlayTrigger>
           ) : like_id ? (
-            <span onClick={() => {}}>
+            <span onClick={handleUnlike}>
               <i className="fas fa-thumbs-up" />
             </span>
           ) : currentUser ? (
