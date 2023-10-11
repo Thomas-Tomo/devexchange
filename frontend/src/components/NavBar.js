@@ -100,7 +100,7 @@ const NavBar = () => {
       <Container>
         <NavLink to="/">
           <Navbar.Brand>
-            <img src={logo} alt="logo" height="90" />
+            <img src={logo} alt="logo" height={70} />
           </Navbar.Brand>
         </NavLink>
 
