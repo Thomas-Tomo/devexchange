@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
+import Asset from "../../components/Asset";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -7,6 +8,7 @@ import Container from "react-bootstrap/Container";
 import styles from "../../styles/PostsPage.module.css";
 import { useLocation } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import NoResults from "../../assets/no-results.png";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -53,11 +55,15 @@ function PostsPage({ message, filter = "" }) {
                 <Post key={post.id} {...post} setPosts={setPosts} />
               ))
             ) : (
-              <p>No results to display</p>
+              <Container>
+                <Asset src={NoResults} message={message} />
+              </Container>
             )}
           </>
         ) : (
-          <p>Loading spinner...</p>
+          <Container>
+            <Asset spinner />
+          </Container>
         )}
       </Col>
       <Col lg={4} className="d-none d-lg-block">
