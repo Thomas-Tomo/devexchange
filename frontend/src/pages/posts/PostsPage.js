@@ -48,6 +48,17 @@ function PostsPage({ message, filter = "" }) {
             </Col>
           </Row>
         </Col>
+        <i className={`fas fa-search ${styles.SearchIcon}`} />
+              <Form
+                className={styles.SearchBar}
+                onSubmit={(event) => event.preventDefault()}
+              >
+                <Form.Control
+                  type="text"
+                  className="mr-sm-2"
+                  placeholder="Search posts"
+                />
+              </Form>
         {hasLoaded ? (
           <>
             {posts.results.length ? (
