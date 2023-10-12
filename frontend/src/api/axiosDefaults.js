@@ -7,8 +7,11 @@ import axios from "axios";
 
 // Setting a baseURL before you reach deployment will cause errors
 
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+// axios.defaults.xsrfCookieName = 'csrftoken';
+// axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+axios.defaults.headers.post['Content-Type'] = 'multipart/form-data'
+axios.defaults.withCredentials = true
 
 export const axiosReq = axios.create();
 export const axiosRes = axios.create();

@@ -47,7 +47,7 @@ REST_USE_JWT = True
 JWT_AUTH_SECURE = True
 JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
-
+JWT_AUTH_SAMESITE = 'None'
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'devexchange.serializers.CurrentUserSerializer'
 }
@@ -69,8 +69,8 @@ ALLOWED_HOSTS = [
 CORS_ALLOWED_ORIGINS = [
     os.environ.get('CLIENT_ORIGIN')
 ]
-
-CSRF_COOKIE_NAME = 'csrftoken'
+CORS_ALLOW_CREDENTIALS = True
+# CSRF_COOKIE_NAME = 'csrftoken'
 
 
 # Application definition
@@ -93,6 +93,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'corsheaders',
 
     'profiles',
     'posts',
@@ -141,7 +142,7 @@ WSGI_APPLICATION = 'devexchange.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if 'DEV' in os.environ:
+if 'DEBUG' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
