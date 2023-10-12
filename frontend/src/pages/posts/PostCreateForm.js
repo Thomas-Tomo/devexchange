@@ -72,6 +72,7 @@ function PostCreateForm() {
             </div>
             <Form.Control
               className={styles.FormControl}
+              placeholder="Add your post title"
               type="text"
               name="title"
               value={title}
@@ -129,6 +130,7 @@ function PostCreateForm() {
           </div>
           <Form.Control
             className={styles.FormControl}
+            placeholder="Add your post content here"
             as="textarea"
             rows={3}
             name="content"
