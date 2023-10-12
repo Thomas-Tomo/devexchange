@@ -1,5 +1,7 @@
 .PostCreateEditForm {
+  display: flex;
   padding-top: 20px;
+  justify-content: space-between;
 }
 
 .Form {
@@ -8,6 +10,7 @@
   border: 2px solid #121212;
   box-sizing: border-box;
   border-radius: 10px;
+  width: 600px;
 }
 
 .FormLabel {
@@ -41,5 +44,8 @@
   .FormControl {
     width: 100%;
   }
-}
 
+  .PostCreateEditForm {
+    justify-content: center;
+  }
+}
