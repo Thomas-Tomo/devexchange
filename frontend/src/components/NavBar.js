@@ -34,28 +34,32 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/jobs"
       >
-        <i className="fas fa-suitcase"></i>Jobs
+        <i className={`fas fa-suitcase ${styles.Icons}`} />
+        Jobs
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/feed"
       >
-        <i className="fas fa-list"></i>Feed
+        <i className={`fas fa-list ${styles.Icons}`} />
+        Feed
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/liked"
       >
-        <i className="fas fa-thumbs-up"></i>Liked
+        <i className={`fas fa-thumbs-up ${styles.Icons}`} />
+        Liked
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/savedjobs"
       >
-        <i className="fas fa-bookmark"></i>Saved Jobs
+        <i className={`fas fa-bookmark ${styles.Icons}`} />
+        Saved Jobs
       </NavLink>
       <NavLink
         className={styles.NavLink}
@@ -64,7 +68,8 @@ const NavBar = () => {
         <Avatar src={currentUser?.profile_image} text="Profile" height={28.8} />
       </NavLink>
       <NavLink className={styles.NavLink} onClick={handleSignOut} to="/">
-        <i className="fas fa-sign-out-alt"></i>Sign Out
+        <i className={`fas fa-sign-out-alt ${styles.Icons}`} />
+        Sign Out
       </NavLink>
     </>
   );
@@ -76,7 +81,8 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/signin"
       >
-        <i className="fas fa-sign-in-alt"></i>Sign In
+        <i className={`fas fa-sign-in-alt ${styles.Icons}`} />
+        Sign In
       </NavLink>
 
       <NavLink
@@ -84,7 +90,8 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/signup"
       >
-        <i className="fas fa-user-plus"></i>Sign Up
+        <i className={`fas fa-user-plus ${styles.Icons}`} />
+        Sign Up
       </NavLink>
     </>
   );
@@ -117,7 +124,8 @@ const NavBar = () => {
               exact
               to="/"
             >
-              <i className="fas fa-home"></i>Home
+              <i className={`fas fa-home ${styles.Icons}`} />
+              Home
             </NavLink>
 
             {currentUser ? loggedInIcons : loggedOutIcons}

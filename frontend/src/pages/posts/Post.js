@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Post.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Post = (props) => {
   const {
@@ -70,7 +71,7 @@ const Post = (props) => {
           <Media.Body className={styles.ProfileInfo}>
             <h6>{owner}</h6>
             <span>{updated_at}</span>
-            {is_owner && postPage && "..."}
+            {is_owner && postPage && <MoreDropdown /> }
           </Media.Body>
         </Link>
       </Media>
