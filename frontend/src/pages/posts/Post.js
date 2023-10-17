@@ -29,8 +29,17 @@ const Post = (props) => {
   const history = useHistory();
 
   const handleEdit = () => {
-    history.push(`/posts/${id}/edit`)
-  }
+    history.push(`/posts/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleLike = async () => {
     try {
@@ -80,7 +89,11 @@ const Post = (props) => {
             </Media.Body>
           </div>
         </Link>
-        <div>{is_owner && postPage && <MoreDropdown handleEdit={handleEdit} />}</div>
+        <div>
+          {is_owner && postPage && (
+            <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+          )}
+        </div>
       </Media>
       <Card.Body className={styles.PostContent}>
         {title && <Card.Title className={styles.PostTitle}>{title}</Card.Title>}
