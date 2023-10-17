@@ -1,11 +1,19 @@
+.DropdownMenu {
+  background-color: #202124;
+}
+
 .DropdownItem {
-    display: inline-block;
-    max-width: 50%;
-    padding: 0px;
-  }
-  
-  .Absolute {
-    position: absolute;
-    right: 0;
-    z-index: 99;
-  }
+  display: inline-block;
+  max-width: 50%;
+  padding: 0px;
+}
+
+.DropdownItem:hover {
+  background-color: #202124;
+}
+
+.Absolute {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+}
