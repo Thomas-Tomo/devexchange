@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Post.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -26,6 +26,11 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/posts/${id}/edit`)
+  }
 
   const handleLike = async () => {
     try {
@@ -75,7 +80,7 @@ const Post = (props) => {
             </Media.Body>
           </div>
         </Link>
-        <div>{is_owner && postPage && <MoreDropdown />}</div>
+        <div>{is_owner && postPage && <MoreDropdown handleEdit={handleEdit} />}</div>
       </Media>
       <Card.Body className={styles.PostContent}>
         {title && <Card.Title className={styles.PostTitle}>{title}</Card.Title>}
