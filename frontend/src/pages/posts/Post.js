@@ -55,25 +55,27 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-       console.log(err);
+      console.log(err);
     }
   };
 
   return (
     <Card className={styles.PostCard}>
-      <Media>
+      <Media className="d-flex justify-content-between align-items-center mr-2">
         <Link to={`/profiles/${profile_id}`} className={styles.ProfileLink}>
-          <Avatar
-            src={profile_image}
-            height={50}
-            className={styles.ProfileImage}
-          />
-          <Media.Body className={styles.ProfileInfo}>
-            <h6>{owner}</h6>
-            <span>{updated_at}</span>
-            {is_owner && postPage && <MoreDropdown /> }
-          </Media.Body>
+          <div className="d-flex align-items-center">
+            <Avatar
+              src={profile_image}
+              height={50}
+              className={styles.ProfileImage}
+            />
+            <Media.Body className={styles.ProfileInfo}>
+              <h6>{owner}</h6>
+              <span>{updated_at}</span>
+            </Media.Body>
+          </div>
         </Link>
+        <div>{is_owner && postPage && <MoreDropdown />}</div>
       </Media>
       <Card.Body className={styles.PostContent}>
         {title && <Card.Title className={styles.PostTitle}>{title}</Card.Title>}
