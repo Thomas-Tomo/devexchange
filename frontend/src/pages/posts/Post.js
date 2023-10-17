@@ -98,7 +98,7 @@ const Post = (props) => {
       <Card.Body className={styles.PostContent}>
         {title && <Card.Title className={styles.PostTitle}>{title}</Card.Title>}
       </Card.Body>
-      <Link>
+      <Link to={`/posts/${id}`}>
         <Card.Img src={image} alt={title} className={styles.PostImage} />
       </Link>
       <Card.Body className={styles.PostContent}>
