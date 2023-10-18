@@ -1,8 +1,7 @@
 .PostCard {
   background-color: #333333;
   border: 2px solid #121212;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 10px 10px 0px 0px;
   margin-top: 20px;
 }
 
@@ -79,4 +78,12 @@
 
 .PostCard i:hover {
   color: white;
+}
+
+.CommentCard {
+  background-color: #333333;
+  border: 2px solid #121212;
+  border-top: none;
+  border-radius: 0px 0px 10px 10px;
+  padding: 5px 10px;
 }
