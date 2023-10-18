@@ -22,6 +22,11 @@
   color: #f0f1f9;
 }
 
+.FormImageUpload {
+  cursor: pointer;
+  background-color: #202124;
+}
+
 .FormControl {
   display: flex;
   padding: 10px;
