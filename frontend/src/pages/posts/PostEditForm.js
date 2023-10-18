@@ -7,8 +7,6 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import Upload from "../../assets/upload.png";
-import Asset from "../../components/Asset";
 import { Image } from "react-bootstrap";
 import appStyles from "../../App.module.css";
 
@@ -103,28 +101,17 @@ function PostEditForm() {
           ))}
 
           <Form.Group className="text-center cursor">
-            {image ? (
-              <>
-                <figure>
-                  <Image className={appStyles.Image} src={image} rounded />
-                </figure>
-                <div>
-                  <Form.Label
-                    className={`${btnStyles.Button} ${btnStyles.Pointer}`}
-                    htmlFor="image-upload"
-                  >
-                    Change the image
-                  </Form.Label>
-                </div>
-              </>
-            ) : (
+            <figure>
+              <Image className={appStyles.Image} src={image} rounded />
+            </figure>
+            <div>
               <Form.Label
-                className={`d-flex justify-content-center ${styles.FormImageUpload}`}
+                className={`${btnStyles.Button} ${btnStyles.Pointer}`}
                 htmlFor="image-upload"
               >
-                <Asset src={Upload} message="Click here to upload an image" />
+                Change the image
               </Form.Label>
-            )}
+            </div>
 
             <Form.File
               id="image-upload"
@@ -162,7 +149,7 @@ function PostEditForm() {
         ))}
         <div className="d-flex justify-content-center">
           <Button className={`${btnStyles.Button} mr-2`} type="submit">
-            Create
+            Update
           </Button>
           <Button className={btnStyles.Button} onClick={() => history.goBack()}>
             Cancel
