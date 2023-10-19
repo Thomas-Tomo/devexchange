@@ -78,6 +78,7 @@
 
 .PostCard i:hover {
   color: white;
+  cursor: pointer;
 }
 
 .CommentCard {
