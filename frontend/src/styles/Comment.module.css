@@ -8,3 +8,17 @@
   font-weight: lighter;
   color: #979794;
 }
+
+.CommentContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.CommentContainer i {
+  font-size: 18px;
+}
+
+.CommentContainer i:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
