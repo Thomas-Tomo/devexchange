@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions, status
+from django.db.models import Count
 from django.http import Http404
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
@@ -14,12 +15,18 @@ from .serializers import (
 class CommentList(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
-    queryset = Comment.objects.all()
+    queryset = Comment.objects.annotate(
+        comment_likes_count=Count('likes', distinct=True)
+    ).order_by('-created_at')
     filter_backends = [
         DjangoFilterBackend,
     ]
     filterset_fields = [
         'post'
+    ]
+    ordering_fields = [
+        'comment_likes_count',
+        'comment_likes_created_at',
     ]
 
     def perform_create(self, serializer):
@@ -29,7 +36,9 @@ class CommentList(generics.ListCreateAPIView):
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = CommentDetailSerializer
-    queryset = Comment.objects.all()
+    queryset = Comment.objects.annotate(
+        comment_likes_count=Count('likes', distinct=True)
+    ).order_by('-created_at')
 
 
 class ReplyList(generics.ListCreateAPIView):
