@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Comment.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Comment = (props) => {
   const {
@@ -17,10 +18,29 @@ const Comment = (props) => {
     comment_like_id,
     comment_likes_count,
     setComments,
+    setPost,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/comments/${id}/`);
+      setPost((prevPost) => ({
+        results: [
+          {
+            ...prevPost.results[0],
+            comments_count: prevPost.results[0].comments_count - 1,
+          },
+        ],
+      }));
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.filter((comment) => comment.id !== id),
+      }));
+    } catch (err) {}
+  };
 
   const handleLike = async () => {
     try {
@@ -99,6 +119,9 @@ const Comment = (props) => {
             {comment_likes_count}
           </div>
         </Media.Body>
+        {is_owner && (
+          <MoreDropdown handleEdit={() => {}} handleDelete={handleDelete} />
+        )}
       </Media>
     </div>
   );

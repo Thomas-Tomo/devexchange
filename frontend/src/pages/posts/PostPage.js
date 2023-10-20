@@ -71,6 +71,7 @@ function PostPage() {
                 <Comment
                   key={comment.id}
                   {...comment}
+                  setPost={setPost}
                   comments={comments}
                   setComments={setComments}
                 />
