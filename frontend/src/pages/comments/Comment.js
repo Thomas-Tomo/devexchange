@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -16,20 +16,51 @@ const Comment = (props) => {
     content,
     comment_like_id,
     comment_likes_count,
+    setComments,
   } = props;
-  const [likesCount, setLikesCount] = useState(comment_likes_count);
+
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
   const handleLike = async () => {
     try {
-      await axiosRes.post("/comment-likes/", { comment: id });
-      setLikesCount(likesCount + 1);
-    } catch (error) {
-      console.error("Error liking comment:", error);
+      const { data } = await axiosRes.post("/comment-likes/", { comment: id });
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) => {
+          return comment.id === id
+            ? {
+                ...comment,
+                comment_likes_count: comment.comment_likes_count + 1,
+                comment_like_id: data.id,
+              }
+            : comment;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
     }
   };
 
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/comment-likes/${comment_like_id}/`);
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) => {
+          return comment.id === id
+            ? {
+                ...comment,
+                comment_likes_count: comment.comment_likes_count - 1,
+                comment_like_id: null,
+              }
+            : comment;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div>
       <hr />
@@ -42,31 +73,31 @@ const Comment = (props) => {
           <span className={styles.Date}>{updated_at}</span>
           <p>{content}</p>
           <div className={styles.CommentContainer}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Can't like your own comment</Tooltip>}
-            >
-              <i className="fas fa-thumbs-up" />
-            </OverlayTrigger>
-          ) : comment_like_id ? (
-            <span onClick={() => {}}>
-              <i className="fas fa-thumbs-up" />
-            </span>
-          ) : currentUser ? (
-            <span onClick={handleLike}>
-              <i className="fas fa-thumbs-up" />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to like comments</Tooltip>}
-            >
-              <i className="fas fa-thumbs-up" />
-            </OverlayTrigger>
-          )}
-          {likesCount}
-        </div>
+            {is_owner ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Can't like your own comment</Tooltip>}
+              >
+                <i className="fas fa-thumbs-up" />
+              </OverlayTrigger>
+            ) : comment_like_id ? (
+              <span onClick={handleUnlike}>
+                <i className="fas fa-thumbs-up" />
+              </span>
+            ) : currentUser ? (
+              <span onClick={handleLike}>
+                <i className="fas fa-thumbs-up" />
+              </span>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to like comments</Tooltip>}
+              >
+                <i className="fas fa-thumbs-up" />
+              </OverlayTrigger>
+            )}
+            {comment_likes_count}
+          </div>
         </Media.Body>
       </Media>
     </div>
