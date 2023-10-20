@@ -7,6 +7,7 @@ import styles from "../../styles/Comment.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import CommentEditForm from "./CommentEditForm";
+import Replies from "./Replies";
 
 const Comment = (props) => {
   const {
@@ -131,6 +132,7 @@ const Comment = (props) => {
             )}
             {comment_likes_count}
           </div>
+          <Replies parentCommentId={id} profileImage={profile_image} />
         </Media.Body>
         {is_owner && !showEditForm && (
           <MoreDropdown

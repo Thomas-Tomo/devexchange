@@ -22,3 +22,19 @@
   color: #ffffff;
   cursor: pointer;
 }
+
+.Button {
+  border: none;
+  background-color: #28a745;
+  color: #f0f1f9;
+  border-radius: 5px;
+  padding: 4px 10px;
+  min-width: 75px;
+  margin: 5px;
+}
+
+.Button:hover {
+  cursor: pointer;
+  background-color: #f0f1f9;
+  color: #121212;
+}
