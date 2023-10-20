@@ -35,6 +35,11 @@ i {
   vertical-align: middle;
 }
 
+i:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+
 @media (max-width: 767px) {
   .Main {
     padding-top: 6rem;
