@@ -132,7 +132,7 @@ const Comment = (props) => {
             )}
             {comment_likes_count}
           </div>
-          <Replies parentCommentId={id} profileImage={profile_image} />
+          <Replies parentCommentId={id} profileImage={profile_image}  owner={owner} />
         </Media.Body>
         {is_owner && !showEditForm && (
           <MoreDropdown
