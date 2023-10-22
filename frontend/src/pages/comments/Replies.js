@@ -6,8 +6,9 @@ import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/Comment.module.css";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import RepliesEditForm from "./RepliesEditForm";
 
-const CombinedComponent = ({ parentCommentId, profileImage, owner }) => {
+const Replies = ({ parentCommentId, profileImage, owner }) => {
   const [replies, setReplies] = useState([]);
   const [content, setContent] = useState("");
   const [showReplies, setShowReplies] = useState(false); // State to handle the visibility of replies
@@ -15,6 +16,7 @@ const CombinedComponent = ({ parentCommentId, profileImage, owner }) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const [editReplyId, setEditReplyId] = useState(false);
 
   useEffect(() => {
     const fetchReplies = async () => {
@@ -55,7 +57,7 @@ const CombinedComponent = ({ parentCommentId, profileImage, owner }) => {
   };
 
   return (
-    <div>
+<div>
       {showReplies &&
         replies.map((reply) => (
           <div key={reply.id}>
@@ -67,11 +69,21 @@ const CombinedComponent = ({ parentCommentId, profileImage, owner }) => {
               <Media.Body className="align-self-center ml-2">
                 <span className={styles.Owner}>{reply.owner}</span>
                 <span className={styles.Date}>{reply.updated_at}</span>
-                <p>{reply.content}</p>
+                {editReplyId === reply.id ? (
+                  <RepliesEditForm
+                    replyId={reply.id}
+                    parentCommentId={parentCommentId}
+                    content={reply.content}
+                    setShowEditForm={setEditReplyId}
+                    setReplies={setReplies}
+                  />
+                ) : (
+                  <p>{reply.content}</p>
+                )}
               </Media.Body>
               {is_owner && (
                 <MoreDropdown
-                  handleEdit={() => {}} // Replace handleEdit with your edit logic
+                  handleEdit={() => setEditReplyId(reply.id)} // Replace handleEdit with your edit logic
                   handleDelete={() => handleDelete(reply.id)}
                 />
               )}
@@ -119,4 +131,4 @@ const CombinedComponent = ({ parentCommentId, profileImage, owner }) => {
   );
 };
 
-export default CombinedComponent;
+export default Replies;
