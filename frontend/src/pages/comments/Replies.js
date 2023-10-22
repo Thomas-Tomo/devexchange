@@ -8,6 +8,8 @@ import styles from "../../styles/Comment.module.css";
 const CombinedComponent = ({ parentCommentId, profileImage }) => {
   const [replies, setReplies] = useState([]);
   const [content, setContent] = useState("");
+  const [showReplies, setShowReplies] = useState(false); // State to handle the visibility of replies
+  const [showAddReplyForm, setShowAddReplyForm] = useState(false); // State to handle the visibility of the add reply form
 
   useEffect(() => {
     const fetchReplies = async () => {
@@ -30,6 +32,7 @@ const CombinedComponent = ({ parentCommentId, profileImage }) => {
       const newReply = response.data;
       setReplies((prevReplies) => [...prevReplies, newReply]);
       setContent("");
+      setShowAddReplyForm(false);
     } catch (error) {
       console.error("Error adding reply:", error);
     }
@@ -37,32 +40,59 @@ const CombinedComponent = ({ parentCommentId, profileImage }) => {
 
   return (
     <div className={styles.Replies}>
-      {replies.map((reply) => (
-        <div className={styles.ReplyContainer} key={reply.id}>
-          <hr />
-          <Media>
-            <Link to={`/profiles/${reply.profile_id}`}>
-              <Avatar src={profileImage} />
-            </Link>
-            <Media.Body className="align-self-center ml-2">
-              <span className={styles.Owner}>{reply.owner}</span>
-              <span className={styles.Date}>{reply.updated_at}</span>
-              <p>{reply.content}</p>
-            </Media.Body>
-          </Media>
-        </div>
-      ))}
-      <div className={styles.AddReplyForm}>
-        <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Write a reply..."
-          className={styles.TextArea}
-        />
-        <button onClick={handleAddReply} className={styles.Button}>
+      {showReplies &&
+        replies.map((reply) => (
+          <div className={styles.ReplyContainer} key={reply.id}>
+            <hr />
+            <Media>
+              <Link to={`/profiles/${reply.profile_id}`}>
+                <Avatar src={profileImage} />
+              </Link>
+              <Media.Body className="align-self-center ml-2">
+                <span className={styles.Owner}>{reply.owner}</span>
+                <span className={styles.Date}>{reply.updated_at}</span>
+                <p>{reply.content}</p>
+              </Media.Body>
+            </Media>
+          </div>
+        ))}
+      {replies.length > 0 && (
+        <button
+          onClick={() => setShowReplies(!showReplies)}
+          className={styles.Button}
+        >
+          {showReplies
+            ? `Hide Replies (${replies.length})`
+            : `View Replies (${replies.length})`}
+        </button>
+      )}
+      {!showAddReplyForm && (
+        <button
+          onClick={() => setShowAddReplyForm(true)}
+          className={styles.Button}
+        >
           Add Reply
         </button>
-      </div>
+      )}
+      {showAddReplyForm && (
+        <div className={styles.AddReplyForm}>
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Write a reply..."
+            className={styles.TextArea}
+          />
+          <button onClick={handleAddReply} className={styles.Button}>
+            Submit Reply
+          </button>
+          <button
+            onClick={() => setShowAddReplyForm(false)}
+            className={styles.Button}
+          >
+            Cancel
+          </button>
+        </div>
+      )}
     </div>
   );
 };
