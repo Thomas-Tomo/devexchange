@@ -4,12 +4,17 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/Comment.module.css";
+import { MoreDropdown } from "../../components/MoreDropdown";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-const CombinedComponent = ({ parentCommentId, profileImage }) => {
+const CombinedComponent = ({ parentCommentId, profileImage, owner }) => {
   const [replies, setReplies] = useState([]);
   const [content, setContent] = useState("");
   const [showReplies, setShowReplies] = useState(false); // State to handle the visibility of replies
   const [showAddReplyForm, setShowAddReplyForm] = useState(false); // State to handle the visibility of the add reply form
+
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === owner;
 
   useEffect(() => {
     const fetchReplies = async () => {
@@ -38,11 +43,22 @@ const CombinedComponent = ({ parentCommentId, profileImage }) => {
     }
   };
 
+  const handleDelete = async (replyId) => {
+    try {
+      await axiosRes.delete(`/replies/${parentCommentId}/${replyId}/`);
+      setReplies((prevReplies) =>
+        prevReplies.filter((reply) => reply.id !== replyId)
+      );
+    } catch (error) {
+      console.error("Error deleting reply:", error);
+    }
+  };
+
   return (
-    <div className={styles.Replies}>
+    <div>
       {showReplies &&
         replies.map((reply) => (
-          <div className={styles.ReplyContainer} key={reply.id}>
+          <div key={reply.id}>
             <hr />
             <Media>
               <Link to={`/profiles/${reply.profile_id}`}>
@@ -53,6 +69,12 @@ const CombinedComponent = ({ parentCommentId, profileImage }) => {
                 <span className={styles.Date}>{reply.updated_at}</span>
                 <p>{reply.content}</p>
               </Media.Body>
+              {is_owner && (
+                <MoreDropdown
+                  handleEdit={() => {}} // Replace handleEdit with your edit logic
+                  handleDelete={() => handleDelete(reply.id)}
+                />
+              )}
             </Media>
           </div>
         ))}
@@ -75,7 +97,7 @@ const CombinedComponent = ({ parentCommentId, profileImage }) => {
         </button>
       )}
       {showAddReplyForm && (
-        <div className={styles.AddReplyForm}>
+        <div>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
