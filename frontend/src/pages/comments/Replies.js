@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/Comment.module.css";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RepliesEditForm from "./RepliesEditForm";
 
-const Replies = ({ parentCommentId }) => {
+const Replies = (props) => {
+  const { parentCommentId } = props;
+
   const [replies, setReplies] = useState([]);
   const [content, setContent] = useState("");
   const [showReplies, setShowReplies] = useState(false); // State to handle the visibility of replies
@@ -56,7 +60,7 @@ const Replies = ({ parentCommentId }) => {
   };
 
   return (
-<div>
+    <div>
       {showReplies &&
         replies.map((reply) => (
           <div key={reply.id}>
@@ -81,11 +85,11 @@ const Replies = ({ parentCommentId }) => {
                 )}
               </Media.Body>
               {currentUser?.username === reply.owner && (
-          <MoreDropdown
-            handleEdit={() => setEditReplyId(reply.id)}
-            handleDelete={() => handleDelete(reply.id)}
-          />
-        )}
+                <MoreDropdown
+                  handleEdit={() => setEditReplyId(reply.id)}
+                  handleDelete={() => handleDelete(reply.id)}
+                />
+              )}
             </Media>
           </div>
         ))}
@@ -108,13 +112,17 @@ const Replies = ({ parentCommentId }) => {
         </button>
       )}
       {showAddReplyForm && (
-        <div>
-          <textarea
+        <Form className="pr-1">
+          <Form.Group>
+          <InputGroup>
+          <Form.Control
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Write a reply..."
-            className={styles.TextArea}
+            rows={2}
           />
+          </InputGroup>
+          </Form.Group>
           <button onClick={handleAddReply} className={styles.Button}>
             Submit Reply
           </button>
@@ -124,7 +132,7 @@ const Replies = ({ parentCommentId }) => {
           >
             Cancel
           </button>
-        </div>
+        </Form>
       )}
     </div>
   );
