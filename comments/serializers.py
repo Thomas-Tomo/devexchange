@@ -73,6 +73,8 @@ class ReplySerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
+    profile_id = serializers.ReadOnlyField(source='owner.profile.id')
+    profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
 
     def get_created_at(self, obj):
         return naturaltime(obj.created_at)
@@ -84,7 +86,7 @@ class ReplySerializer(serializers.ModelSerializer):
         model = Reply
         fields = [
             'id', 'owner', 'created_at', 'updated_at',
-            'parent_comment', 'content',
+            'parent_comment', 'content', 'profile_image', 'profile_id',
         ]
 
 
