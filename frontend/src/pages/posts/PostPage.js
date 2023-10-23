@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import appStyles from "../../App.module.css";
 import styles from "../../styles/Post.module.css";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -36,7 +35,7 @@ function PostPage() {
   }, [id]);
 
   return (
-    <Container className={appStyles.Content}>
+    <Container>
       <Row>
         <Col lg={4} className="d-lg-none">
           {/* Popular Profiles for Mobile (Visible on Mobile) */}
