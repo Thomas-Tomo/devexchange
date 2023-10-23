@@ -8,14 +8,13 @@ import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RepliesEditForm from "./RepliesEditForm";
 
-const Replies = ({ parentCommentId, profileImage, owner }) => {
+const Replies = ({ parentCommentId }) => {
   const [replies, setReplies] = useState([]);
   const [content, setContent] = useState("");
   const [showReplies, setShowReplies] = useState(false); // State to handle the visibility of replies
   const [showAddReplyForm, setShowAddReplyForm] = useState(false); // State to handle the visibility of the add reply form
 
   const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === owner;
   const [editReplyId, setEditReplyId] = useState(false);
 
   useEffect(() => {
@@ -64,7 +63,7 @@ const Replies = ({ parentCommentId, profileImage, owner }) => {
             <hr />
             <Media>
               <Link to={`/profiles/${reply.profile_id}`}>
-                <Avatar src={profileImage} />
+                <Avatar src={reply.profile_image} />
               </Link>
               <Media.Body className="align-self-center ml-2">
                 <span className={styles.Owner}>{reply.owner}</span>
@@ -81,12 +80,12 @@ const Replies = ({ parentCommentId, profileImage, owner }) => {
                   <p>{reply.content}</p>
                 )}
               </Media.Body>
-              {is_owner && (
-                <MoreDropdown
-                  handleEdit={() => setEditReplyId(reply.id)} // Replace handleEdit with your edit logic
-                  handleDelete={() => handleDelete(reply.id)}
-                />
-              )}
+              {currentUser?.username === reply.owner && (
+          <MoreDropdown
+            handleEdit={() => setEditReplyId(reply.id)}
+            handleDelete={() => handleDelete(reply.id)}
+          />
+        )}
             </Media>
           </div>
         ))}
