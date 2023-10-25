@@ -10,6 +10,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
+import PopularProfiles from "../profiles/PopularProfiles";
 
 function PostPage() {
   const { id } = useParams();
@@ -96,7 +97,7 @@ function PostPage() {
           {/* Right Sidebar */}
           <Row>
             <Col className="p-0 p-lg-2">
-              <p>Popular profiles for desktop</p>
+              <PopularProfiles />
             </Col>
           </Row>
           <Row>

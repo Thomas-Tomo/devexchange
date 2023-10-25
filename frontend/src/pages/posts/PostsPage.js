@@ -46,7 +46,7 @@ function PostsPage({ message, filter = "" }) {
           {/* Popular Profiles for Mobile (Visible on Mobile) */}
           <Row>
             <Col className="p-0 p-lg-2">
-              <p>Popular profiles for mobile</p>
+              <PopularProfiles mobile />
             </Col>
           </Row>
         </Col>
