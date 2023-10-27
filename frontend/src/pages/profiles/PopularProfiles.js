@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import styles from "../../styles/Post.module.css";
+import styles from "../../styles/PopularProfiles.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
@@ -34,7 +34,7 @@ const PopularProfiles = ({ mobile }) => {
 
   return (
     <Container
-      className={`${styles.PostCard} ${mobile && "d-lg-none text-center mb-3"}`}
+      className={`${styles.PopularProfiles} ${mobile && "d-lg-none text-center mb-3"}`}
     >
       {popularProfiles.results.length ? (
         <>
