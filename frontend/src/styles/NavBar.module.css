@@ -1,32 +1,30 @@
 .NavBar {
-    display: flex;
-    background-color: #121212;
-    font-size: 1rem;
-    font-weight: 700;
-    border: 3px solid #333333;
-    align-items: right;
+  display: flex;
+  background-color: #121212;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 3px solid #333333;
+  align-items: right;
 }
 
 .NavLink {
-    padding: 10px;
-    color: #979794;
+  padding: 6px;
+  color: #979794;
 }
 
 .NavLink:hover {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .NavLink i {
-    margin-right: 8px;
-    font-size: 1.8rem;
+  margin-right: 8px;
+  font-size: 1.8rem;
 }
 
 .Active i {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .Icons {
-    width: 32px;
+  width: 32px;
 }
-
-

@@ -10,7 +10,7 @@ const SideBar = () => {
   const addPostsSideBar = (
     <>
       {/* Left Column */}
-      <Col md={2} className={styles.SideBar}>
+      <Col md={12} className={styles.SideBar}>
         <div className={styles.CustomCard}>
           <div className={styles.CardBody}>
             <div className={styles.LinkContainer}>

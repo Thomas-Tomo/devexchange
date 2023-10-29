@@ -25,7 +25,7 @@ function App() {
           <SideBar />
 
           {/* Center Content */}
-          <Col md={10}>
+          <Col>
             <Switch>
               <Route
                 exact
@@ -75,7 +75,11 @@ function App() {
                 path="/posts/:id/edit"
                 render={() => <PostEditForm />}
               />
-              <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+              <Route
+                exact
+                path="/profiles/:id"
+                render={() => <ProfilePage />}
+              />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
           </Col>

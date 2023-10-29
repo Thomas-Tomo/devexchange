@@ -63,7 +63,7 @@ function PostCreateForm() {
   };
 
   return (
-    <div className={styles.PostCreateEditForm}>
+    <div className={`${styles.PostCreateEditForm} d-flex justify-content-center`}>
       <Form onSubmit={handleSubmit} className={styles.Form}>
         <Container className={`d-flex flex-column justify-content-center`}>
           <Form.Group controlId="title">

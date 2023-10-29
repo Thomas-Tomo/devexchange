@@ -1,5 +1,5 @@
 .SideBar {
-  padding: 20px;
+  padding: 10px 25px 10px;
   color: #ffffff;
 }
 
@@ -7,7 +7,21 @@
   background-color: #333333;
   border: 2px solid #121212;
   border-radius: 10px;
-  padding: 20px;
+  text-align: center;
+}
+
+.CardBody {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.LinkContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
   text-align: center;
 }
 
@@ -35,30 +49,7 @@
   margin-top: 20px;
 }
 
-@media (max-width: 767px) {
-  .SideBar {
-    padding: 20px 10px;
-  }
-  .CustomCard {
-    padding: 0px;
-  }
-  .CardBody {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-  }
-  .LinkContainer {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0;
-    text-align: center;
-  }
-  .Link {
-    font-size: 16px;
-  }
-  .Link i {
-    font-size: 20px;
-  }
-}
+  
+  
+  
+

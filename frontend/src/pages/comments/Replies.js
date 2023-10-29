@@ -97,7 +97,7 @@ const Replies = (props) => {
       {replies.length > 0 && (
         <button
           onClick={() => setShowReplies(!showReplies)}
-          className={styles.Button}
+          className={`${styles.Button} py-0`}
         >
           {showReplies
             ? `Hide Replies (${replies.length})`
@@ -107,7 +107,7 @@ const Replies = (props) => {
       {!showAddReplyForm && (
         <button
           onClick={() => setShowAddReplyForm(true)}
-          className={styles.Button}
+          className={`${styles.Button} py-0`}
         >
           Add Reply
         </button>
@@ -124,12 +124,12 @@ const Replies = (props) => {
           />
           </InputGroup>
           </Form.Group>
-          <button onClick={handleAddReply} className={styles.Button}>
+          <button onClick={handleAddReply} className={`${styles.Button} py-0`}>
             Submit Reply
           </button>
           <button
             onClick={() => setShowAddReplyForm(false)}
-            className={styles.Button}
+            className={`${styles.Button} py-0`}
           >
             Cancel
           </button>

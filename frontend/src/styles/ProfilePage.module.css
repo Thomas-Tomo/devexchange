@@ -1,7 +1,15 @@
+.ProfileCard {
+  background-color: #333333;
+  border: 2px solid #121212;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: 12px;
+  padding: 10px;
+}
+
 .ProfileImage {
     object-fit: cover;
-    height: 100px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
     margin: 4px;
   }
   
