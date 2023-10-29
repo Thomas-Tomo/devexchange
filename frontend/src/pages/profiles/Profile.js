@@ -15,7 +15,7 @@ const Profile = (props) => {
 
   return (
     <div
-      className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}
+      className={`my-3 d-flex align-items-center mr-2 ${mobile && "flex-column"}`}
     >
       <div>
         <Link className="align-self-center" to={`/profiles/${id}`}>
@@ -24,14 +24,13 @@ const Profile = (props) => {
       </div>
       <div className={`mx-2 ${styles.WordBreak}`}>
         <strong>{owner}</strong>
-        <p>{user_type}</p>
       </div>
       <div className={`text-right ${!mobile && 'ml-auto'}`} >
         {!mobile && currentUser && !is_owner && (
             following_id ? (
-                <Button className={`${btnStyles.Button}`} onClick={() => {}}>unfollow</Button>
+                <Button className={`${btnStyles.Button} py-1`} onClick={() => {}}>unfollow</Button>
             ) : (
-                <Button className={`${btnStyles.Button}`} onClick={() => {}}>follow</Button>
+                <Button className={`${btnStyles.Button} py-1`} onClick={() => {}}>follow</Button>
             )
         )}
       </div>
