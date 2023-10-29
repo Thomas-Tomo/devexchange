@@ -33,7 +33,8 @@ const Replies = (props) => {
     fetchReplies();
   }, [parentCommentId]);
 
-  const handleAddReply = async () => {
+  const handleAddReply = async (event) => {
+    event.preventDefault();
     try {
       const response = await axiosRes.post(`/replies/${parentCommentId}/`, {
         content,
