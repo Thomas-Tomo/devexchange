@@ -13,9 +13,9 @@ ReactDOM.render(
     <Router>
       <CurrentUserProvider>
         <UserTypeProvider>
-        <ProfileDataProvider>
-          <App />
-        </ProfileDataProvider>
+          <ProfileDataProvider>
+            <App />
+          </ProfileDataProvider>
         </UserTypeProvider>
       </CurrentUserProvider>
     </Router>

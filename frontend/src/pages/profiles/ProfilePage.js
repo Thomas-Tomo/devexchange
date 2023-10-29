@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
 import Asset from "../../components/Asset";
-
 import styles from "../../styles/ProfilePage.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router-dom";
@@ -26,7 +22,7 @@ function ProfilePage() {
   const setProfileData = useSetProfileData();
   const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
-  const is_owner = currentUser?.username === profile?.owner
+  const is_owner = currentUser?.username === profile?.owner;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,6 +60,12 @@ function ProfilePage() {
               <div>{profile?.posts_count}</div>
               <div>posts</div>
             </Col>
+            {profile?.user_type === "Employer" && (
+              <Col xd={3} className="my-2">
+                <div>{profile?.job_posts_count}</div>
+                <div>job posts</div>
+              </Col>
+            )}
             <Col xd={3} className="my-2">
               <div>{profile?.followers_count}</div>
               <div>followers</div>
@@ -75,20 +77,14 @@ function ProfilePage() {
           </Row>
         </Col>
         <Col lg={3} className="text-lg-right">
-        {currentUser &&
+          {currentUser &&
             !is_owner &&
             (profile?.following_id ? (
-              <Button
-                className={`${btnStyles.Button} py-1`}
-                onClick={() => {}}
-              >
+              <Button className={`${btnStyles.Button} py-1`} onClick={() => {}}>
                 unfollow
               </Button>
             ) : (
-              <Button
-                className={`${btnStyles.Button} py-1`}
-                onClick={() => {}}
-              >
+              <Button className={`${btnStyles.Button} py-1`} onClick={() => {}}>
                 follow
               </Button>
             ))}
