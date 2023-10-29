@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 
 const Profile = (props) => {
   const { profile, mobile, imageSize = 55 } = props;
-  const { id, following_id, image, owner, user_type } = profile;
+  const { id, following_id, image, owner } = profile;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
