@@ -9,6 +9,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     user_type = serializers.CharField(source='get_user_type_display')
     following_id = serializers.SerializerMethodField()
     posts_count = serializers.ReadOnlyField()
+    job_posts_count = serializers.ReadOnlyField()
     followers_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
 
@@ -39,6 +40,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'user_type',
             'following_id',
             'posts_count',
+            'job_posts_count',
             'followers_count',
             'following_count',
         ]
