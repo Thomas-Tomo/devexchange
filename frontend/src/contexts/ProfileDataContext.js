@@ -36,21 +36,16 @@ export const ProfileDataProvider = ({ children }) => {
         },
       }));
     } catch (err) {
-       console.log(err);
+      console.log(err);
     }
   };
 
-
   const handleFollow = async (clickedProfile) => {
     try {
-      const id = clickedProfile.id;
-      const profileResponse = await axiosReq.get(`/profiles/${id}/`);
-      console.log('Profile Response:', profileResponse.data);
-  
       const { data } = await axiosRes.post("/followers/", {
         followed: clickedProfile.id,
       });
-  
+
       setProfileData((prevState) => ({
         ...prevState,
         pageProfile: {
@@ -89,7 +84,9 @@ export const ProfileDataProvider = ({ children }) => {
 
   return (
     <ProfileDataContext.Provider value={profileData}>
-      <SetProfileDataContext.Provider value={{ setProfileData, handleFollow, handleUnfollow }}>
+      <SetProfileDataContext.Provider
+        value={{ setProfileData, handleFollow, handleUnfollow }}
+      >
         {children}
       </SetProfileDataContext.Provider>
     </ProfileDataContext.Provider>
