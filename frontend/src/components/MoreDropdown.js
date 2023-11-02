@@ -49,7 +49,7 @@ export function ProfileEditDropdown({ id }) {
   return (
     <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
       <Dropdown.Toggle as={ThreeDots} />
-      <Dropdown.Menu>
+      <Dropdown.Menu className={styles.DropdownMenu}>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit`)}
           aria-label="edit-profile"
