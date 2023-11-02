@@ -74,7 +74,6 @@ function PostPage() {
               <span>No comments... yet</span>
             )}
           </Container>
-          <Container>Replies to comments</Container>
         </Col>
       </Row>
     </Container>
