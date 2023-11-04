@@ -4,16 +4,19 @@
 
 .DropdownItem {
   display: inline-block;
+  color: #979794;
   max-width: 50%;
-  padding: 0px;
+  padding: 2px 10px;
 }
 
 .DropdownItem:hover {
   background-color: #202124;
+  color: #ffffff;
 }
 
 .Absolute {
   position: absolute;
   right: 0;
+  margin-right: 10px;
   z-index: 99;
 }
