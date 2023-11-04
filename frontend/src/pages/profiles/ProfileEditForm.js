@@ -8,13 +8,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-
 import { axiosReq } from "../../api/axiosDefaults";
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
@@ -125,15 +123,21 @@ const ProfileEditForm = () => {
           <Modal.Title>Confirm Change</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-  <p>
-    Are you sure you want to change your user type to Employer? You won't be able
-    to revert back to Regular user.
-  </p>
-  <ul>
-    <li>You will be able to create job posts and set up your company details.</li>
-    <li>Your skills won't be shown on your profile page anymore; they will be replaced with company details.</li>
-  </ul>
-</Modal.Body>
+          <p>
+            Are you sure you want to change your Account status to Employer? You
+            won't be able to revert back to Regular user.
+          </p>
+          <ul>
+            <li>
+              You will be able to create job posts and set up your company
+              details.
+            </li>
+            <li>
+              Your skills won't be shown on your profile page anymore; they will
+              be replaced with company details.
+            </li>
+          </ul>
+        </Modal.Body>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCancelChange}>
