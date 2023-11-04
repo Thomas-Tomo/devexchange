@@ -35,7 +35,7 @@ function PostPage() {
   }, [id]);
 
   return (
-    <Container>
+    <Container className="pb-5">
       <Row className="justify-content-center">
         <Col md={8} className="p-0">
           {/* Post Component */}
