@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
-
+import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
@@ -40,10 +40,10 @@ const ProfileEditForm = () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, content, image } = data;
-          setProfileData({ name, content, image });
+          const { name, content, image, user_type } = data;
+          setProfileData({ name, content, image, user_type });
         } catch (err) {
-          // console.log(err);
+          console.log(err);
           history.push("/");
         }
       } else {
@@ -54,13 +54,31 @@ const ProfileEditForm = () => {
     handleMount();
   }, [currentUser, history, id]);
 
+  const [showModal, setShowModal] = useState(false);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-  setProfileData((prevState) => ({
-    ...prevState,
-    [name]: value,
-  }));
-};
+    if (name === "user_type" && user_type !== "employer") {
+      setShowModal(true); // Show the modal
+    } else if (name !== "user_type") {
+      setProfileData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+  };
+
+  const handleConfirmChange = () => {
+    setProfileData((prevState) => ({
+      ...prevState,
+      user_type: "employer",
+    }));
+    setShowModal(false); // Hide the modal
+  };
+
+  const handleCancelChange = () => {
+    setShowModal(false); // Hide the modal
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -88,7 +106,7 @@ const ProfileEditForm = () => {
 
   const textFields = (
     <>
-    <Form.Group>
+      <Form.Group>
         <Form.Label>User Type</Form.Label>
         <Form.Control
           as="select"
@@ -96,10 +114,37 @@ const ProfileEditForm = () => {
           onChange={handleChange}
           name="user_type"
         >
-          <option value="regular">Regular User</option>
+          {user_type !== "employer" && (
+            <option value="regular">Regular User</option>
+          )}
           <option value="employer">Employer</option>
         </Form.Control>
       </Form.Group>
+      <Modal show={showModal} onHide={handleCancelChange}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Change</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+  <p>
+    Are you sure you want to change your user type to Employer? You won't be able
+    to revert back to Regular user.
+  </p>
+  <ul>
+    <li>You will be able to create job posts and set up your company details.</li>
+    <li>Your skills won't be shown on your profile page anymore; they will be replaced with company details.</li>
+  </ul>
+</Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCancelChange}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleConfirmChange}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <Form.Group>
         <Form.Label>Bio</Form.Label>
         <Form.Control
@@ -110,7 +155,6 @@ const ProfileEditForm = () => {
           rows={7}
         />
       </Form.Group>
-
       {errors?.content?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
@@ -156,6 +200,7 @@ const ProfileEditForm = () => {
                 id="image-upload"
                 ref={imageFile}
                 accept="image/*"
+                style={{ display: "none" }}
                 onChange={(e) => {
                   if (e.target.files.length) {
                     setProfileData({
