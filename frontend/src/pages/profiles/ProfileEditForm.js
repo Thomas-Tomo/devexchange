@@ -29,8 +29,9 @@ const ProfileEditForm = () => {
     name: "",
     content: "",
     image: "",
+    user_type: "regular",
   });
-  const { name, content, image } = profileData;
+  const { name, content, image, user_type } = profileData;
 
   const [errors, setErrors] = useState({});
 
@@ -54,17 +55,19 @@ const ProfileEditForm = () => {
   }, [currentUser, history, id]);
 
   const handleChange = (event) => {
-    setProfileData({
-      ...profileData,
-      [event.target.name]: event.target.value,
-    });
-  };
+    const { name, value } = event.target;
+  setProfileData((prevState) => ({
+    ...prevState,
+    [name]: value,
+  }));
+};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
     formData.append("content", content);
+    formData.append("user_type", user_type);
 
     if (imageFile?.current?.files[0]) {
       formData.append("image", imageFile?.current?.files[0]);
@@ -85,6 +88,18 @@ const ProfileEditForm = () => {
 
   const textFields = (
     <>
+    <Form.Group>
+        <Form.Label>User Type</Form.Label>
+        <Form.Control
+          as="select"
+          value={user_type}
+          onChange={handleChange}
+          name="user_type"
+        >
+          <option value="regular">Regular User</option>
+          <option value="employer">Employer</option>
+        </Form.Control>
+      </Form.Group>
       <Form.Group>
         <Form.Label>Bio</Form.Label>
         <Form.Control

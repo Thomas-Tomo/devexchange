@@ -69,13 +69,13 @@ function ProfilePage() {
         </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile?.owner}</h3>
-          <p className="m-2">Status: {profile?.user_type}</p>
+          <p className="m-2">Account status: {profile?.user_type}</p>
           <Row className="justify-content-center no-gutters">
             <Col xd={3} className="my-2">
               <div>{profile?.posts_count}</div>
               <div>posts</div>
             </Col>
-            {profile?.user_type === "Employer" && (
+            {profile?.user_type === "employer" && (
               <Col xd={3} className="my-2">
                 <div>{profile?.job_posts_count}</div>
                 <div>job posts</div>
