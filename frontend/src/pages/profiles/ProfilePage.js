@@ -19,20 +19,26 @@ import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
+import UserTypeInfo from "./UserTypeInfo";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [showPosts, setShowPosts] = useState(false);
   const currentUser = useCurrentUser();
   const { id } = useParams();
-  const {setProfileData, handleFollow, handleUnfollow} = useSetProfileData();
+  const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
   const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
   const [profilePosts, setProfilePosts] = useState({ results: [] });
+  const [showInfo, setShowInfo] = useState(false);
 
   const togglePosts = () => {
     setShowPosts((prev) => !prev); // Toggle the state
+  };
+
+  const toggleInfo = () => {
+    setShowInfo((prev) => !prev); // Toggle the state
   };
 
   useEffect(() => {
@@ -58,7 +64,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-    {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
@@ -95,11 +101,17 @@ function ProfilePage() {
           {currentUser &&
             !is_owner &&
             (profile?.following_id ? (
-              <Button className={`${btnStyles.Button} py-1`} onClick={() => handleUnfollow(profile)}>
+              <Button
+                className={`${btnStyles.Button} py-1`}
+                onClick={() => handleUnfollow(profile)}
+              >
                 unfollow
               </Button>
             ) : (
-              <Button className={`${btnStyles.Button} py-1`} onClick={() => handleFollow(profile)}>
+              <Button
+                className={`${btnStyles.Button} py-1`}
+                onClick={() => handleFollow(profile)}
+              >
                 follow
               </Button>
             ))}
@@ -111,9 +123,9 @@ function ProfilePage() {
 
   const mainProfilePosts = (
     <>
-    <Button className={`${btnStyles.Button} py-1`} onClick={togglePosts}>
-      {showPosts ? "Hide Posts" : "Show Posts"}
-    </Button>
+      <Button className={`${btnStyles.Button} py-1`} onClick={togglePosts}>
+        {showPosts ? "Hide Posts" : "Show Posts"}
+      </Button>
       {showPosts && (
         <>
           <hr />
@@ -156,6 +168,19 @@ function ProfilePage() {
           {hasLoaded ? (
             <>
               {mainProfile}
+              {profile?.is_owner && (
+                <>
+                  <div>
+                    <Button
+                      className={`${btnStyles.Button} py-1`}
+                      onClick={toggleInfo}
+                    >
+                      {showInfo ? "Hide Info" : "Show Info"}
+                    </Button>
+                    {showInfo && <UserTypeInfo />}
+                  </div>
+                </>
+              )}
               {mainProfilePosts}
               {mainProfileJobPosts}
             </>
