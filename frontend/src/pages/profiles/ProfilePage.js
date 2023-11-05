@@ -13,7 +13,7 @@ import {
   useProfileData,
   useSetProfileData,
 } from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
@@ -101,19 +101,19 @@ function ProfilePage() {
           {currentUser &&
             !is_owner &&
             (profile?.following_id ? (
-              <Button
+              <button
                 className={`${btnStyles.Button} py-1`}
                 onClick={() => handleUnfollow(profile)}
               >
                 unfollow
-              </Button>
+              </button>
             ) : (
-              <Button
+              <button
                 className={`${btnStyles.Button} py-1`}
                 onClick={() => handleFollow(profile)}
               >
                 follow
-              </Button>
+              </button>
             ))}
         </Col>
         <Col className="p-3">{profile?.content}</Col>
@@ -123,9 +123,9 @@ function ProfilePage() {
 
   const mainProfilePosts = (
     <>
-      <Button className={`${btnStyles.Button} py-1`} onClick={togglePosts}>
+      <button className={`${btnStyles.Button} py-1`} onClick={togglePosts}>
         {showPosts ? "Hide Posts" : "Show Posts"}
-      </Button>
+      </button>
       {showPosts && (
         <>
           <hr />
@@ -171,12 +171,12 @@ function ProfilePage() {
               {profile?.is_owner && (
                 <>
                   <div>
-                    <Button
+                    <button
                       className={`${btnStyles.Button} py-1`}
                       onClick={toggleInfo}
                     >
                       {showInfo ? "Hide Info" : "Show Info"}
-                    </Button>
+                    </button>
                     {showInfo && <UserTypeInfo />}
                   </div>
                 </>
