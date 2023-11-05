@@ -11,7 +11,7 @@ class ProfileList(generics.ListAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.annotate(
         posts_count=Count('owner__post', distinct=True),
-        job_posts_count=Count('owner__post', distinct=True),
+        job_posts_count=Count('owner__jobpost', distinct=True),
         followers_count=Count('owner__followed', distinct=True),
         following_count=Count('owner__following', distinct=True)
         ).order_by('-created_at')
