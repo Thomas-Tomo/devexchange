@@ -105,7 +105,7 @@ const ProfileEditForm = () => {
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label>User Type</Form.Label>
+        <Form.Label>Account Type</Form.Label>
         <Form.Control
           as="select"
           value={user_type}

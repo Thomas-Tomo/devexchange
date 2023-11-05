@@ -12,7 +12,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
+import styles from "../../styles/ProfilePage.module.css"
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -55,7 +55,7 @@ const UserPasswordForm = () => {
   return (
     <Row>
       <Col className="py-2 mx-auto text-center" md={6}>
-        <Container className={appStyles.Content}>
+        <Container className={styles.ProfileCard}>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>New password</Form.Label>
