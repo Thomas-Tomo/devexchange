@@ -7,15 +7,34 @@
 }
 
 .ProfileImage {
-    object-fit: cover;
-    height: 90px;
+  object-fit: cover;
+  height: 90px;
+  width: 90px;
+  margin: 4px;
+}
+
+.Modal {
+  margin-top: 10rem;
+  color: #121212;
+}
+
+.ModalHeader {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.ModalBody {
+  background-color: #ffffff;
+  color: #121212;
+}
+
+.ModalFooter {
+  background-color: #ffffff;
+}
+
+@media screen and (max-width: 991px) {
+  .ProfileImage {
     width: 90px;
-    margin: 4px;
+    height: 90px;
   }
-  
-  @media screen and (max-width: 991px) {
-    .ProfileImage {
-      width: 90px;
-      height: 90px;
-    }
-  }
+}

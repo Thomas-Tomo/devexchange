@@ -14,7 +14,7 @@ import {
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
-import styles from "../../styles/ProfilePage.module.css"
+import styles from "../../styles/ProfilePage.module.css";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -118,11 +118,15 @@ const ProfileEditForm = () => {
           <option value="employer">Employer</option>
         </Form.Control>
       </Form.Group>
-      <Modal show={showModal} onHide={handleCancelChange}>
-        <Modal.Header closeButton>
+      <Modal
+        show={showModal}
+        onHide={handleCancelChange}
+        className={styles.Modal}
+      >
+        <Modal.Header closeButton className={styles.ModalHeader}>
           <Modal.Title>Confirm Change</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className={styles.ModalBody}>
           <p>
             Are you sure you want to change your Account status to Employer? You
             won't be able to revert back to Regular user.
@@ -139,11 +143,19 @@ const ProfileEditForm = () => {
           </ul>
         </Modal.Body>
 
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCancelChange}>
+        <Modal.Footer className={styles.ModalFooter}>
+          <Button
+            variant="secondary"
+            onClick={handleCancelChange}
+            className={btnStyles.Button}
+          >
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleConfirmChange}>
+          <Button
+            variant="primary"
+            onClick={handleConfirmChange}
+            className={btnStyles.Button}
+          >
             Confirm
           </Button>
         </Modal.Footer>
@@ -165,12 +177,12 @@ const ProfileEditForm = () => {
         </Alert>
       ))}
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={btnStyles.Button}
         onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button className={btnStyles.Button} type="submit">
         save
       </Button>
     </>
@@ -178,52 +190,56 @@ const ProfileEditForm = () => {
 
   return (
     <div className={styles.ProfileCard}>
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
-          <Container>
-            <Form.Group>
-              {image && (
-                <figure>
-                  <Image src={image} fluid />
-                </figure>
-              )}
-              {errors?.image?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
-              <div>
-                <Form.Label
-                  className={`${btnStyles.Button} btn my-auto`}
-                  htmlFor="image-upload"
-                >
-                  Change the image
-                </Form.Label>
-              </div>
-              <Form.File
-                id="image-upload"
-                ref={imageFile}
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={(e) => {
-                  if (e.target.files.length) {
-                    setProfileData({
-                      ...profileData,
-                      image: URL.createObjectURL(e.target.files[0]),
-                    });
-                  }
-                }}
-              />
-            </Form.Group>
-            <div className="d-md-none">{textFields}</div>
-          </Container>
-        </Col>
-        <Col md={5} lg={6} className="d-none d-md-block p-0 p-md-2 text-center">
-          <Container>{textFields}</Container>
-        </Col>
-      </Row>
-    </Form>
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
+            <Container>
+              <Form.Group>
+                {image && (
+                  <figure>
+                    <Image src={image} fluid />
+                  </figure>
+                )}
+                {errors?.image?.map((message, idx) => (
+                  <Alert variant="warning" key={idx}>
+                    {message}
+                  </Alert>
+                ))}
+                <div>
+                  <Form.Label
+                    className={`${btnStyles.Button} btn my-auto`}
+                    htmlFor="image-upload"
+                  >
+                    Change the image
+                  </Form.Label>
+                </div>
+                <Form.File
+                  id="image-upload"
+                  ref={imageFile}
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={(e) => {
+                    if (e.target.files.length) {
+                      setProfileData({
+                        ...profileData,
+                        image: URL.createObjectURL(e.target.files[0]),
+                      });
+                    }
+                  }}
+                />
+              </Form.Group>
+              <div className="d-md-none">{textFields}</div>
+            </Container>
+          </Col>
+          <Col
+            md={5}
+            lg={6}
+            className="d-none d-md-block p-0 p-md-2 text-center"
+          >
+            <Container>{textFields}</Container>
+          </Col>
+        </Row>
+      </Form>
     </div>
   );
 };
