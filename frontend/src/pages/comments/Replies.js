@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Media } from "react-bootstrap";
+import { Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import Form from "react-bootstrap/Form";
@@ -9,6 +9,7 @@ import styles from "../../styles/Comment.module.css";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RepliesEditForm from "./RepliesEditForm";
+
 
 const Replies = (props) => {
   const { parentCommentId } = props;
@@ -104,14 +105,26 @@ const Replies = (props) => {
             : `View Replies (${replies.length})`}
         </button>
       )}
-      {!showAddReplyForm && (
-        <button
-          onClick={() => setShowAddReplyForm(true)}
-          className={`${styles.Button} py-0`}
-        >
-          Add Reply
-        </button>
-      )}
+      {!showAddReplyForm && currentUser ? (
+  <button
+    onClick={() => setShowAddReplyForm(true)}
+    className={`${styles.Button} py-0`}
+  >
+    Add Reply
+  </button>
+) : !currentUser ? (
+  <OverlayTrigger
+    placement="top"
+    overlay={<Tooltip>Log in to add a reply</Tooltip>}
+  >
+    <button
+      className={`${styles.Button} py-0`}
+      disabled
+    >
+      Add Reply
+    </button>
+  </OverlayTrigger>
+) : null}
       {showAddReplyForm && (
         <Form className="pr-1">
           <Form.Group>

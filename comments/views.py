@@ -14,7 +14,7 @@ from .serializers import (
 
 class CommentList(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = Comment.objects.annotate(
         comment_likes_count=Count('likes', distinct=True)
     ).order_by('-created_at')
@@ -34,7 +34,7 @@ class CommentList(generics.ListCreateAPIView):
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = CommentDetailSerializer
     queryset = Comment.objects.annotate(
         comment_likes_count=Count('likes', distinct=True)
@@ -43,7 +43,7 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class ReplyList(generics.ListCreateAPIView):
     serializer_class = ReplySerializer
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_queryset(self):
         parent_comment_id = self.kwargs['parent_comment_id']
@@ -73,7 +73,7 @@ class ReplyList(generics.ListCreateAPIView):
 
 
 class ReplyDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ReplySerializer
     queryset = Reply.objects.all()
 
