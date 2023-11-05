@@ -15,7 +15,7 @@ import {
 } from "../../contexts/CurrentUserContext";
 
 import btnStyles from "../../styles/Button.module.css";
-import styles from "../../styles/ProfilePage.module.css"
+import styles from "../../styles/ProfilePage.module.css";
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -72,15 +72,12 @@ const UsernameForm = () => {
               </Alert>
             ))}
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`${btnStyles.Button}`}
               onClick={() => history.goBack()}
             >
               cancel
             </Button>
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
-              type="submit"
-            >
+            <Button className={`${btnStyles.Button}`} type="submit">
               save
             </Button>
           </Form>
