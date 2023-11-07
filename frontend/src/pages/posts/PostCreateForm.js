@@ -14,7 +14,7 @@ import appStyles from "../../App.module.css";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function PostCreateForm() {
-  useRedirect('loggedOut')
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({
@@ -65,7 +65,9 @@ function PostCreateForm() {
   };
 
   return (
-    <div className={`${styles.PostCreateEditForm} d-flex justify-content-center`}>
+    <div
+      className={`${styles.PostCreateEditForm} d-flex justify-content-center mb-5`}
+    >
       <Form onSubmit={handleSubmit} className={styles.Form}>
         <Container className={`d-flex flex-column justify-content-center`}>
           <Form.Group controlId="title">
