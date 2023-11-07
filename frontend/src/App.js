@@ -16,6 +16,7 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import JobPostCreateForm from "./pages/job_posts/JobPostCreateForm";
+import JobPostPage from "./pages/job_posts/JobPostPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -84,6 +85,7 @@ function App() {
                 path="/job-posts/create"
                 render={() => <JobPostCreateForm />}
               />
+              <Route exact path="/job-posts/:id" render={() => <JobPostPage />} />
               <Route
                 exact
                 path="/profiles/:id"
