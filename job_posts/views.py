@@ -9,7 +9,7 @@ from .serializers import JobPostSerializer
 
 class JobPostList(generics.ListCreateAPIView):
     serializer_class = JobPostSerializer
-    permission_classes = [IsAuthenticated, IsEmployerOrReadOnly]
+    permission_classes = [IsEmployerOrReadOnly]
     queryset = JobPost.objects.annotate(
         likes_count=Count('likes', distinct=True),
         comments_count=Count('jobpostcomment', distinct=True)
@@ -37,7 +37,7 @@ class JobPostList(generics.ListCreateAPIView):
 
 class JobPostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = JobPostSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = JobPost.objects.annotate(
         likes_count=Count('likes', distinct=True)
     ).order_by('-created_at')
