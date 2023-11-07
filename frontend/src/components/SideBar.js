@@ -22,7 +22,7 @@ const SideBar = () => {
             </div>
             {userType === "employer" && (
               <div className={styles.LinkContainer}>
-                <NavLink className={styles.Link} to="/">
+                <NavLink className={styles.Link} to="/job-posts/create">
                   <i className="fas fa-laptop-code"></i> Add Job
                 </NavLink>
               </div>
