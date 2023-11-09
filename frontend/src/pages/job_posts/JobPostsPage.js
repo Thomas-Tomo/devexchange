@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Post from "./Post";
+import JobPost from "./JobPost";
 import Asset from "../../components/Asset";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -13,8 +13,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 
-function PostsPage({ message, filter = "" }) {
-  const [posts, setPosts] = useState({ results: [] });
+function JobPostsPage({ message, filter = "" }) {
+  const [jobPosts, setJobPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
 
@@ -23,8 +23,10 @@ function PostsPage({ message, filter = "" }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
-        setPosts(data);
+        const { data } = await axiosReq.get(
+          `/job-posts/?${filter}search=${query}`
+        );
+        setJobPosts(data);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -68,20 +70,24 @@ function PostsPage({ message, filter = "" }) {
             onChange={(event) => setQuery(event.target.value)}
             type="text"
             className="mr-sm-2"
-            placeholder="Search posts"
+            placeholder="Search job posts"
           />
         </Form>
         {hasLoaded ? (
           <>
-            {posts.results.length ? (
+            {jobPosts.results.length ? (
               <InfiniteScroll
-                children={posts.results.map((post) => (
-                  <Post key={post.id} {...post} setPosts={setPosts} />
+                children={jobPosts.results.map((job_post) => (
+                  <JobPost
+                    key={job_post.id}
+                    {...job_post}
+                    setJobPosts={setJobPosts}
+                  />
                 ))}
-                dataLength={posts.results.length}
+                dataLength={jobPosts.results.length}
                 loader={<Asset spinner />}
-                hasMore={!!posts.next}
-                next={() => fetchMoreData(posts, setPosts)}
+                hasMore={!!jobPosts.next}
+                next={() => fetchMoreData(jobPosts, setJobPosts)}
               />
             ) : (
               <Container>
@@ -112,4 +118,4 @@ function PostsPage({ message, filter = "" }) {
   );
 }
 
-export default PostsPage;
+export default JobPostsPage;

@@ -17,6 +17,7 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import JobPostCreateForm from "./pages/job_posts/JobPostCreateForm";
 import JobPostPage from "./pages/job_posts/JobPostPage";
+import JobPostsPage from "./pages/job_posts/JobPostsPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -39,7 +40,13 @@ function App() {
                   <PostsPage message="No results found. Adjust the search keyword." />
                 )}
               />
-              <Route exact path="/jobs" render={() => <h1>Jobs</h1>} />
+              <Route
+                exact
+                path="/jobs"
+                render={() => (
+                  <JobPostsPage message="No results found. Adjust the search keyword." />
+                )}
+              />
               <Route
                 exact
                 path="/feed"
@@ -85,7 +92,11 @@ function App() {
                 path="/job-posts/create"
                 render={() => <JobPostCreateForm />}
               />
-              <Route exact path="/job-posts/:id" render={() => <JobPostPage />} />
+              <Route
+                exact
+                path="/job-posts/:id"
+                render={() => <JobPostPage />}
+              />
               <Route
                 exact
                 path="/profiles/:id"
