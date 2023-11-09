@@ -2,9 +2,10 @@ import React from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/JobPost.module.css";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const JobPost = (props) => {
   const {
@@ -35,6 +36,62 @@ const JobPost = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/job-posts/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/job-posts/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/job-post-likes/", {
+        job_post: id,
+      });
+      setJobPosts((prevJobPosts) => ({
+        ...prevJobPosts,
+        results: prevJobPosts.results.map((jobPost) => {
+          return jobPost.id === id
+            ? {
+                ...jobPost,
+                likes_count: jobPost.likes_count + 1,
+                like_id: data.id,
+              }
+            : jobPost;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/job-post-likes/${like_id}/`);
+      setJobPosts((prevJobPosts) => ({
+        ...prevJobPosts,
+        results: prevJobPosts.results.map((jobPost) => {
+          return jobPost.id === id
+            ? {
+                ...jobPost,
+                likes_count: jobPost.likes_count - 1,
+                like_id: null,
+              }
+            : jobPost;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Card className={styles.PostCard}>
@@ -54,7 +111,7 @@ const JobPost = (props) => {
         </Link>
         <div>
           {is_owner && jobPostPage && (
-            <MoreDropdown handleEdit={() => {}} handleDelete={() => {}} />
+            <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
           )}
         </div>
       </Media>
@@ -157,11 +214,11 @@ const JobPost = (props) => {
               <i className="fas fa-thumbs-up" />
             </OverlayTrigger>
           ) : like_id ? (
-            <span onClick={() => {}}>
+            <span onClick={handleUnlike}>
               <i className="fas fa-thumbs-up" />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}}>
+            <span onClick={handleLike}>
               <i className="fas fa-thumbs-up" />
             </span>
           ) : (
