@@ -6,8 +6,8 @@ import Avatar from "../../components/Avatar";
 import styles from "../../styles/Comment.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
-// import Replies from "./Replies";
 import JobCommentEditForm from "./JobCommentEditForm";
+import JobReplies from "./JobReplies";
 
 const JobComment = (props) => {
   const {
@@ -136,7 +136,7 @@ const JobComment = (props) => {
             )}
             {comment_likes_count}
           </div>
-          {/* <Replies parentCommentId={id} /> */}
+          <JobReplies parentCommentId={id} />
         </Media.Body>
         {is_owner && !showEditForm && (
           <MoreDropdown
