@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -7,10 +7,8 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { useRedirect } from "../../hooks/useRedirect";
 
-function JobPostCreateForm() {
-  useRedirect("loggedOut");
+function JobPostEditForm() {
   const [errors, setErrors] = useState({});
 
   const [jobPostData, setjobPostData] = useState({
@@ -23,9 +21,9 @@ function JobPostCreateForm() {
     experience_level: "",
     company_name: "",
     company_description: "",
-    is_active: true,
+    is_active: "",
     application_instructions: "",
-    allows_remote_work: false,
+    allows_remote_work: "",
     benefits: "",
   });
 
@@ -46,6 +44,51 @@ function JobPostCreateForm() {
   } = jobPostData;
 
   const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/job-posts/${id}/`);
+        const {
+          title,
+          description,
+          location,
+          job_type,
+          salary,
+          application_deadline,
+          experience_level,
+          company_name,
+          company_description,
+          is_active,
+          application_instructions,
+          allows_remote_work,
+          benefits,
+          is_owner,
+        } = data;
+        is_owner
+          ? setjobPostData({
+              title,
+              description,
+              location,
+              job_type,
+              salary,
+              application_deadline,
+              experience_level,
+              company_name,
+              company_description,
+              is_active,
+              application_instructions,
+              allows_remote_work,
+              benefits,
+            })
+          : history.push("/");
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleMount();
+  }, [history, id]);
 
   const handleChange = (event) => {
     setjobPostData({
@@ -69,11 +112,12 @@ function JobPostCreateForm() {
     formData.append("company_description", company_description);
     formData.append("is_active", is_active);
     formData.append("application_instructions", application_instructions);
+    formData.append("allows_remote_work", allows_remote_work);
     formData.append("benefits", benefits);
 
     try {
-      const { data } = await axiosReq.post("/job-posts/", formData);
-      history.push(`/job-posts/${data.id}`);
+      await axiosReq.put(`/job-posts/${id}/`, formData);
+      history.push(`/job-posts/${id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -94,7 +138,7 @@ function JobPostCreateForm() {
             </div>
             <Form.Control
               className={styles.FormControl}
-              placeholder="Add your job post title"
+              placeholder="Add your post title"
               type="text"
               name="title"
               value={title}
@@ -360,10 +404,9 @@ function JobPostCreateForm() {
             </Alert>
           ))}
         </Container>
-
         <div className="d-flex justify-content-center">
           <Button className={`${btnStyles.Button} mr-2`} type="submit">
-            Create
+            Update
           </Button>
           <Button className={btnStyles.Button} onClick={() => history.goBack()}>
             Cancel
@@ -374,4 +417,4 @@ function JobPostCreateForm() {
   );
 }
 
-export default JobPostCreateForm;
+export default JobPostEditForm;
