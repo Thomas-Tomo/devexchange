@@ -79,9 +79,21 @@ class ReplyDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class JobPostCommentList(generics.ListCreateAPIView):
-    queryset = JobPostComment.objects.all()
     serializer_class = JobPostCommentSerializer
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
+    queryset = JobPostComment.objects.annotate(
+        comment_likes_count=Count('likes', distinct=True)
+    ).order_by('-created_at')
+    filter_backends = [
+        DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        'job_post'
+    ]
+    ordering_fields = [
+        'comment_likes_count',
+        'comment_likes_created_at',
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

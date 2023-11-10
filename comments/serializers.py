@@ -1,7 +1,7 @@
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
 from .models import Comment, Reply, JobPostComment, JobPostCommentReply
-from likes.models import CommentLike
+from likes.models import CommentLike, JobPostCommentLike
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -97,6 +97,8 @@ class JobPostCommentSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
+    comment_like_id = serializers.SerializerMethodField()
+    comment_likes_count = serializers.ReadOnlyField()
     replies = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
@@ -108,6 +110,15 @@ class JobPostCommentSerializer(serializers.ModelSerializer):
 
     def get_updated_at(self, obj):
         return naturaltime(obj.updated_at)
+
+    def get_comment_like_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            comment_like = JobPostCommentLike.objects.filter(
+                owner=user, job_post_comment=obj
+            ).first()
+            return comment_like.id if comment_like else None
+        return None
 
     def get_replies(self, obj):
         # Retrieve the replies for this comment using Comment model
@@ -137,7 +148,7 @@ class JobPostCommentSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'owner', 'is_owner', 'job_post', 'profile_id',
             'profile_image', 'updated_at',
-            'created_at', 'content', 'replies')
+            'created_at', 'content', 'comment_like_id', 'comment_likes_count', 'replies')
 
 
 class JobPostCommentDetailSerializer(JobPostCommentSerializer):
