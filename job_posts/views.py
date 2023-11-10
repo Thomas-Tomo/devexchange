@@ -39,5 +39,6 @@ class JobPostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = JobPostSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = JobPost.objects.annotate(
+        comments_count=Count('jobpostcomment', distinct=True),
         likes_count=Count('likes', distinct=True)
     ).order_by('-created_at')
