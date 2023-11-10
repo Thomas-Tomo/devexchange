@@ -157,12 +157,20 @@ class JobPostCommentDetailSerializer(JobPostCommentSerializer):
 
 class JobPostCommentReplySerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-    created_at = serializers.DateTimeField(read_only=True)
-    updated_at = serializers.DateTimeField(read_only=True)
+    created_at = serializers.SerializerMethodField()
+    updated_at = serializers.SerializerMethodField()
+    profile_id = serializers.ReadOnlyField(source='owner.profile.id')
+    profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
+
+    def get_created_at(self, obj):
+        return naturaltime(obj.created_at)
+
+    def get_updated_at(self, obj):
+        return naturaltime(obj.updated_at)
 
     class Meta:
         model = JobPostCommentReply
         fields = [
             'id', 'owner', 'created_at', 'updated_at',
-            'parent_comment', 'content',
+            'parent_comment', 'content', 'profile_image', 'profile_id',
         ]
