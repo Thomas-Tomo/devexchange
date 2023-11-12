@@ -20,10 +20,12 @@ import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import UserTypeInfo from "./UserTypeInfo";
+import JobPost from "../job_posts/JobPost";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [showPosts, setShowPosts] = useState(false);
+  const [showJobPosts, setShowJobPosts] = useState(false);
   const currentUser = useCurrentUser();
   const { id } = useParams();
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
@@ -31,10 +33,15 @@ function ProfilePage() {
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
   const [profilePosts, setProfilePosts] = useState({ results: [] });
+  const [profileJobPosts, setProfileJobPosts] = useState({ results: [] });
   const [showInfo, setShowInfo] = useState(false);
 
   const togglePosts = () => {
     setShowPosts((prev) => !prev); // Toggle the state
+  };
+
+  const toggleJobPosts = () => {
+    setShowJobPosts((prev) => !prev); // Toggle the state
   };
 
   const toggleInfo = () => {
@@ -44,16 +51,21 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profilePosts }] =
-          await Promise.all([
-            axiosReq.get(`/profiles/${id}/`),
-            axiosReq.get(`/posts/?owner__profile=${id}`),
-          ]);
+        const [
+          { data: pageProfile },
+          { data: profilePosts },
+          { data: profileJobPosts },
+        ] = await Promise.all([
+          axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/posts/?owner__profile=${id}`),
+          axiosReq.get(`/job-posts/?owner__profile=${id}`),
+        ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
         setProfilePosts(profilePosts);
+        setProfileJobPosts(profileJobPosts);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -118,6 +130,7 @@ function ProfilePage() {
         </Col>
         <Col className="p-3">{profile?.content}</Col>
       </Row>
+      <p>Maybe put CV/Bio here?</p>
     </>
   );
 
@@ -126,6 +139,10 @@ function ProfilePage() {
       <button className={`${btnStyles.Button} py-1`} onClick={togglePosts}>
         {showPosts ? "Hide Posts" : "Show Posts"}
       </button>
+      <button className={`${btnStyles.Button} py-1`} onClick={toggleJobPosts}>
+        {showJobPosts ? "Hide Job Posts" : "Show Job Posts"}
+      </button>
+      <hr />
       {showPosts && (
         <>
           <hr />
@@ -154,9 +171,39 @@ function ProfilePage() {
 
   const mainProfileJobPosts = (
     <>
-      <hr />
-      <p className="text-center">Profile owner's job posts</p>
-      <hr />
+      {profile?.user_type === "employer" && (
+        <>
+          {showJobPosts && (
+            <>
+              <hr />
+              <p className="text-center">{profile?.owner}'s job posts</p>
+              {profileJobPosts.results.length ? (
+                <InfiniteScroll
+                  children={profileJobPosts.results.map((job_post) => (
+                    <JobPost
+                      key={job_post.id}
+                      {...job_post}
+                      setJobPosts={setProfileJobPosts}
+                    />
+                  ))}
+                  dataLength={profileJobPosts.results.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!profileJobPosts.next}
+                  next={() =>
+                    fetchMoreData(profileJobPosts, setProfileJobPosts)
+                  }
+                />
+              ) : (
+                <Asset
+                  src={NoResults}
+                  message={`No results found, ${profile?.owner} hasn't posted yet.`}
+                />
+              )}
+              <hr />
+            </>
+          )}
+        </>
+      )}
     </>
   );
 
