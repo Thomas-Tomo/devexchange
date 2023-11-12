@@ -139,9 +139,14 @@ function ProfilePage() {
       <button className={`${btnStyles.Button} py-1`} onClick={togglePosts}>
         {showPosts ? "Hide Posts" : "Show Posts"}
       </button>
-      <button className={`${btnStyles.Button} py-1`} onClick={toggleJobPosts}>
-        {showJobPosts ? "Hide Job Posts" : "Show Job Posts"}
-      </button>
+      {profile?.user_type === "employer" && (
+        <button
+          className={`${btnStyles.Button} py-1 ml-1`}
+          onClick={toggleJobPosts}
+        >
+          {showJobPosts ? "Hide Job Posts" : "Show Job Posts"}
+        </button>
+      )}
       <hr />
       {showPosts && (
         <>
