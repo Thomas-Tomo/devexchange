@@ -30,6 +30,9 @@ class JobPostList(generics.ListCreateAPIView):
         'likes_created_at',
         'comments_count',
     ]
+    filterset_fields = [
+        'owner__profile',
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
