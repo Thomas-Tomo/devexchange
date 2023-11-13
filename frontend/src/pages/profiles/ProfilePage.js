@@ -21,11 +21,13 @@ import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import UserTypeInfo from "./UserTypeInfo";
 import JobPost from "../job_posts/JobPost";
+import UserSkillsDisplay from "./UserSkillsDisplay";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [showPosts, setShowPosts] = useState(false);
   const [showJobPosts, setShowJobPosts] = useState(false);
+  const [userSkills, setUserSkills] = useState([]);
   const currentUser = useCurrentUser();
   const { id } = useParams();
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
@@ -55,17 +57,22 @@ function ProfilePage() {
           { data: pageProfile },
           { data: profilePosts },
           { data: profileJobPosts },
+          { data: userSkills },
         ] = await Promise.all([
           axiosReq.get(`/profiles/${id}/`),
           axiosReq.get(`/posts/?owner__profile=${id}`),
           axiosReq.get(`/job-posts/?owner__profile=${id}`),
+          axiosReq.get(`/user-skills/?owner__profile=${id}`),
         ]);
+
+        console.log("User Skills:", userSkills);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
         setProfilePosts(profilePosts);
         setProfileJobPosts(profileJobPosts);
+        setUserSkills(userSkills.results);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -131,6 +138,11 @@ function ProfilePage() {
         <Col className="p-3">{profile?.content}</Col>
       </Row>
       <p>Maybe put CV/Bio here?</p>
+      <UserSkillsDisplay
+        userSkills={userSkills}
+        profile={profile}
+        currentUser={currentUser}
+      />
     </>
   );
 
