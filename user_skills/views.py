@@ -11,7 +11,11 @@ from .serializers import UserSkillSerializer
 class UserSkillList(generics.ListCreateAPIView):
     queryset = UserSkill.objects.all()
     serializer_class = UserSkillSerializer
-    permission_classes = [IsAuthenticated, IsRegularOrReadOnly]
+    permission_classes = [IsRegularOrReadOnly]
+
+    filterset_fields = [
+        'owner__profile',
+    ]
 
     def perform_create(self, serializer):
         # Automatically set the owner to the current user
@@ -30,4 +34,4 @@ class UserSkillList(generics.ListCreateAPIView):
 class UserSkillDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = UserSkill.objects.all()
     serializer_class = UserSkillSerializer
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
