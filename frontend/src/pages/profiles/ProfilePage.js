@@ -239,7 +239,7 @@ function ProfilePage() {
                       className={`${btnStyles.Button} py-1`}
                       onClick={toggleInfo}
                     >
-                      {showInfo ? "Hide Info" : "Show Info"}
+                      {showInfo ? "Hide Info" : "Upgrade Info"}
                     </button>
                     {showInfo && <UserTypeInfo />}
                   </div>
