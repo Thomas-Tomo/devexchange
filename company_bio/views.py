@@ -11,7 +11,7 @@ from .serializers import CompanyBioSerializer
 class CompanyBioList(generics.ListCreateAPIView):
     queryset = CompanyBio.objects.all()
     serializer_class = CompanyBioSerializer
-    permission_classes = [IsAuthenticated, IsEmployerOrReadOnly]
+    permission_classes = [IsEmployerOrReadOnly]
 
     def perform_create(self, serializer):
         # Automatically set the owner to the current user
