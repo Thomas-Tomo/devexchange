@@ -43,9 +43,6 @@ const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => (
                     <strong>Portfolio Website:</strong>{" "}
                     {skill.portfolio_website || "/"}
                   </p>
-                  <Link to={`/user-skills/${id}`}>
-    <button>Edit User Skills</button>
-  </Link>
                 </li>
               )
           )}
