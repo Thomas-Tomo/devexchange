@@ -20,6 +20,7 @@ import JobPostPage from "./pages/job_posts/JobPostPage";
 import JobPostsPage from "./pages/job_posts/JobPostsPage";
 import JobPostEditForm from "./pages/job_posts/JobPostEditForm";
 import UserSkillsCreateForm from "./pages/profiles/UserSkillsCreateForm";
+import UserSkillsEditForm from "./pages/profiles/UserSkillsEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -108,6 +109,11 @@ function App() {
                 exact
                 path="/user-skills/"
                 render={() => <UserSkillsCreateForm />}
+              />
+              <Route
+                exact
+                path="/user-skills/:id/edit"
+                render={() => <UserSkillsEditForm />}
               />
               <Route
                 exact
