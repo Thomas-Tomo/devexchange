@@ -1,26 +1,51 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "../../styles/UserSkillsDisplay.module.css";
 
 const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => (
   <>
     {(userSkills.length > 0 ||
       (profile?.is_owner && currentUser?.username === profile?.owner)) && (
-      <div>
-        {profile?.user_type !== "employer" && <h4>My Skills</h4>}
+      <div className={styles.SkillsContainer}>
+        {profile?.user_type !== "employer" && <h4>My Skills:</h4>}
         <ul>
           {userSkills.map(
             (skill) =>
               // Check if the user skill belongs to the current profile
               skill.owner === profile?.owner && (
                 <li key={skill.id}>
-                  <p>Education: {skill.education || "/"}</p>
-                  <p>Work Experience: {skill.work_experience || "/"}</p>
-                  <p>Skills: {skill.skills || "/"}</p>
-                  <p>Certifications: {skill.certifications || "/"}</p>
-                  <p>Languages: {skill.languages || "/"}</p>
-                  <p>LinkedIn Profile: {skill.linkedin_profile || "/"}</p>
-                  <p>Github Profile: {skill.github_profile || "/"}</p>
-                  <p>Portfolio Website: {skill.portfolio_website || "/"}</p>
+                  <p>
+                    <strong>Education:</strong> {skill.education || "/"}
+                  </p>
+                  <p>
+                    <strong>Work Experience:</strong>{" "}
+                    {skill.work_experience || "/"}
+                  </p>
+                  <p>
+                    <strong>Skills:</strong> {skill.skills || "/"}
+                  </p>
+                  <p>
+                    <strong>Certifications:</strong>{" "}
+                    {skill.certifications || "/"}
+                  </p>
+                  <p>
+                    <strong>Languages:</strong> {skill.languages || "/"}
+                  </p>
+                  <p>
+                    <strong>LinkedIn Profile:</strong>{" "}
+                    {skill.linkedin_profile || "/"}
+                  </p>
+                  <p>
+                    <strong>Github Profile:</strong>{" "}
+                    {skill.github_profile || "/"}
+                  </p>
+                  <p>
+                    <strong>Portfolio Website:</strong>{" "}
+                    {skill.portfolio_website || "/"}
+                  </p>
+                  <Link to={`/user-skills/${id}`}>
+    <button>Edit User Skills</button>
+  </Link>
                 </li>
               )
           )}
