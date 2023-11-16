@@ -65,7 +65,6 @@ function ProfilePage() {
           axiosReq.get(`/user-skills/?owner__profile=${id}`),
         ]);
 
-        console.log("User Skills:", userSkills);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
