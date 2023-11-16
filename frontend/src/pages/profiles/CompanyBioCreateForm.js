@@ -76,111 +76,73 @@ function CompanyBioCreateForm() {
           <Form.Group controlId="employees_count">
             <div className="d-flex justify-content-center">
               <Form.Label className={styles.FormLabel}>
-                Employes Count
+                Employees Count
               </Form.Label>
             </div>
             <Form.Control
-              as="textarea"
               className={styles.FormControl}
-              placeholder="Add work experience"
-              type="text"
-              name="work_experience"
-              value={work_experience}
+              placeholder="Add employees number"
+              type="number"
+              name="employees_count"
+              value={employees_count}
               onChange={handleChange}
             />
           </Form.Group>
 
-          <Form.Group controlId="skills">
-            <div className="d-flex justify-content-center">
-              <Form.Label className={styles.FormLabel}>Skills</Form.Label>
-            </div>
-            <Form.Control
-              className={styles.FormControl}
-              as="textarea"
-              placeholder="Add skills"
-              type="text"
-              name="skills"
-              value={skills}
-              onChange={handleChange}
-            />
+          <Form.Group controlId="recruitment_status">
+            <Form.Group controlId="recruitment_status">
+              <div className="d-flex justify-content-center">
+                <Form.Label className={styles.FormLabel}>
+                  Recruitment Status
+                </Form.Label>
+              </div>
+              <div className="d-flex justify-content-center align-items-center">
+                <Form.Check
+                  type="checkbox"
+                  id="recruitment_status"
+                  label="IsActive"
+                  checked={recruiting_status}
+                  onChange={(e) =>
+                    setCompanyBio({
+                      ...companyBio,
+                      recruiting_status: e.target.checked,
+                    })
+                  }
+                />
+              </div>
+            </Form.Group>
           </Form.Group>
 
-          <Form.Group controlId="certifications">
+          <Form.Group controlId="technologies_used">
             <div className="d-flex justify-content-center">
               <Form.Label className={styles.FormLabel}>
-                Certifications
+                Technologies Used
               </Form.Label>
-            </div>
-            <Form.Control
-              className={styles.FormControl}
-              as="textarea"
-              placeholder="Add certifications"
-              type="text"
-              name="certifications"
-              value={certifications}
-              onChange={handleChange}
-            />
-          </Form.Group>
-
-          <Form.Group controlId="languages">
-            <div className="d-flex justify-content-center">
-              <Form.Label className={styles.FormLabel}>Languages</Form.Label>
             </div>
             <Form.Control
               className={styles.FormControl}
               as="textarea"
-              placeholder="Add languages"
+              placeholder="Add technologies used"
               type="text"
-              name="languages"
-              value={languages}
+              name="technologies_used"
+              value={technologies_used}
               onChange={handleChange}
             />
           </Form.Group>
 
-          <Form.Group controlId="linkedin_profile">
+          <Form.Group controlId="company_description">
             <div className="d-flex justify-content-center">
               <Form.Label className={styles.FormLabel}>
-                LinkedIn Profile
+                Company Description
               </Form.Label>
             </div>
             <Form.Control
               className={styles.FormControl}
-              placeholder="Add LinkedIn profile"
-              type="url"
-              name="linkedin_profile"
-              value={linkedin_profile}
-              onChange={handleChange}
-            />
-          </Form.Group>
-
-          <Form.Group controlId="github_profile">
-            <div className="d-flex justify-content-center">
-              <Form.Label className={styles.FormLabel}>
-                Github Profile
-              </Form.Label>
-            </div>
-            <Form.Control
-              className={styles.FormControl}
-              placeholder="Add Github profile"
-              type="url"
-              name="github_profile"
-              value={github_profile}
-              onChange={handleChange}
-            />
-          </Form.Group>
-
-          <Form.Group controlId="portfolio_website">
-            <div className="d-flex justify-content-center">
-              <Form.Label className={styles.FormLabel}>
-                Portfolio Website
-              </Form.Label>
-            </div>
-            <Form.Control
-              className={styles.FormControl}
-              placeholder="Add portfolio website"
-              type="url"
-              name="portfolio_website"
-              value={portfolio_website}
+              as="textarea"
+              placeholder="Add company description"
+              type="text"
+              name="company_description"
+              value={company_description}
               onChange={handleChange}
             />
           </Form.Group>
@@ -199,4 +161,4 @@ function CompanyBioCreateForm() {
   );
 }
 
-export default UserSkillsCreateForm;
+export default CompanyBioCreateForm;
