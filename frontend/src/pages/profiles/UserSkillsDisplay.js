@@ -8,6 +8,17 @@ import { axiosRes } from "../../api/axiosDefaults";
 const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => {
   const [deleted, setDeleted] = useState(false);
 
+  const renderClickableLink = (url, label) => {
+    if (!url || url === "/") {
+      return "/";
+    }
+    return (
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        {label}
+      </a>
+    );
+  };
+
   const handleDelete = async (id) => {
     try {
       await axiosRes.delete(`/user-skills/${id}/`);
@@ -50,35 +61,49 @@ const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => {
                         handleDelete={() => handleDelete(skill.id)}
                       />
                     </div>
-                    <p>
-                      <strong>Education:</strong> {skill.education || "/"}
-                    </p>
-                    <p>
-                      <strong>Work Experience:</strong>{" "}
-                      {skill.work_experience || "/"}
-                    </p>
-                    <p>
-                      <strong>Skills:</strong> {skill.skills || "/"}
-                    </p>
-                    <p>
-                      <strong>Certifications:</strong>{" "}
-                      {skill.certifications || "/"}
-                    </p>
-                    <p>
-                      <strong>Languages:</strong> {skill.languages || "/"}
-                    </p>
-                    <p>
-                      <strong>LinkedIn Profile:</strong>{" "}
-                      {skill.linkedin_profile || "/"}
-                    </p>
-                    <p>
-                      <strong>Github Profile:</strong>{" "}
-                      {skill.github_profile || "/"}
-                    </p>
-                    <p>
-                      <strong>Portfolio Website:</strong>{" "}
-                      {skill.portfolio_website || "/"}
-                    </p>
+                    <div className="d-flex flex-column">
+                      <p>
+                        <strong>Education:</strong> {skill.education || "/"}
+                      </p>
+                      <p>
+                        <strong>Work Experience:</strong>{" "}
+                        {skill.work_experience || "/"}
+                      </p>
+                      <p>
+                        <strong>Skills:</strong> {skill.skills || "/"}
+                      </p>
+                      <p>
+                        <strong>Certifications:</strong>{" "}
+                        {skill.certifications || "/"}
+                      </p>
+                      <p>
+                        <strong>Languages:</strong> {skill.languages || "/"}
+                      </p>
+
+                      <div>
+                        <p>
+                          <strong>LinkedIn Profile:</strong>{" "}
+                          {renderClickableLink(
+                            skill.linkedin_profile,
+                            skill.linkedin_profile
+                          )}
+                        </p>
+                        <p>
+                          <strong>Github Profile:</strong>{" "}
+                          {renderClickableLink(
+                            skill.github_profile,
+                            skill.github_profile
+                          )}
+                        </p>
+                        <p>
+                          <strong>Portfolio Website:</strong>{" "}
+                          {renderClickableLink(
+                            skill.portfolio_website,
+                            skill.portfolio_website
+                          )}
+                        </p>
+                      </div>
+                    </div>
                   </li>
                 )
             )}

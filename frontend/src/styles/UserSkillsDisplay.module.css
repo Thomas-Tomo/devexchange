@@ -1,13 +1,20 @@
 .SkillsContainer {
-    display: flex;
-    justify-content: left;
-    flex-direction: column;
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  padding-right: 20px;
 }
 
 li strong {
-    color: #28A745;
+  color: #28a745;
 }
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
+  word-break: break-all;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

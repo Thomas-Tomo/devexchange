@@ -105,6 +105,7 @@ function UserSkillsCreateForm() {
             </div>
             <Form.Control
               className={styles.FormControl}
+              as="textarea"
               placeholder="Add skills"
               type="text"
               name="skills"
@@ -121,6 +122,7 @@ function UserSkillsCreateForm() {
             </div>
             <Form.Control
               className={styles.FormControl}
+              as="textarea"
               placeholder="Add certifications"
               type="text"
               name="certifications"
@@ -135,6 +137,7 @@ function UserSkillsCreateForm() {
             </div>
             <Form.Control
               className={styles.FormControl}
+              as="textarea"
               placeholder="Add languages"
               type="text"
               name="languages"
