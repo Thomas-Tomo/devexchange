@@ -1,0 +1,13 @@
+.SkillsContainer {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+}
+
+li strong {
+    color: #28A745;
+}
+
+ul {
+    list-style-type: none;
+}
