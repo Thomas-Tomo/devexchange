@@ -50,30 +50,57 @@ export function ProfileEditDropdown({ id }) {
     <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
       <Dropdown.Toggle as={ThreeDots} />
       <Dropdown.Menu className={`d-flex flex-column ${styles.DropdownMenu}`}>
-  <Dropdown.Item
-    className={styles.DropdownItem}
-    onClick={() => history.push(`/profiles/${id}/edit`)}
-    aria-label="edit-profile"
-  >
-    <i className="fas fa-edit px-2" /> edit profile
-  </Dropdown.Item>
-  <Dropdown.Item
-    className={styles.DropdownItem}
-    onClick={() => history.push(`/profiles/${id}/edit/username`)}
-    aria-label="edit-username"
-  >
-    <i className="far fa-id-card px-2" />
-    change username
-  </Dropdown.Item>
-  <Dropdown.Item
-    className={styles.DropdownItem}
-    onClick={() => history.push(`/profiles/${id}/edit/password`)}
-    aria-label="edit-password"
-  >
-    <i className="fas fa-key px-2" />
-    change password
-  </Dropdown.Item>
-</Dropdown.Menu>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          onClick={() => history.push(`/profiles/${id}/edit`)}
+          aria-label="edit-profile"
+        >
+          <i className="fas fa-edit px-2" /> edit profile
+        </Dropdown.Item>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          onClick={() => history.push(`/profiles/${id}/edit/username`)}
+          aria-label="edit-username"
+        >
+          <i className="far fa-id-card px-2" />
+          change username
+        </Dropdown.Item>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          onClick={() => history.push(`/profiles/${id}/edit/password`)}
+          aria-label="edit-password"
+        >
+          <i className="fas fa-key px-2" />
+          change password
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}
+
+export function UserSkillsEditDropdown({ id, handleDelete }) {
+  const history = useHistory();
+  return (
+    <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
+      <Dropdown.Toggle as={ThreeDots} />
+      <Dropdown.Menu className={`d-flex flex-column ${styles.DropdownMenu}`}>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          onClick={() => history.push(`/user-skills/${id}/edit/`)}
+          aria-label="edit-user-skills"
+        >
+          <i className="fa fa-book px-2" />
+          change my skills
+        </Dropdown.Item>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          aria-label="delete-user-skills"
+          onClick={handleDelete}
+        >
+          <i className="fa fa-trash px-2" />
+          delete my skills
+        </Dropdown.Item>
+      </Dropdown.Menu>
     </Dropdown>
   );
 }
