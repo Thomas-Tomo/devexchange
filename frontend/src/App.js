@@ -21,6 +21,8 @@ import JobPostsPage from "./pages/job_posts/JobPostsPage";
 import JobPostEditForm from "./pages/job_posts/JobPostEditForm";
 import UserSkillsCreateForm from "./pages/profiles/UserSkillsCreateForm";
 import UserSkillsEditForm from "./pages/profiles/UserSkillsEditForm";
+import CompanyBioCreateForm from "./pages/profiles/CompanyBioCreateForm";
+import CompanyBioEditForm from "./pages/profiles/CompanyBioEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -114,6 +116,16 @@ function App() {
                 exact
                 path="/user-skills/:id/edit"
                 render={() => <UserSkillsEditForm />}
+              />
+              <Route
+                exact
+                path="/company-bio/"
+                render={() => <CompanyBioCreateForm />}
+              />
+              <Route
+                exact
+                path="/company-bio/:id/edit"
+                render={() => <CompanyBioEditForm />}
               />
               <Route
                 exact
