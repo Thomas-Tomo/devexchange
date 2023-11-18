@@ -104,3 +104,30 @@ export function UserSkillsEditDropdown({ id, handleDelete }) {
     </Dropdown>
   );
 }
+
+export function CompanyBioEditDropdown({ id, handleDelete }) {
+  const history = useHistory();
+  return (
+    <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
+      <Dropdown.Toggle as={ThreeDots} />
+      <Dropdown.Menu className={`d-flex flex-column ${styles.DropdownMenu}`}>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          onClick={() => history.push(`/company-bio/${id}/edit/`)}
+          aria-label="edit-company-bio"
+        >
+          <i className="fa fa-book px-2" />
+          change my company bio
+        </Dropdown.Item>
+        <Dropdown.Item
+          className={styles.DropdownItem}
+          aria-label="delete-company-bio"
+          onClick={handleDelete}
+        >
+          <i className="fa fa-trash px-2" />
+          delete my company bio
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}
