@@ -13,6 +13,10 @@ class CompanyBioList(generics.ListCreateAPIView):
     serializer_class = CompanyBioSerializer
     permission_classes = [IsEmployerOrReadOnly]
 
+    filterset_fields = [
+        'owner__profile',
+    ]
+
     def perform_create(self, serializer):
         # Automatically set the owner to the current user
         serializer.save(owner=self.request.user)
