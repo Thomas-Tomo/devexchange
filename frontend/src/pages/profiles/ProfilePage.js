@@ -22,12 +22,14 @@ import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import UserTypeInfo from "./UserTypeInfo";
 import JobPost from "../job_posts/JobPost";
 import UserSkillsDisplay from "./UserSkillsDisplay";
+import CompanyBioDisplay from "./CompanyBioDisplay";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [showPosts, setShowPosts] = useState(false);
   const [showJobPosts, setShowJobPosts] = useState(false);
   const [userSkills, setUserSkills] = useState([]);
+  const [companyBio, setCompanyBio] = useState([]);
   const currentUser = useCurrentUser();
   const { id } = useParams();
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
@@ -53,30 +55,38 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [
-          { data: pageProfile },
-          { data: profilePosts },
-          { data: profileJobPosts },
-          { data: userSkills },
-        ] = await Promise.all([
-          axiosReq.get(`/profiles/${id}/`),
-          axiosReq.get(`/posts/?owner__profile=${id}`),
-          axiosReq.get(`/job-posts/?owner__profile=${id}`),
-          axiosReq.get(`/user-skills/?owner__profile=${id}`),
-        ]);
-
+        const { data: pageProfile } = await axiosReq.get(`/profiles/${id}/`);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
+
+        const { data: profilePosts } = await axiosReq.get(
+          `/posts/?owner__profile=${id}`
+        );
         setProfilePosts(profilePosts);
+
+        const { data: profileJobPosts } = await axiosReq.get(
+          `/job-posts/?owner__profile=${id}`
+        );
         setProfileJobPosts(profileJobPosts);
+
+        const { data: userSkills } = await axiosReq.get(
+          `/user-skills/?owner__profile=${id}`
+        );
         setUserSkills(userSkills.results);
+
+        const { data: companyBio } = await axiosReq.get(
+          `/company-bio/?owner__profile=${id}`
+        );
+        setCompanyBio(companyBio.results);
+
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
+
     fetchData();
   }, [id, setProfileData]);
 
@@ -136,9 +146,13 @@ function ProfilePage() {
         </Col>
         <Col className="p-3">{profile?.content}</Col>
       </Row>
-      <p>Maybe put CV/Bio here?</p>
       <UserSkillsDisplay
         userSkills={userSkills}
+        profile={profile}
+        currentUser={currentUser}
+      />
+      <CompanyBioDisplay
+        companyBio={companyBio}
         profile={profile}
         currentUser={currentUser}
       />
