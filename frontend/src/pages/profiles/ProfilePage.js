@@ -146,16 +146,21 @@ function ProfilePage() {
         </Col>
         <Col className="p-3">{profile?.content}</Col>
       </Row>
-      <UserSkillsDisplay
-        userSkills={userSkills}
-        profile={profile}
-        currentUser={currentUser}
-      />
-      <CompanyBioDisplay
-        companyBio={companyBio}
-        profile={profile}
-        currentUser={currentUser}
-      />
+      {profile?.user_type !== "employer" && (
+        <UserSkillsDisplay
+          userSkills={userSkills}
+          profile={profile}
+          currentUser={currentUser}
+        />
+      )}
+
+      {profile?.user_type === "employer" && (
+        <CompanyBioDisplay
+          companyBio={companyBio}
+          profile={profile}
+          currentUser={currentUser}
+        />
+      )}
     </>
   );
 
