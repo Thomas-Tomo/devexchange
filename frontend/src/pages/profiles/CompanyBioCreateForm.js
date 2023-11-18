@@ -90,27 +90,25 @@ function CompanyBioCreateForm() {
           </Form.Group>
 
           <Form.Group controlId="recruitment_status">
-            <Form.Group controlId="recruitment_status">
-              <div className="d-flex justify-content-center">
-                <Form.Label className={styles.FormLabel}>
-                  Recruitment Status
-                </Form.Label>
-              </div>
-              <div className="d-flex justify-content-center align-items-center">
-                <Form.Check
-                  type="checkbox"
-                  id="recruitment_status"
-                  label="IsActive"
-                  checked={recruiting_status}
-                  onChange={(e) =>
-                    setCompanyBio({
-                      ...companyBio,
-                      recruiting_status: e.target.checked,
-                    })
-                  }
-                />
-              </div>
-            </Form.Group>
+            <div className="d-flex justify-content-center">
+              <Form.Label className={styles.FormLabel}>
+                Recruitment Status
+              </Form.Label>
+            </div>
+            <div className="d-flex justify-content-center align-items-center">
+              <Form.Check
+                type="checkbox"
+                id="recruitment_status"
+                label="IsActive"
+                checked={!!recruiting_status} // Ensure it's always a boolean value
+                onChange={(e) =>
+                  setCompanyBio({
+                    ...companyBio,
+                    recruiting_status: e.target.checked,
+                  })
+                }
+              />
+            </div>
           </Form.Group>
 
           <Form.Group controlId="technologies_used">
