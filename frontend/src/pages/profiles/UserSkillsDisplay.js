@@ -56,10 +56,12 @@ const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => {
                   <li key={skill.id}>
                     <div className="d-flex">
                       {profile?.user_type !== "employer" && <h4>My Skills:</h4>}
-                      <UserSkillsEditDropdown
-                        id={skill.id} // Pass the skill.id here
-                        handleDelete={() => handleDelete(skill.id)}
-                      />
+                      {profile?.is_owner && (
+                        <UserSkillsEditDropdown
+                          id={skill.id} // Pass the bio.id here
+                          handleDelete={() => handleDelete(skill.id)}
+                        />
+                      )}
                     </div>
                     <div className="d-flex flex-column">
                       <p>
