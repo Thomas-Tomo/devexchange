@@ -111,6 +111,7 @@ function CompanyBioEditForm() {
               name="employees_count"
               value={employees_count}
               onChange={handleChange}
+              min="0"
             />
           </Form.Group>
 
