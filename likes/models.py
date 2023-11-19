@@ -63,3 +63,18 @@ class JobPostCommentLike(models.Model):
 
     def __str__(self):
         return f"{self.owner} likes {self.Job_post_comment}"
+
+
+class JobPostSaved(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    job_post = models.ForeignKey(
+        JobPost, related_name='saved', on_delete=models.CASCADE
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        unique_together = ['owner', 'job_post']
+
+    def __str__(self):
+        return f"{self.owner} {self.job_post}"
