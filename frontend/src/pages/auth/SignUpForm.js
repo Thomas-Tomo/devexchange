@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
+import { Form, Col, Row, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 
@@ -95,12 +95,12 @@ const SignUpForm = () => {
               </Alert>
             ))}
 
-            <Button
+            <button
               className={`${btnStyles.Button} ${btnStyles.Wide}`}
               type="submit"
             >
               Sign Up
-            </Button>
+            </button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}

@@ -4,7 +4,6 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -365,12 +364,12 @@ function JobPostCreateForm() {
         </Container>
 
         <div className="d-flex justify-content-center">
-          <Button className={`${btnStyles.Button} mr-2`} type="submit">
+          <button className={`${btnStyles.Button} mr-2`} type="submit">
             Create
-          </Button>
-          <Button className={btnStyles.Button} onClick={() => history.goBack()}>
+          </button>
+          <button className={btnStyles.Button} onClick={() => history.goBack()}>
             Cancel
-          </Button>
+          </button>
         </div>
       </Form>
     </div>
