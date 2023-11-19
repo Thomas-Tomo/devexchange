@@ -116,7 +116,7 @@ const JobComment = (props) => {
                 placement="top"
                 overlay={<Tooltip>Can't like your own comment</Tooltip>}
               >
-                <i className="fas fa-thumbs-up" />
+                <i className="far fa-thumbs-up" />
               </OverlayTrigger>
             ) : comment_like_id ? (
               <span onClick={handleUnlike}>
@@ -124,14 +124,14 @@ const JobComment = (props) => {
               </span>
             ) : currentUser ? (
               <span onClick={handleLike}>
-                <i className="fas fa-thumbs-up" />
+                <i className="far fa-thumbs-up" />
               </span>
             ) : (
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip>Log in to like comments</Tooltip>}
               >
-                <i className="fas fa-thumbs-up" />
+                <i className="far fa-thumbs-up" />
               </OverlayTrigger>
             )}
             {comment_likes_count}

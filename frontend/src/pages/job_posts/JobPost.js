@@ -16,6 +16,8 @@ const JobPost = (props) => {
     comments_count,
     likes_count,
     like_id,
+    saved_count,
+    saved_id,
     title,
     description,
     location,
@@ -84,6 +86,48 @@ const JobPost = (props) => {
                 ...jobPost,
                 likes_count: jobPost.likes_count - 1,
                 like_id: null,
+              }
+            : jobPost;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      const { data } = await axiosRes.post("/job-post-saved/", {
+        job_post: id,
+      });
+      setJobPosts((prevJobPosts) => ({
+        ...prevJobPosts,
+        results: prevJobPosts.results.map((jobPost) => {
+          return jobPost.id === id
+            ? {
+                ...jobPost,
+                saved_count: jobPost.saved_count + 1,
+                saved_id: data.id,
+              }
+            : jobPost;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnsave = async () => {
+    try {
+      await axiosRes.delete(`/job-post-saved/${saved_id}/`);
+      setJobPosts((prevJobPosts) => ({
+        ...prevJobPosts,
+        results: prevJobPosts.results.map((jobPost) => {
+          return jobPost.id === id
+            ? {
+                ...jobPost,
+                saved_count: jobPost.saved_count - 1,
+                saved_id: null,
               }
             : jobPost;
         }),
@@ -211,7 +255,7 @@ const JobPost = (props) => {
               placement="top"
               overlay={<Tooltip>Can't like your own post</Tooltip>}
             >
-              <i className="fas fa-thumbs-up" />
+              <i className="far fa-thumbs-up" />
             </OverlayTrigger>
           ) : like_id ? (
             <span onClick={handleUnlike}>
@@ -219,14 +263,14 @@ const JobPost = (props) => {
             </span>
           ) : currentUser ? (
             <span onClick={handleLike}>
-              <i className="fas fa-thumbs-up" />
+              <i className="far fa-thumbs-up" />
             </span>
           ) : (
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip>Log in to like job posts</Tooltip>}
             >
-              <i className="fas fa-thumbs-up" />
+              <i className="far fa-thumbs-up" />
             </OverlayTrigger>
           )}
           {likes_count}
@@ -234,6 +278,31 @@ const JobPost = (props) => {
             <i className="fas fa-comment"></i>
           </Link>
           {comments_count}
+
+          {is_owner ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Can't save your own post</Tooltip>}
+            >
+              <i className="far fa-bookmark" />
+            </OverlayTrigger>
+          ) : saved_id ? (
+            <span onClick={handleUnsave}>
+              <i className="fas fa-bookmark" />
+            </span>
+          ) : currentUser ? (
+            <span onClick={handleSave}>
+              <i className="far fa-bookmark" />
+            </span>
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Log in to save job posts</Tooltip>}
+            >
+              <i className="far fa-bookmark" />
+            </OverlayTrigger>
+          )}
+          {saved_count}
         </div>
       </Card.Body>
     </Card>
