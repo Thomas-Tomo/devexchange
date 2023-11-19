@@ -1,9 +1,13 @@
 from rest_framework import generics, permissions
 from devexchange.permissions import IsOwnerOrReadOnly
-from .models import Like, CommentLike, JobPostLike, JobPostCommentLike
+from .models import ( 
+    Like, CommentLike, JobPostLike, 
+    JobPostCommentLike, JobPostSaved
+    )
 from .serializers import (
     LikeSerializer, CommentLikeSerializer,
-    JobPostLikeSerializer, JobPostCommentLikeSerializer
+    JobPostLikeSerializer, JobPostCommentLikeSerializer,
+    JobPostSavedSerializer
     )
 
 
@@ -65,3 +69,18 @@ class JobPostCommentLikeDetail(generics.RetrieveDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = JobPostCommentLikeSerializer
     queryset = JobPostCommentLike.objects.all()
+
+
+class JobPostSavedList(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    serializer_class = JobPostSavedSerializer
+    queryset = JobPostSaved.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class JobPostSavedDetail(generics.RetrieveDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    serializer_class = JobPostSavedSerializer
+    queryset = JobPostSaved.objects.all()

@@ -12,4 +12,6 @@ urlpatterns = [
     path(
         'job-post-comment-likes/<int:pk>/',
         views.JobPostCommentLikeDetail.as_view()),
+    path('job-post-saved/', views.JobPostSavedList.as_view()),
+    path('job-post-saved/<int:pk>/', views.JobPostSavedDetail.as_view()),
 ]
