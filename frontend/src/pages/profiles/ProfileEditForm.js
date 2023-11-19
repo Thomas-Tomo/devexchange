@@ -176,15 +176,12 @@ const ProfileEditForm = () => {
           {message}
         </Alert>
       ))}
-      <Button
-        className={btnStyles.Button}
-        onClick={() => history.goBack()}
-      >
+      <button className={btnStyles.Button} onClick={() => history.goBack()}>
         cancel
-      </Button>
-      <Button className={btnStyles.Button} type="submit">
+      </button>
+      <button className={btnStyles.Button} type="submit">
         save
-      </Button>
+      </button>
     </>
   );
 
