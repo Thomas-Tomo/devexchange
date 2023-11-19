@@ -75,7 +75,12 @@ function App() {
               <Route
                 exact
                 path="/savedjobs"
-                render={() => <h1>Saved Jobs</h1>}
+                render={() => (
+                  <JobPostsPage
+                    message="No results found. Adjust the search keyword or save a job post."
+                    filter={`saved__owner__profile=${profile_id}&ordering=-saved__created_at&`}
+                  />
+                )}
               />
               <Route exact path="/profile" render={() => <h1>Profile</h1>} />
               <Route exact path="/signin" render={() => <SignInForm />} />
