@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from job_posts.models import JobPost
-from likes.models import JobPostLike
+from likes.models import JobPostLike, JobPostSaved
 
 
 class JobPostSerializer(serializers.ModelSerializer):
@@ -11,6 +11,8 @@ class JobPostSerializer(serializers.ModelSerializer):
     like_id = serializers.SerializerMethodField()
     likes_count = serializers.ReadOnlyField()
     comments_count = serializers.ReadOnlyField()
+    saved_id = serializers.SerializerMethodField()
+    saved_count = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -23,6 +25,15 @@ class JobPostSerializer(serializers.ModelSerializer):
                 owner=user, job_post=obj
             ).first()
             return like.id if like else None
+        return None
+
+    def get_saved_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            saved = JobPostSaved.objects.filter(
+                owner=user, job_post=obj
+            ).first()
+            return saved.id if saved else None
         return None
 
     class Meta:
@@ -51,4 +62,6 @@ class JobPostSerializer(serializers.ModelSerializer):
             'like_id',
             'likes_count',
             'comments_count',
+            'saved_id',
+            'saved_count',
         ]

@@ -12,6 +12,7 @@ class JobPostList(generics.ListCreateAPIView):
     permission_classes = [IsEmployerOrReadOnly]
     queryset = JobPost.objects.annotate(
         likes_count=Count('likes', distinct=True),
+        saved_count=Count('saved', distinct=True),
         comments_count=Count('jobpostcomment', distinct=True)
     ).order_by('-created_at')
     filter_backends = [
@@ -29,9 +30,12 @@ class JobPostList(generics.ListCreateAPIView):
         'likes_count',
         'likes_created_at',
         'comments_count',
+        'saved_count',
+        'saved_created_at',
     ]
     filterset_fields = [
         'owner__profile',
+        'saved__owner__profile',
     ]
 
     def perform_create(self, serializer):
@@ -43,5 +47,6 @@ class JobPostDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = JobPost.objects.annotate(
         comments_count=Count('jobpostcomment', distinct=True),
-        likes_count=Count('likes', distinct=True)
+        likes_count=Count('likes', distinct=True),
+        saved_count=Count('saved', distinct=True)
     ).order_by('-created_at')
