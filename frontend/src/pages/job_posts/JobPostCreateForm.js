@@ -12,6 +12,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 function JobPostCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
+  const today = new Date().toISOString().split('T')[0];
 
   const [jobPostData, setjobPostData] = useState({
     title: "",
@@ -175,6 +176,7 @@ function JobPostCreateForm() {
               name="salary"
               value={salary}
               onChange={handleChange}
+              min="0"
             />
           </Form.Group>
           {errors?.salary?.map((message, idx) => (
@@ -196,6 +198,7 @@ function JobPostCreateForm() {
               name="application_deadline"
               value={application_deadline}
               onChange={handleChange}
+              min={today}
             />
           </Form.Group>
           {errors?.application_deadline?.map((message, idx) => (

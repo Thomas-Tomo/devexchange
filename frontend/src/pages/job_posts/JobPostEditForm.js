@@ -10,6 +10,7 @@ import btnStyles from "../../styles/Button.module.css";
 
 function JobPostEditForm() {
   const [errors, setErrors] = useState({});
+  const today = new Date().toISOString().split('T')[0];
 
   const [jobPostData, setjobPostData] = useState({
     title: "",
@@ -219,6 +220,7 @@ function JobPostEditForm() {
               name="salary"
               value={salary}
               onChange={handleChange}
+              min="0"
             />
           </Form.Group>
           {errors?.salary?.map((message, idx) => (
@@ -240,6 +242,7 @@ function JobPostEditForm() {
               name="application_deadline"
               value={application_deadline}
               onChange={handleChange}
+              min={today}
             />
           </Form.Group>
           {errors?.application_deadline?.map((message, idx) => (

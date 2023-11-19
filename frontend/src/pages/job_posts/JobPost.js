@@ -144,8 +144,8 @@ const JobPost = (props) => {
         )}
         {salary && (
           <div className={styles.PostItem}>
-            <span className={styles.PostItemTitle}>Salary:</span>
-            <span className={styles.PostItemValue}>{salary}</span>
+            <span className={styles.PostItemTitle}>Monthly Salary:</span>
+            <span className={styles.PostItemValue}>{salary} €</span>
           </div>
         )}
         {application_deadline && (
