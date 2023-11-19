@@ -89,8 +89,8 @@ export function UserSkillsEditDropdown({ id, handleDelete }) {
           onClick={() => history.push(`/user-skills/${id}/edit/`)}
           aria-label="edit-user-skills"
         >
-          <i className="fa fa-book px-2" />
-          change my skills
+          <i className="fas fa-id-badge px-2" />
+          change skills
         </Dropdown.Item>
         <Dropdown.Item
           className={styles.DropdownItem}
@@ -98,7 +98,7 @@ export function UserSkillsEditDropdown({ id, handleDelete }) {
           onClick={handleDelete}
         >
           <i className="fa fa-trash px-2" />
-          delete my skills
+          delete skills
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
@@ -117,7 +117,7 @@ export function CompanyBioEditDropdown({ id, handleDelete }) {
           aria-label="edit-company-bio"
         >
           <i className="fa fa-book px-2" />
-          change my company bio
+          change company bio
         </Dropdown.Item>
         <Dropdown.Item
           className={styles.DropdownItem}
@@ -125,7 +125,7 @@ export function CompanyBioEditDropdown({ id, handleDelete }) {
           onClick={handleDelete}
         >
           <i className="fa fa-trash px-2" />
-          delete my company bio
+          delete company bio
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
