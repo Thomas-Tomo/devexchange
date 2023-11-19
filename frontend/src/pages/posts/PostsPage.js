@@ -12,6 +12,7 @@ import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import MostRecentJobs from "../job_posts/MostRecentJobs";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -53,8 +54,8 @@ function PostsPage({ message, filter = "" }) {
         <Col lg={4} className="d-lg-none">
           {/* Popular Profiles for Mobile (Visible on Mobile) */}
           <Row>
-            <Col className="p-0 p-lg-2">
-              <p>Recent Jobs for mobile</p>
+            <Col className="p-0">
+              <MostRecentJobs />
             </Col>
           </Row>
         </Col>
@@ -104,7 +105,7 @@ function PostsPage({ message, filter = "" }) {
         </Row>
         <Row>
           <Col className="p-0 p-lg-2">
-            <p>Most recent Jobs for desktop</p>
+            <MostRecentJobs />
           </Col>
         </Row>
       </Col>

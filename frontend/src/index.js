@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { ProfileDataProvider } from "./contexts/ProfileDataContext";
 import { UserTypeProvider } from "./contexts/UserTypeContext";
+import { RecentJobsProvider } from "./contexts/RecentJobsContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.render(
       <CurrentUserProvider>
         <UserTypeProvider>
           <ProfileDataProvider>
-            <App />
+            <RecentJobsProvider>
+              <App />
+            </RecentJobsProvider>
           </ProfileDataProvider>
         </UserTypeProvider>
       </CurrentUserProvider>
