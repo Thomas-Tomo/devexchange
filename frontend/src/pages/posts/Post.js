@@ -6,10 +6,8 @@ import Avatar from "../../components/Avatar";
 import styles from "../../styles/Post.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
-import { useRedirect } from "../../hooks/useRedirect";
 
 const Post = (props) => {
-  useRedirect("loggedOut");
   const {
     id,
     owner,

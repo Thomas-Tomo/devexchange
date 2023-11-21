@@ -6,10 +6,8 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
-import { useRedirect } from "../../hooks/useRedirect";
 
 const JobPost = (props) => {
-  useRedirect("loggedOut");
   const {
     id,
     owner,
