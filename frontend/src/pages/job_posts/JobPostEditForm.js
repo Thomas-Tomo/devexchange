@@ -6,8 +6,10 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function JobPostEditForm() {
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const today = new Date().toISOString().split('T')[0];
 

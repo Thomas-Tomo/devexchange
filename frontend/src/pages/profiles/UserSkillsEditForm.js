@@ -6,8 +6,10 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function UserSkillsEditForm() {
+  useRedirect("loggedOut");
   const [userSkills, setUserSkills] = useState({
     education: "",
     work_experience: "",
