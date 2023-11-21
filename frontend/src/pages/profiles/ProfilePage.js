@@ -250,7 +250,7 @@ function ProfilePage() {
           {hasLoaded ? (
             <>
               {mainProfile}
-              {profile?.is_owner && (
+              {profile?.is_owner && profile?.user_type === "regular" && (
                 <>
                   <div>
                     <button
