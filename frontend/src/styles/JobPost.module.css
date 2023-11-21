@@ -61,8 +61,12 @@
   font-size: 1.3rem;
   text-align: center;
   font-weight: bold;
-  color: #28a745;
+  color: #f0f1f9;
   margin-bottom: 10px;
+}
+
+.PostTitle:hover {
+  color: #28a745;
 }
 
 .PostText {
