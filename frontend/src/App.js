@@ -23,6 +23,7 @@ import UserSkillsCreateForm from "./pages/profiles/UserSkillsCreateForm";
 import UserSkillsEditForm from "./pages/profiles/UserSkillsEditForm";
 import CompanyBioCreateForm from "./pages/profiles/CompanyBioCreateForm";
 import CompanyBioEditForm from "./pages/profiles/CompanyBioEditForm";
+import NotFound from "./components/NotFound";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -152,7 +153,7 @@ function App() {
                 path="/profiles/:id/edit"
                 render={() => <ProfileEditForm />}
               />
-              <Route render={() => <p>Page not found!</p>} />
+              <Route render={() => <NotFound />} />
             </Switch>
           </Col>
         </Row>
