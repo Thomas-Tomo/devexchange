@@ -13,11 +13,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import MostRecentJobs from "./MostRecentJobs";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 
 function JobPostsPage({ message, filter = "" }) {
   const [jobPosts, setJobPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
+  const currentUser = useCurrentUser();
 
   const [query, setQuery] = useState("");
 
@@ -40,7 +43,7 @@ function JobPostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   return (
     <Row className="mb-4">
