@@ -87,6 +87,7 @@ function App() {
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signout" render={() => <h1>Sign Out</h1>} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
+              <Route exact path="/posts/edit" render={() => <NotFound />} />
               <Route
                 exact
                 path="/posts/create"
@@ -98,6 +99,7 @@ function App() {
                 path="/posts/:id/edit"
                 render={() => <PostEditForm />}
               />
+              <Route exact path="/job-posts/edit" render={() => <NotFound />} />
               <Route
                 exact
                 path="/job-posts/create"
@@ -133,6 +135,7 @@ function App() {
                 path="/company-bio/:id/edit"
                 render={() => <CompanyBioEditForm />}
               />
+              <Route exact path="/profiles/edit" render={() => <NotFound />} />
               <Route
                 exact
                 path="/profiles/:id"
