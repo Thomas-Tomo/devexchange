@@ -1,7 +1,10 @@
 import React from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/JobPost.module.css";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Media from "react-bootstrap/Media";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import Card from "react-bootstrap/Card";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";

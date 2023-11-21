@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../../styles/MostRecentJobs.module.css";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 import Asset from "../../components/Asset";
 

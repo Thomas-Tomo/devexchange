@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Col } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
 import styles from "../styles/SideBar.module.css";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { useUserType } from "../contexts/UserTypeContext";

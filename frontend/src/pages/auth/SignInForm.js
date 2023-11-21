@@ -3,8 +3,11 @@ import { Link, useHistory } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
-import { Form, Col, Row, Container, Alert } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Alert from "react-bootstrap/Alert";
+import Container from "react-bootstrap/Container";
 import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -12,7 +15,7 @@ import { setTokenTimeStamp } from "../../utils/utils";
 
 const SignUpForm = () => {
   const setCurrentUser = useSetCurrentUser();
-  useRedirect('loggedIn')
+  useRedirect("loggedIn");
 
   const [signInData, setSignInData] = useState({
     username: "",
@@ -37,7 +40,7 @@ const SignUpForm = () => {
     try {
       const { data } = await axios.post("dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
-      setTokenTimeStamp(data)
+      setTokenTimeStamp(data);
       history.goBack();
     } catch (err) {
       setErrors(err.response?.data);

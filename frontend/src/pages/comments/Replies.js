@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Media from "react-bootstrap/Media";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import Form from "react-bootstrap/Form";
