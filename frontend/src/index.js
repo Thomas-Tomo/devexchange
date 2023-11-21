@@ -10,7 +10,6 @@ import { UserTypeProvider } from "./contexts/UserTypeContext";
 import { RecentJobsProvider } from "./contexts/RecentJobsContext";
 
 ReactDOM.render(
-  <React.StrictMode>
     <Router>
       <CurrentUserProvider>
         <UserTypeProvider>
@@ -21,8 +20,7 @@ ReactDOM.render(
           </ProfileDataProvider>
         </UserTypeProvider>
       </CurrentUserProvider>
-    </Router>
-  </React.StrictMode>,
+    </Router>,
   document.getElementById("root")
 );
 
