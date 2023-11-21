@@ -141,11 +141,7 @@ function PostCreateForm() {
             onChange={handleChange}
           />
         </Form.Group>
-        {errors?.content?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
+
         <div className="d-flex justify-content-center">
           <button className={`${btnStyles.Button} mr-2`} type="submit">
             Create

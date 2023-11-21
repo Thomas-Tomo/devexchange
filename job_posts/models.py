@@ -8,17 +8,17 @@ class JobPost(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    location = models.CharField(max_length=255)
-    job_type = models.CharField(max_length=100)
-    salary = models.DecimalField(max_digits=10, decimal_places=2)
-    application_deadline = models.DateField()
-    experience_level = models.CharField(max_length=50)
+    location = models.CharField(max_length=255, blank=True)
+    job_type = models.CharField(max_length=100, blank=True)
+    salary = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    application_deadline = models.DateField(blank=True, null=True)
+    experience_level = models.CharField(max_length=50, blank=True)
     company_name = models.CharField(max_length=255)
     company_description = models.TextField()
     is_active = models.BooleanField(default=True)
     application_instructions = models.TextField()
     allows_remote_work = models.BooleanField(default=False)
-    benefits = models.TextField()
+    benefits = models.TextField(blank=True)
 
     class Meta:
         ordering = ['-created_at']
