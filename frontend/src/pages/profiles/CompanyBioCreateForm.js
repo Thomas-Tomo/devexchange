@@ -49,7 +49,7 @@ function CompanyBioCreateForm() {
       await axiosReq.post("/company-bio/", formData);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

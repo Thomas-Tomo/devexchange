@@ -1,3 +1,7 @@
+.Container {
+  margin-top: 2rem;
+}
+
 .Row {
   background-color: #333333;
   border: 2px solid #121212;
@@ -38,7 +42,7 @@
 
 .ContainerLink {
   display: inline-block;
-  width: auto; 
+  width: auto;
 }
 
 .Link:hover {

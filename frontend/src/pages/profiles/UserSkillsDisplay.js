@@ -24,7 +24,7 @@ const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => {
       await axiosRes.delete(`/user-skills/${id}/`);
       setDeleted(true);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

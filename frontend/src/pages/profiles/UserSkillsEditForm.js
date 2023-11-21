@@ -63,7 +63,7 @@ function UserSkillsEditForm() {
             })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     handleMount();
@@ -93,7 +93,7 @@ function UserSkillsEditForm() {
       await axiosReq.put(`/user-skills/${id}/`, formData);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

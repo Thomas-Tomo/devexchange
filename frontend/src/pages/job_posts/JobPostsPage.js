@@ -33,7 +33,7 @@ function JobPostsPage({ message, filter = "" }) {
         setJobPosts(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     setHasLoaded(false);

@@ -51,7 +51,7 @@ function CompanyBioEditForm() {
             })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     handleMount();
@@ -78,7 +78,7 @@ function CompanyBioEditForm() {
       await axiosReq.put(`/company-bio/${id}/`, formData);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

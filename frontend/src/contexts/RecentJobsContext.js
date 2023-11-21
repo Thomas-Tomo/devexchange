@@ -16,7 +16,7 @@ export const RecentJobsProvider = ({ children }) => {
 
         setRecentJobs(data); // Set the fetched recent jobs into state
       } catch (error) {
-        console.error("Error fetching recent jobs:", error);
+        // console.error("Error fetching recent jobs:", error);
       }
     };
 

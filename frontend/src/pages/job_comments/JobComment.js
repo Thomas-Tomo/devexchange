@@ -67,7 +67,7 @@ const JobComment = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -87,7 +87,7 @@ const JobComment = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
   return (

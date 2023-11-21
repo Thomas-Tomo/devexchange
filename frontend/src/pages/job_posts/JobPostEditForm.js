@@ -86,7 +86,7 @@ function JobPostEditForm() {
             })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     handleMount();
@@ -121,7 +121,7 @@ function JobPostEditForm() {
       await axiosReq.put(`/job-posts/${id}/`, formData);
       history.push(`/job-posts/${id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

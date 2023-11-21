@@ -52,7 +52,7 @@ const JobPost = (props) => {
       await axiosRes.delete(`/job-posts/${id}/`);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -74,7 +74,7 @@ const JobPost = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -94,7 +94,7 @@ const JobPost = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -116,7 +116,7 @@ const JobPost = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -136,7 +136,7 @@ const JobPost = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

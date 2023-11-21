@@ -31,7 +31,7 @@ function JobPostPage() {
         setJobPost({ results: [job_post] });
         setJobComments(job_post_comments);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     handleMount();

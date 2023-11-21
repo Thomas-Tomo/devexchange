@@ -19,7 +19,7 @@ export const UserTypeProvider = ({ children }) => {
         const fetchedUserType = profileData.user_type;
         setUserType(fetchedUserType);
       } catch (error) {
-        console.error('Error fetching profile data:', error);
+        // console.error('Error fetching profile data:', error);
       }
     };
 

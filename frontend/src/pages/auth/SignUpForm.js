@@ -11,14 +11,14 @@ import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
-  useRedirect('loggedIn')
+  useRedirect("loggedIn");
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
     password2: "",
   });
 
-  const { username, password1, password2} = signUpData;
+  const { username, password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
 
@@ -42,86 +42,88 @@ const SignUpForm = () => {
   };
 
   return (
-    <Row className={`${styles.Row} m-2`}>
-      <Col className="m-auto py-2 p-md-2" md={8}>
-        <Container className="p-4">
-          <h1 className={styles.Header}>Create an account</h1>
+    <div className={styles.Container}>
+      <Row className={`${styles.Row} m-2`}>
+        <Col className="m-auto py-2 p-md-2" md={8}>
+          <Container className="p-4">
+            <h1 className={styles.Header}>Create an account</h1>
 
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="username">
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                className={styles.Input}
-                type="text"
-                placeholder="Enter Username"
-                name="username"
-                value={username}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            {errors.username?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="username">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  className={styles.Input}
+                  type="text"
+                  placeholder="Enter Username"
+                  name="username"
+                  value={username}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              {errors.username?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                  {message}
+                </Alert>
+              ))}
 
-            <Form.Group controlId="password1">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                className={styles.Input}
-                type="password"
-                placeholder="Password"
-                name="password1"
-                value={password1}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            {errors.password1?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+              <Form.Group controlId="password1">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  className={styles.Input}
+                  type="password"
+                  placeholder="Password"
+                  name="password1"
+                  value={password1}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              {errors.password1?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
 
-            <Form.Group controlId="password2">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                className={styles.Input}
-                type="password"
-                placeholder="Confirm Password"
-                name="password2"
-                value={password2}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            {errors.password2?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+              <Form.Group controlId="password2">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  className={styles.Input}
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="password2"
+                  value={password2}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              {errors.password2?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
 
-            <button
-              className={`${btnStyles.Button} ${btnStyles.Wide}`}
-              type="submit"
+              <button
+                className={`${btnStyles.Button} ${btnStyles.Wide}`}
+                type="submit"
+              >
+                Sign Up
+              </button>
+              {errors.non_field_errors?.map((message, idx) => (
+                <Alert key={idx} variant="warning" className="mt-3">
+                  {message}
+                </Alert>
+              ))}
+            </Form>
+          </Container>
+          <Container className="mt-3 mb-2 text-center">
+            <Link
+              className={`${styles.Link} ${styles.ContainerLink}`}
+              to="/signin"
             >
-              Sign Up
-            </button>
-            {errors.non_field_errors?.map((message, idx) => (
-              <Alert key={idx} variant="warning" className="mt-3">
-                {message}
-              </Alert>
-            ))}
-          </Form>
-        </Container>
-        <Container className="mt-3 mb-2 text-center">
-          <Link
-            className={`${styles.Link} ${styles.ContainerLink}`}
-            to="/signin"
-          >
-            Already have an account? <span>Sign in</span>
-          </Link>
-        </Container>
-      </Col>
-    </Row>
+              Already have an account? <span>Sign in</span>
+            </Link>
+          </Container>
+        </Col>
+      </Row>
+    </div>
   );
 };
 

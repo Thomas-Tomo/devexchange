@@ -18,10 +18,10 @@ const MostRecentJobs = () => {
         if (Array.isArray(response.data.results)) {
           setRecentJobs(response.data.results);
         } else {
-          console.error("Invalid response format - results array not found");
+          // console.error("Invalid response format - results array not found");
         }
       } catch (error) {
-        console.error("Error fetching recent jobs:", error);
+        // console.error("Error fetching recent jobs:", error);
       } finally {
         setLoading(false); // Set loading to false after fetching data (success or error)
       }

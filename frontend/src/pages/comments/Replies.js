@@ -30,7 +30,7 @@ const Replies = (props) => {
         const { data } = await axiosRes.get(`/replies/${parentCommentId}/`);
         setReplies(data);
       } catch (error) {
-        console.error("Error fetching replies:", error);
+        // console.error("Error fetching replies:", error);
       }
     };
     fetchReplies();
@@ -48,7 +48,7 @@ const Replies = (props) => {
       setContent("");
       setShowAddReplyForm(false);
     } catch (error) {
-      console.error("Error adding reply:", error);
+      // console.error("Error adding reply:", error);
     }
   };
 
@@ -59,7 +59,7 @@ const Replies = (props) => {
         prevReplies.filter((reply) => reply.id !== replyId)
       );
     } catch (error) {
-      console.error("Error deleting reply:", error);
+      // console.error("Error deleting reply:", error);
     }
   };
 

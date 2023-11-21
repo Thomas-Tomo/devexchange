@@ -31,7 +31,7 @@ const JobReplies = (props) => {
         );
         setReplies(data);
       } catch (error) {
-        console.error("Error fetching replies:", error);
+        // console.error("Error fetching replies:", error);
       }
     };
     fetchReplies();
@@ -52,7 +52,7 @@ const JobReplies = (props) => {
       setContent("");
       setShowAddReplyForm(false);
     } catch (error) {
-      console.error("Error adding reply:", error);
+      // console.error("Error adding reply:", error);
     }
   };
 
@@ -65,7 +65,7 @@ const JobReplies = (props) => {
         prevReplies.filter((reply) => reply.id !== replyId)
       );
     } catch (error) {
-      console.error("Error deleting reply:", error);
+      // console.error("Error deleting reply:", error);
     }
   };
 

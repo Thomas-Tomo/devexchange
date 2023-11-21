@@ -13,7 +13,7 @@ const CompanyBioDisplay = ({ companyBio, profile, currentUser }) => {
       await axiosRes.delete(`/company-bio/${id}/`);
       setDeleted(true);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
