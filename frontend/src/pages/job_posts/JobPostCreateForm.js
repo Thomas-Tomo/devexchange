@@ -166,7 +166,7 @@ function JobPostCreateForm() {
 
           <Form.Group controlId="salary">
             <div className="d-flex justify-content-center">
-              <Form.Label className={styles.FormLabel}>Salary</Form.Label>
+              <Form.Label className={styles.FormLabel}>Monthly Salary</Form.Label>
             </div>
             <Form.Control
               className={styles.FormControl}

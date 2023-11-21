@@ -210,7 +210,7 @@ const JobPost = (props) => {
         )}
         {experience_level && (
           <div className={styles.PostItem}>
-            <span className={styles.PostItemTitle}>Experience:</span>
+            <span className={styles.PostItemTitle}>Experience Level:</span>
             <span className={styles.PostItemValue}>{experience_level}</span>
           </div>
         )}
