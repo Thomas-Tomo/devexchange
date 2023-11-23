@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -71,15 +70,15 @@ const UsernameForm = () => {
                 {message}
               </Alert>
             ))}
-            <Button
+            <button
               className={`${btnStyles.Button}`}
               onClick={() => history.goBack()}
             >
               cancel
-            </Button>
-            <Button className={`${btnStyles.Button}`} type="submit">
+            </button>
+            <button className={`${btnStyles.Button}`} type="submit">
               save
-            </Button>
+            </button>
           </Form>
         </Container>
       </Col>
