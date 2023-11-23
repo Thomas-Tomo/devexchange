@@ -8,9 +8,11 @@ import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { ProfileDataProvider } from "./contexts/ProfileDataContext";
 import { UserTypeProvider } from "./contexts/UserTypeContext";
 import { RecentJobsProvider } from "./contexts/RecentJobsContext";
+import { AlertProvider } from "./contexts/AlertContext";
 
 ReactDOM.render(
     <Router>
+      <AlertProvider>
       <CurrentUserProvider>
         <UserTypeProvider>
           <ProfileDataProvider>
@@ -20,6 +22,7 @@ ReactDOM.render(
           </ProfileDataProvider>
         </UserTypeProvider>
       </CurrentUserProvider>
+      </AlertProvider>
     </Router>,
   document.getElementById("root")
 );
