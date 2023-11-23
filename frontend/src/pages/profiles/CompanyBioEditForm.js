@@ -3,7 +3,6 @@ import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useRedirect } from "../../hooks/useRedirect";
@@ -14,7 +13,7 @@ function CompanyBioEditForm() {
   const { setAlert } = useAlert();
   const [companyBio, setCompanyBio] = useState({
     company_name: "",
-    employees_count: "",
+    employees_count: 0,
     recruiting_status: "",
     technologies_used: "",
     company_description: "",
@@ -177,12 +176,12 @@ function CompanyBioEditForm() {
           </Form.Group>
         </Container>
         <div className="d-flex justify-content-center">
-          <Button className={`${btnStyles.Button} mr-2`} type="submit">
+          <button className={`${btnStyles.Button} mr-2`} type="submit">
             Update
-          </Button>
-          <Button className={btnStyles.Button} onClick={() => history.goBack()}>
+          </button>
+          <button className={btnStyles.Button} onClick={() => history.goBack()}>
             Cancel
-          </Button>
+          </button>
         </div>
       </Form>
     </div>
