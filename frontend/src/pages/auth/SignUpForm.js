@@ -9,9 +9,11 @@ import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
+import useAlert from "../../hooks/useAlert";
 
 const SignUpForm = () => {
   useRedirect("loggedIn");
+  const { setAlert } = useAlert();
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
@@ -36,6 +38,7 @@ const SignUpForm = () => {
     try {
       await axios.post("dj-rest-auth/registration/", signUpData);
       history.push("/signin");
+      setAlert("Succesfully Signed Up!", "success");
     } catch (err) {
       setErrors(err.response?.data);
     }

@@ -7,9 +7,11 @@ import Button from "react-bootstrap/Button";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useRedirect } from "../../hooks/useRedirect";
+import useAlert from "../../hooks/useAlert";
 
 function UserSkillsEditForm() {
   useRedirect("loggedOut");
+  const { setAlert } = useAlert();
   const [userSkills, setUserSkills] = useState({
     education: "",
     work_experience: "",
@@ -92,6 +94,7 @@ function UserSkillsEditForm() {
     try {
       await axiosReq.put(`/user-skills/${id}/`, formData);
       history.goBack();
+      setAlert("Skills Updated!", "success");
     } catch (err) {
       // console.log(err);
     }

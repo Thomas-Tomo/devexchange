@@ -8,9 +8,11 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { Image } from "react-bootstrap";
 import appStyles from "../../App.module.css";
+import useAlert from "../../hooks/useAlert";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
+  const { setAlert } = useAlert();
 
   const [postData, setPostData] = useState({
     title: "",
@@ -68,6 +70,7 @@ function PostEditForm() {
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
+      setAlert("Post Updated!", "success");
     } catch (err) {
       // console.log(err);
       if (err.response?.status !== 401) {

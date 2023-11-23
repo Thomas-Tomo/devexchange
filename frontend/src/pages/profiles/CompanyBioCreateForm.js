@@ -7,9 +7,11 @@ import Button from "react-bootstrap/Button";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useRedirect } from "../../hooks/useRedirect";
+import useAlert from "../../hooks/useAlert";
 
 function CompanyBioCreateForm() {
   useRedirect("loggedOut");
+  const { setAlert } = useAlert();
 
   const [companyBio, setCompanyBio] = useState({
     company_name: "",
@@ -48,6 +50,7 @@ function CompanyBioCreateForm() {
     try {
       await axiosReq.post("/company-bio/", formData);
       history.goBack();
+      setAlert("Company Bio Created!", "success");
     } catch (err) {
       // console.log(err);
     }

@@ -11,6 +11,7 @@ import styles from "../../styles/Comment.module.css";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import JobRepliesEditForm from "./JobRepliesEditForm";
+import useAlert from "../../hooks/useAlert";
 
 const JobReplies = (props) => {
   const { parentCommentId } = props;
@@ -22,6 +23,7 @@ const JobReplies = (props) => {
 
   const currentUser = useCurrentUser();
   const [editReplyId, setEditReplyId] = useState(false);
+  const { setAlert } = useAlert();
 
   useEffect(() => {
     const fetchReplies = async () => {
@@ -51,6 +53,7 @@ const JobReplies = (props) => {
       setReplies((prevReplies) => [...prevReplies, newReply]);
       setContent("");
       setShowAddReplyForm(false);
+      setAlert("Reply Created!", "success");
     } catch (error) {
       // console.error("Error adding reply:", error);
     }
@@ -64,6 +67,7 @@ const JobReplies = (props) => {
       setReplies((prevReplies) =>
         prevReplies.filter((reply) => reply.id !== replyId)
       );
+      setAlert("Reply Deleted!", "danger");
     } catch (error) {
       // console.error("Error deleting reply:", error);
     }

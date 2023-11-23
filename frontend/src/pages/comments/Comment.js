@@ -10,6 +10,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import CommentEditForm from "./CommentEditForm";
 import Replies from "./Replies";
+import useAlert from "../../hooks/useAlert";
 
 const Comment = (props) => {
   const {
@@ -28,6 +29,7 @@ const Comment = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const [showEditForm, setShowEditForm] = useState(false);
+  const { setAlert } = useAlert();
 
   const handleDelete = async () => {
     try {
@@ -44,6 +46,7 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
+      setAlert("Comment Deleted!", "danger");
     } catch (err) {}
   };
 

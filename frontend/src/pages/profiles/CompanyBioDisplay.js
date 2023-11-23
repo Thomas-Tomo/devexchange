@@ -4,14 +4,17 @@ import styles from "../../styles/UserSkillsDisplay.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { CompanyBioEditDropdown } from "../../components/MoreDropdown";
+import useAlert from "../../hooks/useAlert";
 
 const CompanyBioDisplay = ({ companyBio, profile, currentUser }) => {
   const [deleted, setDeleted] = useState(false);
+  const { setAlert } = useAlert();
 
   const handleDelete = async (id) => {
     try {
       await axiosRes.delete(`/company-bio/${id}/`);
       setDeleted(true);
+      setAlert("Company Bio Deleted!", "danger");
     } catch (err) {
       // console.log(err);
     }

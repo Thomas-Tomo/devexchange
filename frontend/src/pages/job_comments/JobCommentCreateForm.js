@@ -5,11 +5,13 @@ import InputGroup from "react-bootstrap/InputGroup";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import useAlert from "../../hooks/useAlert";
 
 function JobCommentCreateForm(props) {
   const { job_post, setJobPost, setJobComments, profileImage, profile_id } =
     props;
   const [content, setContent] = useState("");
+  const { setAlert } = useAlert();
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -35,6 +37,7 @@ function JobCommentCreateForm(props) {
         ],
       }));
       setContent("");
+      setAlert("Comment posted!", "success");
     } catch (err) {
       // console.log(err);
     }

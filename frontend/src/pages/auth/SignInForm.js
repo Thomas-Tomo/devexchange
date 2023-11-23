@@ -11,10 +11,12 @@ import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimeStamp } from "../../utils/utils";
+import useAlert from "../../hooks/useAlert";
 
 const SignUpForm = () => {
   const setCurrentUser = useSetCurrentUser();
   useRedirect("loggedIn");
+  const { setAlert } = useAlert();
 
   const [signInData, setSignInData] = useState({
     username: "",
@@ -41,6 +43,7 @@ const SignUpForm = () => {
       setCurrentUser(data.user);
       setTokenTimeStamp(data);
       history.goBack();
+      setAlert("Succesfully Signed In!", "success");
     } catch (err) {
       setErrors(err.response?.data);
     }

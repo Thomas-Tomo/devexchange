@@ -11,10 +11,12 @@ import Asset from "../../components/Asset";
 import { Image } from "react-bootstrap";
 import appStyles from "../../App.module.css";
 import { useRedirect } from "../../hooks/useRedirect";
+import useAlert from "../../hooks/useAlert";
 
 function PostCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
+  const { setAlert } = useAlert();
 
   const [postData, setPostData] = useState({
     title: "",
@@ -55,6 +57,7 @@ function PostCreateForm() {
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
+      setAlert("Post Created!", "success");
     } catch (err) {
       // console.log(err);
       if (err.response?.status !== 401) {

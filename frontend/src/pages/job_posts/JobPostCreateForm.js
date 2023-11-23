@@ -7,11 +7,13 @@ import Alert from "react-bootstrap/Alert";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useRedirect } from "../../hooks/useRedirect";
+import useAlert from "../../hooks/useAlert";
 
 function JobPostCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const today = new Date().toISOString().split('T')[0];
+  const { setAlert } = useAlert();
 
   const [jobPostData, setjobPostData] = useState({
     title: "",
@@ -74,6 +76,7 @@ function JobPostCreateForm() {
     try {
       const { data } = await axiosReq.post("/job-posts/", formData);
       history.push(`/job-posts/${data.id}`);
+      setAlert("Job Post Created!", "success");
     } catch (err) {
       // console.log(err);
       if (err.response?.status !== 401) {

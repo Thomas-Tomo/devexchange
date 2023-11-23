@@ -9,6 +9,7 @@ import Avatar from "../../components/Avatar";
 import styles from "../../styles/Post.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import useAlert from "../../hooks/useAlert";
 
 const Post = (props) => {
   const {
@@ -30,6 +31,7 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const { setAlert } = useAlert();
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -39,6 +41,7 @@ const Post = (props) => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
+      setAlert("Post Deleted!", "danger");
     } catch (err) {
       // console.log(err);
     }

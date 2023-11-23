@@ -7,9 +7,11 @@ import Button from "react-bootstrap/Button";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useRedirect } from "../../hooks/useRedirect";
+import useAlert from "../../hooks/useAlert";
 
 function UserSkillsCreateForm() {
   useRedirect("loggedOut");
+  const { setAlert } = useAlert();
 
   const [userSkills, setUserSkills] = useState({
     education: "",
@@ -57,6 +59,7 @@ function UserSkillsCreateForm() {
     try {
       await axiosReq.post("/user-skills/", formData);
       history.goBack();
+      setAlert("Skills Created!", "success");
     } catch (err) {
       // console.log(err);
     }

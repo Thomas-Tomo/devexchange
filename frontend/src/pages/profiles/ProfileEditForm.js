@@ -15,6 +15,7 @@ import {
 } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/ProfilePage.module.css";
+import useAlert from "../../hooks/useAlert";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -22,6 +23,7 @@ const ProfileEditForm = () => {
   const { id } = useParams();
   const history = useHistory();
   const imageFile = useRef();
+  const { setAlert } = useAlert();
 
   const [profileData, setProfileData] = useState({
     name: "",
@@ -96,6 +98,7 @@ const ProfileEditForm = () => {
         profile_image: data.image,
       }));
       history.goBack();
+      setAlert("Profile Updated!", "success");
     } catch (err) {
       // console.log(err);
       setErrors(err.response?.data);

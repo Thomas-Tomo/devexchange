@@ -9,6 +9,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
+import useAlert from "../../hooks/useAlert";
 
 const JobPost = (props) => {
   const {
@@ -42,6 +43,7 @@ const JobPost = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const { setAlert } = useAlert();
 
   const handleEdit = () => {
     history.push(`/job-posts/${id}/edit`);
@@ -51,6 +53,7 @@ const JobPost = (props) => {
     try {
       await axiosRes.delete(`/job-posts/${id}/`);
       history.goBack();
+      setAlert("Job Post Deleted!", "danger");
     } catch (err) {
       // console.log(err);
     }
@@ -115,6 +118,7 @@ const JobPost = (props) => {
             : jobPost;
         }),
       }));
+      setAlert("Job Post Saved!", "success");
     } catch (err) {
       // console.log(err);
     }
@@ -135,6 +139,7 @@ const JobPost = (props) => {
             : jobPost;
         }),
       }));
+      setAlert("Job Post Unsaved!", "danger");
     } catch (err) {
       // console.log(err);
     }

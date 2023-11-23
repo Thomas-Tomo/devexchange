@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/CommentCreateEditForm.module.css";
+import useAlert from "../../hooks/useAlert";
 
 function RepliesEditForm(props) {
   const { replyId, parentCommentId, content, setShowEditForm, setReplies } =
     props;
 
   const [formContent, setFormContent] = useState(content);
+  const { setAlert } = useAlert();
 
   const handleChange = (event) => {
     setFormContent(event.target.value);
@@ -28,6 +30,7 @@ function RepliesEditForm(props) {
         )
       );
       setShowEditForm(false);
+      setAlert("Reply Updated!", "success");
     } catch (err) {
       // console.log(err);
     }

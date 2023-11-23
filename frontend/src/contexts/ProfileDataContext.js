@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { followHelper, unfollowHelper } from "../utils/utils";
+import useAlert from "../hooks/useAlert";
 
 const ProfileDataContext = createContext();
 const SetProfileDataContext = createContext();
@@ -10,6 +11,8 @@ export const useProfileData = () => useContext(ProfileDataContext);
 export const useSetProfileData = () => useContext(SetProfileDataContext);
 
 export const ProfileDataProvider = ({ children }) => {
+  const { setAlert } = useAlert();
+
   const [profileData, setProfileData] = useState({
     // we will use the pageProfile later
     pageProfile: { results: [] },
@@ -35,6 +38,7 @@ export const ProfileDataProvider = ({ children }) => {
           ),
         },
       }));
+      setAlert("User Unfollowed!", "danger");
     } catch (err) {
       // console.log(err);
     }
@@ -60,6 +64,7 @@ export const ProfileDataProvider = ({ children }) => {
           ),
         },
       }));
+      setAlert("User Followed!", "success");
     } catch (err) {
       // console.log(err);
     }

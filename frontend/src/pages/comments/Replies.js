@@ -11,7 +11,7 @@ import styles from "../../styles/Comment.module.css";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import RepliesEditForm from "./RepliesEditForm";
-
+import useAlert from "../../hooks/useAlert";
 
 const Replies = (props) => {
   const { parentCommentId } = props;
@@ -23,6 +23,7 @@ const Replies = (props) => {
 
   const currentUser = useCurrentUser();
   const [editReplyId, setEditReplyId] = useState(false);
+  const { setAlert } = useAlert();
 
   useEffect(() => {
     const fetchReplies = async () => {
@@ -47,6 +48,7 @@ const Replies = (props) => {
       setReplies((prevReplies) => [...prevReplies, newReply]);
       setContent("");
       setShowAddReplyForm(false);
+      setAlert("Reply Created!", "success");
     } catch (error) {
       // console.error("Error adding reply:", error);
     }
@@ -58,6 +60,7 @@ const Replies = (props) => {
       setReplies((prevReplies) =>
         prevReplies.filter((reply) => reply.id !== replyId)
       );
+      setAlert("Reply Deleted!", "danger");
     } catch (error) {
       // console.error("Error deleting reply:", error);
     }
@@ -108,36 +111,33 @@ const Replies = (props) => {
         </button>
       )}
       {!showAddReplyForm && currentUser ? (
-  <button
-    onClick={() => setShowAddReplyForm(true)}
-    className={`${styles.Button} py-0`}
-  >
-    Add Reply
-  </button>
-) : !currentUser ? (
-  <OverlayTrigger
-    placement="top"
-    overlay={<Tooltip>Log in to add a reply</Tooltip>}
-  >
-    <button
-      className={`${styles.Button} py-0`}
-      disabled
-    >
-      Add Reply
-    </button>
-  </OverlayTrigger>
-) : null}
+        <button
+          onClick={() => setShowAddReplyForm(true)}
+          className={`${styles.Button} py-0`}
+        >
+          Add Reply
+        </button>
+      ) : !currentUser ? (
+        <OverlayTrigger
+          placement="top"
+          overlay={<Tooltip>Log in to add a reply</Tooltip>}
+        >
+          <button className={`${styles.Button} py-0`} disabled>
+            Add Reply
+          </button>
+        </OverlayTrigger>
+      ) : null}
       {showAddReplyForm && (
         <Form className="pr-1">
           <Form.Group>
-          <InputGroup>
-          <Form.Control
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="Write a reply..."
-            rows={2}
-          />
-          </InputGroup>
+            <InputGroup>
+              <Form.Control
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="Write a reply..."
+                rows={2}
+              />
+            </InputGroup>
           </Form.Group>
           <button onClick={handleAddReply} className={`${styles.Button} py-0`}>
             Submit Reply

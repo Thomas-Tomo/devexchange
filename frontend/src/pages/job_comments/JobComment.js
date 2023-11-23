@@ -10,6 +10,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import JobCommentEditForm from "./JobCommentEditForm";
 import JobReplies from "./JobReplies";
+import useAlert from "../../hooks/useAlert";
 
 const JobComment = (props) => {
   const {
@@ -28,6 +29,7 @@ const JobComment = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const [showEditForm, setShowEditForm] = useState(false);
+  const { setAlert } = useAlert();
 
   const handleDelete = async () => {
     try {
@@ -46,6 +48,7 @@ const JobComment = (props) => {
           (job_post_comment) => job_post_comment.id !== id
         ),
       }));
+      setAlert("Comment Deleted!", "danger");
     } catch (err) {}
   };
 

@@ -4,9 +4,11 @@ import styles from "../../styles/UserSkillsDisplay.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { UserSkillsEditDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
+import useAlert from "../../hooks/useAlert";
 
 const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => {
   const [deleted, setDeleted] = useState(false);
+  const { setAlert } = useAlert();
 
   const renderClickableLink = (url, label) => {
     if (!url || url === "/") {
@@ -23,6 +25,7 @@ const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => {
     try {
       await axiosRes.delete(`/user-skills/${id}/`);
       setDeleted(true);
+      setAlert("Skills Deleted!", "danger");
     } catch (err) {
       // console.log(err);
     }
