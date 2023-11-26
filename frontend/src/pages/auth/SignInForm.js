@@ -43,7 +43,7 @@ const SignUpForm = () => {
       setCurrentUser(data.user);
       setTokenTimeStamp(data);
       history.goBack();
-      setAlert("Succesfully Signed In!", "success");
+      setAlert(`${username} you logged in successfully!`, "success");
     } catch (err) {
       setErrors(err.response?.data);
     }
