@@ -1,23 +1,22 @@
 .Alert {
-    position: absolute;
-    z-index: 100;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-transform: capitalize;
-    text-align: center;
-    font-weight: bold;
+  position: absolute;
+  z-index: 100;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: capitalize;
+  text-align: center;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 650px) {
+  .Alert {
+    font-size: 0.8rem;
   }
-  
-  
-  @media screen and (max-width: 650px) {
-    .Alert {
-      font-size: 0.8rem;
-    }
+}
+
+@media screen and (max-width: 537px) {
+  .Alert {
+    font-size: 0.6rem;
   }
-  
-  @media screen and (max-width: 537px) {
-    .Alert {
-      font-size: 0.6rem;
-    }
-  }
+}

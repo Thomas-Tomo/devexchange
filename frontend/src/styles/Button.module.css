@@ -9,15 +9,15 @@
 }
 
 .Button:hover {
-    background-color: #ffffff;
-    border-color: #121212;
-    color: #121212;
+  background-color: #ffffff;
+  border-color: #121212;
+  color: #121212;
 }
 
 .Button:active {
-    background-color: #28a745 !important;
-    border-color: #121212 !important;
-  }
+  background-color: #28a745 !important;
+  border-color: #121212 !important;
+}
 
 .Wide {
   width: 100%;
