@@ -31,6 +31,7 @@ const Comment = (props) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const { setAlert } = useAlert();
 
+  // Function to handle comment deletion
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/comments/${id}/`);
@@ -50,6 +51,7 @@ const Comment = (props) => {
     } catch (err) {}
   };
 
+  // Function to handle liking a comment
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/comment-likes/", { comment: id });
@@ -70,6 +72,7 @@ const Comment = (props) => {
     }
   };
 
+  // Function to handle unliking a comment
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/comment-likes/${comment_like_id}/`);
@@ -91,12 +94,15 @@ const Comment = (props) => {
   };
   return (
     <div>
+      {/* Comment content */}
       <hr />
       <Media>
+        {/* Link to commenter's profile */}
         <Link to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} />
         </Link>
         <Media.Body className="align-self-center ml-2">
+          {/* Display comment owner and date */}
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_at}</span>
           {showEditForm ? (
@@ -111,6 +117,7 @@ const Comment = (props) => {
           ) : (
             <p>{content}</p>
           )}
+          {/* Like/Unlike comment section */}
           <div className={styles.CommentContainer}>
             {is_owner ? (
               <OverlayTrigger

@@ -35,6 +35,7 @@ const ProfileEditForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Fetching profile data upon component mount
   useEffect(() => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
@@ -68,6 +69,7 @@ const ProfileEditForm = () => {
     }
   };
 
+  // Confirming user type change
   const handleConfirmChange = () => {
     setProfileData((prevState) => ({
       ...prevState,
@@ -76,10 +78,12 @@ const ProfileEditForm = () => {
     setShowModal(false); // Hide the modal
   };
 
+  // Cancel user type change
   const handleCancelChange = () => {
     setShowModal(false); // Hide the modal
   };
 
+  // Handling form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

@@ -4,12 +4,15 @@ import { axiosRes, axiosReq } from "../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
 import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
 
+// Context for current user and setting current user
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 
+// Custom hooks for accessing current user and setting current user
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
+// Provider component managing the current user context
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const history = useHistory();
@@ -23,10 +26,12 @@ export const CurrentUserProvider = ({ children }) => {
     }
   };
 
+  // Fetch user data on component mount
   useEffect(() => {
     handleMount();
   }, []);
 
+  // Memoizing interceptors for axios requests and responses
   useMemo(() => {
     axiosReq.interceptors.request.use(
       async (config) => {
@@ -40,11 +45,11 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
-            removeTokenTimestamp()
+            removeTokenTimestamp();
             return config;
           }
         }
-        
+
         return config;
       },
       (err) => {
@@ -65,7 +70,7 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
-            removeTokenTimestamp()
+            removeTokenTimestamp();
           }
           return axios(err.config);
         }
@@ -74,6 +79,7 @@ export const CurrentUserProvider = ({ children }) => {
     );
   }, [history]);
 
+  // Providing current user and setCurrentUser to child components via contexts
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <SetCurrentUserContext.Provider value={setCurrentUser}>

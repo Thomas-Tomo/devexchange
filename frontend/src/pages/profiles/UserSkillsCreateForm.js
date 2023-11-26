@@ -35,6 +35,7 @@ function UserSkillsCreateForm() {
   } = userSkills;
   const history = useHistory();
 
+  // Function to handle changes in form inputs
   const handleChange = (event) => {
     setUserSkills({
       ...userSkills,
@@ -42,6 +43,7 @@ function UserSkillsCreateForm() {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

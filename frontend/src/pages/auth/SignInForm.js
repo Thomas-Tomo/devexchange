@@ -24,11 +24,10 @@ const SignUpForm = () => {
   });
 
   const { username, password } = signInData;
-
   const [errors, setErrors] = useState({});
-
   const history = useHistory();
 
+  // Function to handle changes in form inputs
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
@@ -36,10 +35,12 @@ const SignUpForm = () => {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const { data } = await axios.post("dj-rest-auth/login/", signInData);
+      // Set user data upon successful login
       setCurrentUser(data.user);
       setTokenTimeStamp(data);
       history.goBack();

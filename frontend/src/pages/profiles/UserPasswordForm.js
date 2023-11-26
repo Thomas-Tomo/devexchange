@@ -25,6 +25,7 @@ const UserPasswordForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Function to handle form input changes
   const handleChange = (event) => {
     setUserData({
       ...userData,
@@ -39,6 +40,7 @@ const UserPasswordForm = () => {
     }
   }, [currentUser, history, id]);
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

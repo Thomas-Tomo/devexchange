@@ -11,8 +11,8 @@ import { RecentJobsProvider } from "./contexts/RecentJobsContext";
 import { AlertProvider } from "./contexts/AlertContext";
 
 ReactDOM.render(
-    <Router>
-      <AlertProvider>
+  <Router>
+    <AlertProvider>
       <CurrentUserProvider>
         <UserTypeProvider>
           <ProfileDataProvider>
@@ -22,8 +22,8 @@ ReactDOM.render(
           </ProfileDataProvider>
         </UserTypeProvider>
       </CurrentUserProvider>
-      </AlertProvider>
-    </Router>,
+    </AlertProvider>
+  </Router>,
   document.getElementById("root")
 );
 

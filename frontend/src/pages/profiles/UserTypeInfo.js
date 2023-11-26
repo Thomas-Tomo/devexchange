@@ -2,6 +2,7 @@ import React from "react";
 
 const UserTypeInfo = () => {
   return (
+    // Container for user type information
     <div className="mt-3">
       <h5 className="text-center">Upgrade to an Employer Account</h5>
       <ul>

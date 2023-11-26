@@ -12,7 +12,7 @@ import useAlert from "../../hooks/useAlert";
 function JobPostEditForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   const { setAlert } = useAlert();
 
   const [jobPostData, setjobPostData] = useState({
@@ -50,10 +50,12 @@ function JobPostEditForm() {
   const history = useHistory();
   const { id } = useParams();
 
+  // Fetch job post data on component mount
   useEffect(() => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/job-posts/${id}/`);
+        // Destructure data received from API
         const {
           title,
           description,
@@ -70,8 +72,10 @@ function JobPostEditForm() {
           benefits,
           is_owner,
         } = data;
+        // Check if the user owns the job post
         is_owner
           ? setjobPostData({
+              // Set job post data if user is the owner
               title,
               description,
               location,
@@ -94,6 +98,7 @@ function JobPostEditForm() {
     handleMount();
   }, [history, id]);
 
+  // Function to handle input changes
   const handleChange = (event) => {
     setjobPostData({
       ...jobPostData,
@@ -101,6 +106,7 @@ function JobPostEditForm() {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

@@ -1,11 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefaults";
 
+// Creating a context for recent job posts
 const RecentJobsContext = createContext();
 
+// Custom hook to access recent job posts from context
 export const useRecentJobs = () => useContext(RecentJobsContext);
 
+// Provider component managing recent job posts context
 export const RecentJobsProvider = ({ children }) => {
+  // State to store the fetched recent job posts
   const [recentJobs, setRecentJobs] = useState([]);
 
   useEffect(() => {
@@ -20,9 +24,10 @@ export const RecentJobsProvider = ({ children }) => {
       }
     };
 
-    fetchRecentJobs();
+    fetchRecentJobs(); // Invoking the function to fetch recent jobs
   }, []);
 
+  // Providing recent job posts to child components via context
   return (
     <RecentJobsContext.Provider value={recentJobs}>
       {children}

@@ -36,6 +36,7 @@ function UserSkillsEditForm() {
   const history = useHistory();
   const { id } = useParams();
 
+  // Fetch user skills data on component mount
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -70,6 +71,7 @@ function UserSkillsEditForm() {
     handleMount();
   }, [history, id]);
 
+  // Handle changes in the form fields
   const handleChange = (event) => {
     setUserSkills({
       ...userSkills,
@@ -77,6 +79,7 @@ function UserSkillsEditForm() {
     });
   };
 
+  // Handle form submission to update user skills
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

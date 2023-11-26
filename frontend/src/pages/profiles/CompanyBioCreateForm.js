@@ -29,6 +29,7 @@ function CompanyBioCreateForm() {
   } = companyBio;
   const history = useHistory();
 
+  // Handle changes in form inputs
   const handleChange = (event) => {
     setCompanyBio({
       ...companyBio,
@@ -36,6 +37,7 @@ function CompanyBioCreateForm() {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

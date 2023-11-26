@@ -12,7 +12,7 @@ import useAlert from "../../hooks/useAlert";
 function JobPostCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   const { setAlert } = useAlert();
 
   const [jobPostData, setjobPostData] = useState({
@@ -49,6 +49,7 @@ function JobPostCreateForm() {
 
   const history = useHistory();
 
+  // Function to handle input changes
   const handleChange = (event) => {
     setjobPostData({
       ...jobPostData,
@@ -56,6 +57,7 @@ function JobPostCreateForm() {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -169,7 +171,9 @@ function JobPostCreateForm() {
 
           <Form.Group controlId="salary">
             <div className="d-flex justify-content-center">
-              <Form.Label className={styles.FormLabel}>Monthly Salary</Form.Label>
+              <Form.Label className={styles.FormLabel}>
+                Monthly Salary
+              </Form.Label>
             </div>
             <Form.Control
               className={styles.FormControl}

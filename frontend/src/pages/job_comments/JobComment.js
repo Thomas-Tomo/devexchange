@@ -31,6 +31,7 @@ const JobComment = (props) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const { setAlert } = useAlert();
 
+  // Function to delete a comment
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/job-post-comments/${id}/`);
@@ -52,6 +53,7 @@ const JobComment = (props) => {
     } catch (err) {}
   };
 
+  // Function to handle like a comment
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/job-post-comment-likes/", {
@@ -74,6 +76,7 @@ const JobComment = (props) => {
     }
   };
 
+  // Function to handle unlike a comment
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/job-post-comment-likes/${comment_like_id}/`);
@@ -104,6 +107,7 @@ const JobComment = (props) => {
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_at}</span>
           {showEditForm ? (
+            // Render edit form if edit mode is active
             <JobCommentEditForm
               id={id}
               profile_id={profile_id}
@@ -141,6 +145,7 @@ const JobComment = (props) => {
             )}
             {comment_likes_count}
           </div>
+          {/* Render replies for the comment */}
           <JobReplies parentCommentId={id} />
         </Media.Body>
         {is_owner && !showEditForm && (

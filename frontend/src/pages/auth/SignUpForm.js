@@ -21,11 +21,10 @@ const SignUpForm = () => {
   });
 
   const { username, password1, password2 } = signUpData;
-
   const [errors, setErrors] = useState({});
-
   const history = useHistory();
 
+  // Function to handle changes in form inputs
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
@@ -33,10 +32,12 @@ const SignUpForm = () => {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axios.post("dj-rest-auth/registration/", signUpData);
+      // Redirect to sign-in page upon successful registration
       history.push("/signin");
       setAlert("Succesfully Signed Up!", "success");
     } catch (err) {

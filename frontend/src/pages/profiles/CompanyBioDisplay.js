@@ -10,6 +10,7 @@ const CompanyBioDisplay = ({ companyBio, profile, currentUser }) => {
   const [deleted, setDeleted] = useState(false);
   const { setAlert } = useAlert();
 
+  // Function to handle deletion of the company bio
   const handleDelete = async (id) => {
     try {
       await axiosRes.delete(`/company-bio/${id}/`);
@@ -20,6 +21,7 @@ const CompanyBioDisplay = ({ companyBio, profile, currentUser }) => {
     }
   };
 
+  // If the company bio has been deleted, display appropriate content
   if (deleted) {
     return (
       <>
@@ -37,13 +39,14 @@ const CompanyBioDisplay = ({ companyBio, profile, currentUser }) => {
   }
   return (
     <>
+      {/* Display company bio information if it exists */}
       {(companyBio.length > 0 ||
         (profile?.is_owner && currentUser?.username === profile?.owner)) && (
         <div className={styles.SkillsContainer}>
           <ul>
             {companyBio.map(
               (bio) =>
-                // Check if the user skill belongs to the current profile
+                // Check if the company bio belongs to the current profile
                 bio.owner === profile?.owner && (
                   <li key={bio.id}>
                     <div className="d-flex">

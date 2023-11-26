@@ -25,6 +25,7 @@ const JobReplies = (props) => {
   const [editReplyId, setEditReplyId] = useState(false);
   const { setAlert } = useAlert();
 
+  // Fetch replies for the parent comment on component mount
   useEffect(() => {
     const fetchReplies = async () => {
       try {
@@ -39,6 +40,7 @@ const JobReplies = (props) => {
     fetchReplies();
   }, [parentCommentId]);
 
+  // Function to handle adding a reply
   const handleAddReply = async (event) => {
     event.preventDefault();
     try {
@@ -59,6 +61,7 @@ const JobReplies = (props) => {
     }
   };
 
+  // Function to handle deleting a reply
   const handleDelete = async (replyId) => {
     try {
       await axiosRes.delete(
@@ -87,6 +90,7 @@ const JobReplies = (props) => {
                 <span className={styles.Owner}>{reply.owner}</span>
                 <span className={styles.Date}>{reply.updated_at}</span>
                 {editReplyId === reply.id ? (
+                  // If editing, show the edit form
                   <JobRepliesEditForm
                     replyId={reply.id}
                     parentCommentId={parentCommentId}

@@ -29,6 +29,7 @@ function PostCreateForm() {
   const imageInput = useRef(null);
   const history = useHistory();
 
+  // Handle change in form input fields
   const handleChange = (event) => {
     setPostData({
       ...postData,
@@ -46,6 +47,7 @@ function PostCreateForm() {
     }
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

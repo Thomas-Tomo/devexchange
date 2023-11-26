@@ -23,6 +23,7 @@ function PostsPage({ message, filter = "" }) {
 
   const [query, setQuery] = useState("");
 
+  // Function to fetch posts based on filters and search query
   useEffect(() => {
     const fetchPosts = async () => {
       try {

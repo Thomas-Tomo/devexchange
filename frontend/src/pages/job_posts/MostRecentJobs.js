@@ -10,6 +10,7 @@ const MostRecentJobs = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Function to fetch most recent jobs
     const fetchRecentJobs = async () => {
       try {
         const response = await axios.get("/job-posts/");

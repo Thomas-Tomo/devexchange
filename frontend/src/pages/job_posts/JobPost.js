@@ -45,10 +45,12 @@ const JobPost = (props) => {
   const history = useHistory();
   const { setAlert } = useAlert();
 
+  // Function to redirect to the job post edit page
   const handleEdit = () => {
     history.push(`/job-posts/${id}/edit`);
   };
 
+  // Function to delete the job post
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/job-posts/${id}/`);
@@ -59,6 +61,7 @@ const JobPost = (props) => {
     }
   };
 
+  // Function to handle liking a job post
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/job-post-likes/", {
@@ -81,6 +84,7 @@ const JobPost = (props) => {
     }
   };
 
+  // Function to handle unliking a job post
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/job-post-likes/${like_id}/`);
@@ -101,6 +105,7 @@ const JobPost = (props) => {
     }
   };
 
+  // Function to handle saving a job post
   const handleSave = async () => {
     try {
       const { data } = await axiosRes.post("/job-post-saved/", {
@@ -124,6 +129,7 @@ const JobPost = (props) => {
     }
   };
 
+  // Function to handle removing a saved job post
   const handleUnsave = async () => {
     try {
       await axiosRes.delete(`/job-post-saved/${saved_id}/`);
@@ -167,6 +173,7 @@ const JobPost = (props) => {
           )}
         </div>
       </Media>
+      {/* Job post content */}
       <Card.Body className={styles.PostContent}>
         <Link to={`/job-posts/${id}`}>
           {title && (

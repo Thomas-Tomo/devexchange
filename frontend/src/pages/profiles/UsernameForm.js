@@ -33,6 +33,7 @@ const UsernameForm = () => {
     }
   }, [currentUser, history, id]);
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -50,7 +51,7 @@ const UsernameForm = () => {
       setErrors(err.response?.data);
     }
   };
-
+  // Render the form for changing the username
   return (
     <Row>
       <Col className="py-2 mx-auto text-center" md={6}>

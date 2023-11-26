@@ -30,6 +30,7 @@ function CompanyBioEditForm() {
   const history = useHistory();
   const { id } = useParams();
 
+  // Fetch company bio data on component mount
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -58,6 +59,7 @@ function CompanyBioEditForm() {
     handleMount();
   }, [history, id]);
 
+  // Function to handle changes in form fields
   const handleChange = (event) => {
     setCompanyBio({
       ...companyBio,
@@ -65,6 +67,7 @@ function CompanyBioEditForm() {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

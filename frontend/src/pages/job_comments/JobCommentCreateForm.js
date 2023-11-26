@@ -13,10 +13,12 @@ function JobCommentCreateForm(props) {
   const [content, setContent] = useState("");
   const { setAlert } = useAlert();
 
+  // Function to handle changes in the comment input field
   const handleChange = (event) => {
     setContent(event.target.value);
   };
 
+  // Function to handle the submission of the comment form
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

@@ -16,15 +16,18 @@ import useAlert from "../../hooks/useAlert";
 const Replies = (props) => {
   const { parentCommentId } = props;
 
+  // State to manage replies and input content for new reply
   const [replies, setReplies] = useState([]);
   const [content, setContent] = useState("");
   const [showReplies, setShowReplies] = useState(false); // State to handle the visibility of replies
   const [showAddReplyForm, setShowAddReplyForm] = useState(false); // State to handle the visibility of the add reply form
 
   const currentUser = useCurrentUser();
+  // State to manage edited reply ID
   const [editReplyId, setEditReplyId] = useState(false);
   const { setAlert } = useAlert();
 
+  // Fetching replies based on the parent comment ID
   useEffect(() => {
     const fetchReplies = async () => {
       try {
@@ -37,6 +40,7 @@ const Replies = (props) => {
     fetchReplies();
   }, [parentCommentId]);
 
+  // Function to add a new reply
   const handleAddReply = async (event) => {
     event.preventDefault();
     try {
@@ -54,6 +58,7 @@ const Replies = (props) => {
     }
   };
 
+  // Function to delete a reply
   const handleDelete = async (replyId) => {
     try {
       await axiosRes.delete(`/replies/${parentCommentId}/${replyId}/`);
@@ -66,6 +71,7 @@ const Replies = (props) => {
     }
   };
 
+  // Render replies and the form to add a reply
   return (
     <div>
       {showReplies &&

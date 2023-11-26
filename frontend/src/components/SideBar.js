@@ -7,8 +7,9 @@ import { useUserType } from "../contexts/UserTypeContext";
 
 const SideBar = () => {
   const currentUser = useCurrentUser();
-  const userType = useUserType();
+  const userType = useUserType(); // Accessing user type from context
 
+  // JSX for adding post and job links in the sidebar based on user type
   const addPostsSideBar = (
     <>
       <Col md={12} className={styles.SideBar}>
@@ -23,6 +24,7 @@ const SideBar = () => {
                 <i className="fas fa-pencil-alt"></i>Add Post
               </NavLink>
             </div>
+            {/* Link for adding a job post - rendered for employer type */}
             {userType === "employer" && (
               <div className={styles.LinkContainer}>
                 <NavLink
@@ -36,6 +38,7 @@ const SideBar = () => {
             )}
           </div>
         </div>
+        {/* Social links and copyright information */}
         <div className={`mt-3 text-center ${styles.LinkContainer}`}>
           <div className={styles.Copyright}>
             &copy; Thomas-Tomo Domitrovic
@@ -62,8 +65,8 @@ const SideBar = () => {
       </Col>
     </>
   );
-
-  return <>{currentUser && addPostsSideBar}</>; // currentUser && (reverse after PostPage is set up)
+  // Conditionally rendering sidebar content based on currentUser
+  return <>{currentUser && addPostsSideBar}</>;
 };
 
 export default SideBar;

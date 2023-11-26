@@ -20,6 +20,7 @@ function PostPage() {
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
 
+  // Fetch post data and associated comments on component mount
   useEffect(() => {
     const handleMount = async () => {
       try {

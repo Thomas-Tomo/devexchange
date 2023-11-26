@@ -23,6 +23,7 @@ function JobPostPage() {
   useEffect(() => {
     const handleMount = async () => {
       try {
+        // Fetch job post and its comments based on the 'id' using axiosReq
         const [{ data: job_post }, { data: job_post_comments }] =
           await Promise.all([
             axiosReq.get(`/job-posts/${id}`),

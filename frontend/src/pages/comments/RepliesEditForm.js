@@ -11,10 +11,12 @@ function RepliesEditForm(props) {
   const [formContent, setFormContent] = useState(content);
   const { setAlert } = useAlert();
 
+  // Function to handle changes in the form's content
   const handleChange = (event) => {
     setFormContent(event.target.value);
   };
 
+  // Function to handle form submission for updating a reply
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

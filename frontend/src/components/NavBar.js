@@ -22,6 +22,7 @@ const NavBar = () => {
   const { setAlert } = useAlert();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
+  // Function to handle user sign out
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
@@ -33,6 +34,7 @@ const NavBar = () => {
     }
   };
 
+  // JSX for icons when user is logged in
   const loggedInIcons = (
     <>
       <NavLink
@@ -84,6 +86,7 @@ const NavBar = () => {
     </>
   );
 
+  // JSX for icons when user is logged out
   const loggedOutIcons = (
     <>
       <NavLink
@@ -120,8 +123,7 @@ const NavBar = () => {
             <img src={logo} alt="logo" height={70} />
           </Navbar.Brand>
         </NavLink>
-        <AlertPopup />
-
+        <AlertPopup /> {/* Displaying alert popup */}
         <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
@@ -138,7 +140,7 @@ const NavBar = () => {
               <i className={`fas fa-home ${styles.Icons}`} />
               Home
             </NavLink>
-
+            {/* Conditionally rendering navigation links based on user authentication */}
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>

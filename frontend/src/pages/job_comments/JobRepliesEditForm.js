@@ -11,10 +11,12 @@ function JobRepliesEditForm(props) {
   const [formContent, setFormContent] = useState(content);
   const { setAlert } = useAlert();
 
+  // Function to handle changes in the form content
   const handleChange = (event) => {
     setFormContent(event.target.value);
   };
 
+  // Function to handle the submission of the edited reply
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

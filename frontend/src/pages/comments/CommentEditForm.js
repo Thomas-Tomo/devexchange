@@ -10,10 +10,12 @@ function CommentEditForm(props) {
   const [formContent, setFormContent] = useState(content);
   const { setAlert } = useAlert();
 
+  // Function to handle content change in the edited comment input
   const handleChange = (event) => {
     setFormContent(event.target.value);
   };
 
+  // Function to handle edited comment submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -42,6 +44,7 @@ function CommentEditForm(props) {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="pr-1">
+        {/* Textarea for editing the comment */}
         <Form.Control
           className={styles.Form}
           as="textarea"
@@ -51,6 +54,7 @@ function CommentEditForm(props) {
         />
       </Form.Group>
       <div className="text-right">
+        {/* Button to cancel editing */}
         <button
           className={styles.Button}
           onClick={() => setShowEditForm(false)}
@@ -58,6 +62,7 @@ function CommentEditForm(props) {
         >
           cancel
         </button>
+        {/* Button to save the edited comment */}
         <button
           className={styles.Button}
           disabled={!content.trim()}

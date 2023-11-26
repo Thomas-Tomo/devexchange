@@ -15,7 +15,6 @@ import PopularProfiles from "../profiles/PopularProfiles";
 import MostRecentJobs from "./MostRecentJobs";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-
 function JobPostsPage({ message, filter = "" }) {
   const [jobPosts, setJobPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -27,6 +26,7 @@ function JobPostsPage({ message, filter = "" }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        // Fetch job posts based on the filter and search query
         const { data } = await axiosReq.get(
           `/job-posts/?${filter}search=${query}`
         );

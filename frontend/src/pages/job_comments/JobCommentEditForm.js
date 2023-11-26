@@ -10,10 +10,12 @@ function JobCommentEditForm(props) {
   const [formContent, setFormContent] = useState(content);
   const { setAlert } = useAlert();
 
+  // Function to handle changes in the edited content
   const handleChange = (event) => {
     setFormContent(event.target.value);
   };
 
+  // Function to handle the submission of the edited comment form
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

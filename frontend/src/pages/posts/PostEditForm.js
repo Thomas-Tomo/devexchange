@@ -26,6 +26,7 @@ function PostEditForm() {
   const history = useHistory();
   const { id } = useParams();
 
+  // Fetch post data to edit on component mount
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -39,6 +40,7 @@ function PostEditForm() {
     handleMount();
   }, [history, id]);
 
+  // Handle change in form input fields
   const handleChange = (event) => {
     setPostData({
       ...postData,
@@ -56,6 +58,7 @@ function PostEditForm() {
     }
   };
 
+  // Handle form submission for updating the post
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

@@ -10,6 +10,7 @@ const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => {
   const [deleted, setDeleted] = useState(false);
   const { setAlert } = useAlert();
 
+  // Function to render a clickable link or display a text placeholder
   const renderClickableLink = (url, label) => {
     if (!url || url === "/") {
       return "/";
@@ -21,6 +22,7 @@ const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => {
     );
   };
 
+  // Function to handle deletion of a user skill
   const handleDelete = async (id) => {
     try {
       await axiosRes.delete(`/user-skills/${id}/`);

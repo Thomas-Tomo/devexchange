@@ -25,6 +25,7 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
         className={`text-center ${styles.DropdownMenu}`}
         popperConfig={{ strategy: "fixed" }}
       >
+        {/* Dropdown items for edit and delete */}
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={handleEdit}
@@ -50,6 +51,7 @@ export function ProfileEditDropdown({ id }) {
     <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
       <Dropdown.Toggle as={ThreeDots} />
       <Dropdown.Menu className={`d-flex flex-column ${styles.DropdownMenu}`}>
+        {/* Dropdown items for editing profile details */}
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={() => history.push(`/profiles/${id}/edit`)}
@@ -84,6 +86,7 @@ export function UserSkillsEditDropdown({ id, handleDelete }) {
     <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
       <Dropdown.Toggle as={ThreeDots} />
       <Dropdown.Menu className={`d-flex flex-column ${styles.DropdownMenu}`}>
+        {/* Dropdown items for editing user skills */}
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={() => history.push(`/user-skills/${id}/edit/`)}
@@ -111,6 +114,7 @@ export function CompanyBioEditDropdown({ id, handleDelete }) {
     <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
       <Dropdown.Toggle as={ThreeDots} />
       <Dropdown.Menu className={`d-flex flex-column ${styles.DropdownMenu}`}>
+        {/* Dropdown items for editing company bio */}
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={() => history.push(`/company-bio/${id}/edit/`)}

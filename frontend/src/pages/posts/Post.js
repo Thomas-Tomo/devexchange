@@ -33,10 +33,12 @@ const Post = (props) => {
   const history = useHistory();
   const { setAlert } = useAlert();
 
+  // Function to navigate to edit page for the post
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
   };
 
+  // Function to delete the post
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
@@ -47,6 +49,7 @@ const Post = (props) => {
     }
   };
 
+  // Function to handle liking a post
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", { post: id });
@@ -63,6 +66,7 @@ const Post = (props) => {
     }
   };
 
+  // Function to handle unliking a post
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/likes/${like_id}/`);

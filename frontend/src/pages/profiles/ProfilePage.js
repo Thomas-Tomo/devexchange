@@ -40,6 +40,7 @@ function ProfilePage() {
   const [profileJobPosts, setProfileJobPosts] = useState({ results: [] });
   const [showInfo, setShowInfo] = useState(false);
 
+  // Functions to toggle different sections
   const togglePosts = () => {
     setShowPosts((prev) => !prev); // Toggle the state
   };
@@ -90,6 +91,7 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData]);
 
+  // Components for displaying profile information, posts, and job posts
   const mainProfile = (
     <>
       {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}

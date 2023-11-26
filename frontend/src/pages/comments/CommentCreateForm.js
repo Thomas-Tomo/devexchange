@@ -12,10 +12,12 @@ function CommentCreateForm(props) {
   const [content, setContent] = useState("");
   const { setAlert } = useAlert();
 
+  // Function to handle content change in the comment input
   const handleChange = (event) => {
     setContent(event.target.value);
   };
 
+  // Function to handle comment submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -46,9 +48,11 @@ function CommentCreateForm(props) {
     <Form className="mt-2" onSubmit={handleSubmit}>
       <Form.Group>
         <InputGroup>
+          {/* Link to commenter's profile */}
           <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profileImage} />
           </Link>
+          {/* Textarea for entering the comment */}
           <Form.Control
             className={styles.Form}
             placeholder="my comment..."
@@ -59,6 +63,7 @@ function CommentCreateForm(props) {
           />
         </InputGroup>
       </Form.Group>
+      {/* Button to submit the comment */}
       <button
         className={`${styles.Button} d-block ml-auto`}
         disabled={!content.trim()}
