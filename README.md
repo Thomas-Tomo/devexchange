@@ -33,9 +33,7 @@ The DevExchange website is a robust platform designed for developers and employe
 * [Custom hooks](#custom-hooks)
 * [Custom context](#custom-context)
 ### [Deployment and Local developement](#deployment-and-local-developement-1)
-* [Local Developement](#local-developement)
-* [ElephantSQL Database](#elephantsql-database)
-* [Cloudinary](#cloudinary)
+* [Deployment](#deployment)
 * [Heroku Deployment](#heroku-deployment)
 ### [Testing](#testing-1)
 ### [References](#references-1)
@@ -320,49 +318,71 @@ The "AR One Sans" font is specified as the primary font, and the sans-serif font
 * User model is the default user model provided by the Django authentication system
 ---
 2. Profile Model
-*
+* Profile model linked to the built-in User model through a one-to-one relationship, enabling additional user-specific details to be stored separately.
+* Includes fields such as name, content, image, and user_type, allowing customization of profile information, text content, profile image, and user categorization.
+* Utilizes created_at and updated_at fields to automatically capture the date and time of profile creation and update.
+* Introduces a user_type field with predefined choices (regular, employer) to categorize users, defaulting to a 'regular' user type if not specified.
+* Incorporates a create_profile function connected to the post_save signal of the User model, ensuring the automatic creation of a corresponding Profile instance upon user creation.
 ---
 3. Following Model
-*
+* Models a 'Follower' entity linking 'User' instances as 'owner' (following) and 'followed', establishing a follow relationship between users.
+* Utilizes 'ForeignKey' fields to associate 'owner' and 'followed' with the 'User' model, using distinct 'related_name' attributes for differentiation.
+* Applies 'unique_together' to ensure a user cannot follow another user more than once, maintaining a unique following relationship.
 ---
 4. Post Model
-*
+* Associates 'Post' model with 'User' instances using 'ForeignKey' ('owner') to denote the post's creator.
+* Captures creation and update times automatically with 'created_at' and 'updated_at' 'DateTimeField' fields.
+* Manages 'title', 'content', and 'image' fields for post details, allowing optional image uploads with filter options via 'image_filter'.
 ---
 5. Comment Model
-*
+* Connects 'Comment' model to 'User' and 'Post' instances via 'ForeignKey' ('owner', 'post') for comment ownership and association with posts.
+* Facilitates nested comments using 'parent_comment' 'ForeignKey' referencing 'self', allowing hierarchical comment structures.
+* Automatically tracks 'created_at' and 'updated_at' times for comments.
 ---
 6. Reply Model
-*
+* Connects 'Reply' model to 'User' instances via 'owner' 'ForeignKey', denoting reply ownership.
+* Associates each 'Reply' with a specific 'Comment' through 'parent_comment' 'ForeignKey'.
 ---
 7. Like Model
-*
+* Connects 'Like' model to 'User' instances via 'owner' 'ForeignKey', indicating the user performing the like action.
+* Links 'Like' instances to 'Post' model through 'post' 'ForeignKey', representing the liked post ('related_name='likes'').
 ---
 8. Comment Like Model
-*
+* Connects 'CommentLike' model to 'User' instances via 'owner' 'ForeignKey', indicating the user who liked the comment.
+* Links 'CommentLike' instances to 'Comment' model through 'comment' 'ForeignKey', representing the liked comment ('related_name='likes'').
 ---
 9. JobPostSaved Model
-*
+* Connects 'JobPostSaved' to 'User' instances via 'owner' 'ForeignKey', indicating users who saved the job post.
+* Links 'JobPostSaved' instances to 'JobPost' model through 'job_post' 'ForeignKey' ('related_name='saved'').
 ---
 10. User Skills Model
-*
+* Utilizes 'UserSkill' model with a one-to-one relationship ('OneToOneField') to the 'User' model, attaching additional details to user profiles.
+* Stores educational background ('education'), work experience ('work_experience'), skills ('skills'), certifications ('certifications'), and languages ('languages') using 'TextField' fields.
+* Includes fields for social profiles such as 'linkedin_profile', 'github_profile', and 'portfolio_website' as 'URLField' types, allowing users to link their profiles.
 ---
 11. Company Bio Model
-*
+* Utilizes 'CompanyBio' model with a one-to-one relationship ('OneToOneField') to the 'User' model, allowing users to associate company details with their profiles.
+* Includes fields such as 'company_name', 'employees_count', 'recruiting_status', 'technologies_used', and 'company_description' to define various aspects of the company profile.
 ---
 12. JobPost Model
-*
+* Establishes a 'JobPost' model linking to 'User' instances via 'owner' 'ForeignKey', identifying the user who created the job post.
+* Includes various fields such as 'title', 'description', 'location', 'job_type', 'salary', 'application_deadline', 'experience_level', 'company_name', 'company_description', 'application_instructions', 'allows_remote_work', and 'benefits' to define job post details.
 ---
 13. JobPostComment Model
-*
+* Connects 'JobPostComment' to 'User' instances via 'owner' 'ForeignKey', specifying the comment's creator.
+* Links 'JobPostComment' instances to 'JobPost' model through 'job_post' 'ForeignKey', associating comments with specific job posts.
 ---
 14. JobPostCommentReply Model
-*
+* Connects 'JobPostCommentReply' to 'User' instances via 'owner' 'ForeignKey', indicating reply ownership.
+* Links 'JobPostCommentReply' instances to 'JobPostComment' model through 'parent_comment' 'ForeignKey', associating replies with specific comments ('related_name='replies_to_reply'').
 ---
 15. JobPostLike Model
-*
+* Connects 'JobPostLike' to 'User' instances via 'owner' 'ForeignKey', specifying the user who liked the job post.
+* Associates 'JobPostLike' instances with 'JobPost' model using 'job_post' 'ForeignKey', indicating the liked job post ('related_name='likes'').
 ---
 16. JobPostCommentLike Model
-*
+* Links 'JobPostCommentLike' to 'User' instances through 'owner' 'ForeignKey', identifying users who liked job post comments.
+* Connects 'JobPostCommentLike' instances to 'JobPostComment' model via 'job_post_comment' 'ForeignKey', denoting the liked job post comment ('related_name='likes'').
 ---
 
 ### Database Scheme
@@ -371,21 +391,21 @@ Entity Relationship Diagrams (ERD)
 
 1. ![DataScheme Regular User](#)
 
-* 
+* In the Entity-Relationship Diagram (ERD), the User model serves as the foundational entity, encompassing core user attributes like usernames and passwords. Extending from this model, the Profile entity includes additional personalized information such as user bios, social links, and skills. Regular users, operating within this system, possess a range of functionalities. They can create, edit, and engage with posts, expressing their preferences through likes and comments on both their own and others' posts. Furthermore, these users have the autonomy to manage and update their profile details, including the addition of skills. Additionally, they can explore job posts within the system, providing the capability to view posts and save the ones of interest for future reference or potential application.
 ---
 2. ![DataScheme Employer User](#)
 
-* 
+* In the Entity-Relationship Diagram (ERD), the Employer instance, an extension of the User model, introduces distinct functionalities tailored towards employer-centric actions within the system. Employers have the exclusive ability to create and manage job posts, providing details about available positions within their company. In place of individual skills, the Employer entity showcases the Company Bio, featuring information like the company's name, employee count, utilized technologies, and a comprehensive company description on their profile. This tailored functionality allows employers to focus on job post management and the representation of their company's identity and offerings through the displayed bio on their profile within the system.
 
 ## Security Features
 
 ### User Authentication
 
-* 
+* The system features a sophisticated access control mechanism leveraging Django REST Framework's permission classes, customizing user access based on predefined roles. Through permissions such as IsOwnerOrReadOnly, IsEmployerOrReadOnly, and IsRegularOrReadOnly, the system regulates user actions, granting specific privileges depending on the user's role and authentication status. For instance, object owners enjoy complete access to their items, while certain actions, like creating a company bio, are restricted to users with specific roles, such as employers or regular users. Moreover, the frontend interface dynamically adapts its display based on a user's role and authentication state, showcasing or concealing elements to provide a tailored experience. This approach ensures a secure and personalized user journey, offering access and functionalities aligned with the user's role and authentication credentials.
 
 ### Form Validation
 
-* 
+* The system enforces robust form validation across most form inputs, ensuring data integrity and proper handling of user actions. However, for specific fields like 'Company Bio' and 'Skills', validation isn't mandatory. The intentional decision to forego strict validation for these fields allows users the flexibility to have an empty field displayed on their profile if they prefer. This leniency provides users with the freedom to decide whether they want to showcase detailed information or leave certain sections blank, allowing for a more customized and user-controlled profile presentation.
 
 ### Custom error 404 page
 
@@ -404,6 +424,7 @@ Entity Relationship Diagrams (ERD)
 * Content Ownership Control: Owners of posts, job postings, and profiles possess CRUD (Create, Read, Update, Delete) capabilities, allowing them to manage and modify their own content as needed.
 
 ### Existing Features
+
 
 <details>
 <summary> Home page
@@ -663,24 +684,156 @@ Entity Relationship Diagrams (ERD)
 
 ### Features Left to Implement 
 
-*
+* Enable users to provide feedback and rate their experiences with employer profiles, fostering transparency and aiding other users in making informed decisions.
+* Explore the implementation of personalized recommendation systems. These systems could suggest job posts or content based on users' preferences, activities, and historical interactions within the platform.
+*  Introduce chat systems or messaging functionalities to facilitate real-time communication between users, enabling networking, collaboration, and quicker exchange of information within the platform.
 
 ## Technologies Used
 
 ### Languages Used
 
-*
+* [HTML5](https://en.wikipedia.org/wiki/HTML5)
+* [CSS3](https://en.wikipedia.org/wiki/CSS)
+* [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) 
 
 ### Databases Used
 
-*
+* [ElephantSQL](https://www.elephantsql.com/) - Postgres database
+* [Cloudinary](https://cloudinary.com/) - Online static file storage
 
 ### Frameworks Used
 
-*
+* [Django REST framework](#)
+* [React Bootstrap](#)
+* [React](#) - frontend library
 
 ### Programs Used
 
-*
+* [Github](https://github.com/) - Storing the code online
+* [Gitpod](https://www.gitpod.io/) - To write the code.
+* [Heroku](https://www.heroku.com/) - Used as the cloud-based platform to deploy the site.
+* [Google Fonts](https://fonts.google.com/) - Import main font the website.
+* [Figma](https://www.figma.com/) - Used to create wireframes and schemes
+* [Am I Responsive](https://ui.dev/amiresponsive) - To show the website image on a range of devices.
+* [Git](https://git-scm.com/) - Version control
+* [W3C Markup Validation Service](https://validator.w3.org/) - Used to validate HTML
+* [CSS Validation Service](https://jigsaw.w3.org/css-validator/) - Used to validate CSS
+* [CI Python Linter](https://pep8ci.herokuapp.com/) - Used to validate Python
+* [Colormind](http://colormind.io/) - Color Scheme
+* [Favicons](#)
+* [NPM](#)
+* [Axios](#)
+* [Font Awesome](#)
 
+### Custom components
+* 
 
+### Custom hooks
+* 
+
+### Custom context
+* 
+
+## Deployment and Local Developement
+
+Live deployment can be found on this [View DevExchange live website here](#)
+
+### Deployment 
+
+This is a unified project, first step is to set up React app inside DRF project following these instructions:
+
+#### React App inside DRF project
+
+* Open workspace for the DRF project
+* In the terminal, create a new folder named "frontend" in the root directory: `mkdir frontend`
+* Change directory to "frontend" folder: `cd frontend`
+* Run the command to create a new React app with necessary dependencies: `npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm`.
+* Confirm by entering 'y' and pressing enter when prompted.
+* Remove redundant files from the frontend folder: `rm -rf .git .gitignore README.md`.
+
+#### Setup Django API for Combined Workspace
+
+* Make adjustments in env.py for Django settings.
+
+#### Adjust Django Settings
+
+* Set DEBUG and ALLOWED_HOSTS in settings.py.
+* Set CORS code in settings.py
+
+#### Adjust React Proxy
+
+* Open package.json in the frontend directory.
+* Add "proxy": "http://localhost:8000/" at the bottom.
+
+#### Create axiosDefaults.js
+
+* Navigate to the React app's source folder: `cd frontend/src/api`.
+* Create an empty axiosDefaults.js file: `touch axiosDefaults.js`.
+
+#### Run both servers in a split terminal
+
+* Open two terminals side by side.
+* In Terminal 1 (root directory), run Django API: `python3 manage.py runserver`.
+* In Terminal 2 (frontend directory), run React app: `npm start`.
+
+Both DRF and React frontend will be running in the same workspace and project is ready for deployment
+
+### Heroku Deployment
+
+#### Set up Cloudinary
+
+* Sign up with GitHub or create an account.
+* From the Dashboard you will see the "API Enviroment variable", this will go in our project.
+
+#### Create a database using ElephantSQL.
+
+* Sign up with your GitHub account and click on "Create New Instance" to start a new database.
+* Provide a name for your database.
+* Select the Free plan.
+* Once created, click on the new database name to view the database URL and password.
+
+#### Adjust your IDE and push changes to GitHub
+
+#### Heroku needs two additional files to deploy properly
+
+* requirements.txt
+* Procfile
+
+#### Create a new Heroku app, adjust settings and add Config Vars.
+
+* Select "New" in the top-right corner of your Heroku Dashboard and choose "Create new app" from the dropdown menu.
+* Enter a unique app name, select a region closest to you (EU or USA), and create the app.
+* In the app settings, click "Reveal Config Vars" and set the environment variables:
+    * Key: CLOUDINARY_URL, Value: insert your own Cloudinary API key here
+    * Key: DATABASE_URL, Value: insert your own ElephantSQL database URL here
+    * Key: SECRET_KEY, Value: this can be any random secret key
+    * Key: ALLOWED_HOST, Value: this can be URL of your combined project, remove the https:// at the beginning and remove the trailing slash at the end
+    * Key: CLIENT_ORGIN, Value: this can be URL of your combined project, keep the https:// at the beginning but remove the trailing slash at the end
+
+* Deploy your application from the Deploy tab in your Heroku dashboard
+    * Use manual or auto deployments
+
+## Testing
+
+Please see  [TESTING.md]() for all the detailed testing performed.
+
+## References
+
+### Docs
+
+* [Stack Overflow](https://stackoverflow.com/)
+* [Code Institute](https://learn.codeinstitute.net/dashboard)
+* [Django docs](https://docs.djangoproject.com/en/4.2/releases/3.2/)
+* [Cloudinary](https://cloudinary.com/documentation/diagnosing_error_codes_tutorial)
+* [Google](https://www.google.com/)
+
+### Content
+
+* Content can be made by any user who uses the website
+* Idea for the project was my developers, me, Thomas-Tomo Domitrovic.
+
+### Acknowledgments
+
+* I would like to thank my mentor for support and feedback throughout this project, Mitko Bachvarov.
+* I would also like to extend my appreciation to the Slack community for their continuous engagement and willingness to share knowledge. The collaborative environment provided a platform for learning, troubleshooting, and gaining inspiration from fellow developers.
