@@ -2,7 +2,7 @@
 
 The DevExchange website is a robust platform designed for developers and employers within the tech industry to interact, collaborate, and explore job opportunities. Its features cater to both regular users and employers, providing a seamless experience for networking, posting, and discovering job opportunities.
 
-![Home Screen](#)
+![Home Screen](/documentation/readme_images/am-i-responsive.png)
 
 [View DevExchange live website here](https://devexchange-0c8785c813be.herokuapp.com/)
 - - -
@@ -67,35 +67,35 @@ Agile Methodology was used to help prioritize and organize tasks, writting the u
 <summary> User Stories Template
 </summary>
 
-![User Stories Template](#)
+![User Stories Template](/documentation/readme_images/user-story-template.png)
 </details>
 
 <details>
 <summary> Epics Template
 </summary>
 
-![Epics Template](#)
+![Epics Template](/documentation/readme_images/epic-template.png)
 </details>
 
 <details>
 <summary> Project Board
 </summary>
 
-![Project Board](#)
+![Project Board](/documentation/readme_images/project-board.png)
 </details>
 
 <details>
 <summary> Milestones
 </summary>
 
-![Milestones](#)
+![Milestones](/documentation/readme_images/milestones.png)
 </details>
 
 <details>
 <summary> Tasks
 </summary>
 
-![Tasks](#)
+![Tasks](/documentation/readme_images/tasks.png)
 </details>
 
 ### User Stories
@@ -188,7 +188,7 @@ Detailed look can be found in the [DevExchange project board](https://github.com
 The platform's design is characterized by a modern and sleek layout that prioritizes user engagement and accessibility. Posts occupy a prominent position on the left side, inviting immediate interaction and discussion. On the right side, the layout features the most followed profiles, encouraging community engagement, while just below, it showcases the latest job listings. This layout aims to create a user-centric experience, seamlessly integrating content, networking, and job exploration within the platform's interface.
 
 ### Color Scheme
-![Color Scheme](#)
+![Color Scheme](/documentation/readme_images/color-scheme.png)
 
 ### Logo
 
@@ -204,112 +204,49 @@ The "AR One Sans" font is specified as the primary font, and the sans-serif font
 <summary> Home Page
 </summary>
 
-![Home Page](#)
+![Home Page](/documentation/wireframes/home-page-wf.png)
 </details>
 
 <details>
 <summary> Home Page when logged in
 </summary>
 
-![Home Page when logged in](#)
+![Home Page when logged in](/documentation/wireframes/home-page-regular-wf.png)
 </details>
 
 <details>
 <summary> Home Page when logged in as an employer
 </summary>
 
-![Home Page when logged in as an employer](#)
+![Home Page when logged in as an employer](/documentation/wireframes/home-page-employer-wf.png)
 </details>
 
 <details>
 <summary> Post page
 </summary>
 
-![Post page](#)
-</details>
-
-<details>
-<summary> Post create page
-</summary>
-
-![Post create page](#)
-</details>
-
-<details>
-<summary> Post edit page
-</summary>
-
-![Post edit page](#)
-</details>
-
-<details>
-<summary> Job Posts
-</summary>
-
-![Job Posts](#)
+![Post page](/documentation/wireframes/post-page-wf.png)
 </details>
 
 <details>
 <summary> Job post
 </summary>
 
-![Job post](#)
-</details>
-
-<details>
-<summary> Job post create page
-</summary>
-
-![Job post create page](#)
-</details>
-
-<details>
-<summary> Job post edit page
-</summary>
-
-![Job post edit page](#)
+![Job post](/documentation/wireframes/job-post-wf.png)
 </details>
 
 <details>
 <summary> Profile page
 </summary>
 
-![Profile page](#)
+![Profile page](/documentation/wireframes/profile-page-wf.png)
 </details>
 
 <details>
-<summary> Profile edit page
+<summary> User sign in/sign up page
 </summary>
 
-![Profile edit page](#)
-</details>
-
-<details>
-<summary> Company Bio create page
-</summary>
-
-![Company Bio create page](#)
-</details>
-
-<details>
-<summary> Company Bio edit page
-</summary>
-
-![Company Bio edit page](#)
-</details>
-
-<details>
-<summary> User sign in page
-</summary>
-
-![User sign in page](#)
-</details>
-
-<details>
-<summary> User sign up page
-</summary>
-
-![User sign up page](#)
+![User sign in/sign up page](/documentation/wireframes/sign-in-up-wf.png)
 </details>
 
 ### Data Models
@@ -389,11 +326,11 @@ The "AR One Sans" font is specified as the primary font, and the sans-serif font
 
 Entity Relationship Diagrams (ERD)
 
-1. ![DataScheme Regular User](#)
+1. ![DataScheme Regular User](/documentation/readme_images/ERD-regular-scheme.png)
 
 * In the Entity-Relationship Diagram (ERD), the User model serves as the foundational entity, encompassing core user attributes like usernames and passwords. Extending from this model, the Profile entity includes additional personalized information such as user bios, social links, and skills. Regular users, operating within this system, possess a range of functionalities. They can create, edit, and engage with posts, expressing their preferences through likes and comments on both their own and others' posts. Furthermore, these users have the autonomy to manage and update their profile details, including the addition of skills. Additionally, they can explore job posts within the system, providing the capability to view posts and save the ones of interest for future reference or potential application.
 ---
-2. ![DataScheme Employer User](#)
+2. ![DataScheme Employer User](/documentation/readme_images/ERD-employer-scheme.png)
 
 * In the Entity-Relationship Diagram (ERD), the Employer instance, an extension of the User model, introduces distinct functionalities tailored towards employer-centric actions within the system. Employers have the exclusive ability to create and manage job posts, providing details about available positions within their company. In place of individual skills, the Employer entity showcases the Company Bio, featuring information like the company's name, employee count, utilized technologies, and a comprehensive company description on their profile. This tailored functionality allows employers to focus on job post management and the representation of their company's identity and offerings through the displayed bio on their profile within the system.
 
@@ -430,7 +367,7 @@ Entity Relationship Diagrams (ERD)
 <summary> Home page
 </summary>
 
-![Home page](#)
+![Home page](/documentation/readme_images/home-page.png)
 
 * Displays a navigation bar with logo, posts, most followed profiles, most recent jobs
 </details>
@@ -439,7 +376,7 @@ Entity Relationship Diagrams (ERD)
 <summary> Logged in home page
 </summary>
 
-![Logged in home page](#)
+![Logged in home page](/documentation/readme_images/home-page-employer.png)
 
 * When logged users get access to their profile, and add posts, add job posts buttons
 * Displays developers name and Github and linkedIn links
@@ -450,7 +387,7 @@ Entity Relationship Diagrams (ERD)
 <summary> Logo
 </summary>
 
-![Logo](#)
+![Logo](/documentation/readme_images/devexchange-logo.png)
 
 * Logo was created using [Figma](https://www.figma.com/) to match the colors of the navigation bar and to compliment overall design.
 </details>
@@ -459,11 +396,11 @@ Entity Relationship Diagrams (ERD)
 <summary> Navigation Bar
 </summary>
 
-![Visitor](#)
+![Visitor](/documentation/readme_images/navbar-visitor.png)
 
-* It differs if its a regular user, visitor or employer
+* Visitor user
 
-![Registered User](#)
+![Registered User](/documentation/readme_images/navbar-registered.png)
 
 * Registered user
 
@@ -473,11 +410,11 @@ Entity Relationship Diagrams (ERD)
 <summary> Side Bar
 </summary>
 
-![Regular User](#)
+![Regular User](/documentation/readme_images/sidebar-regular.png)
 
 * Regular user
 
-![Employer](#)
+![Employer](/documentation/readme_images/sidebar-employer.png)
 
 * Employer
 
@@ -487,7 +424,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Create Post
 </summary>
 
-![Create Post](#)
+![Create Post](/documentation/readme_images/post-create-page.png)
 
 * When a user is logged in, they are able to create a new post
 </details>
@@ -496,7 +433,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Update Post
 </summary>
 
-![Update Post](#)
+![Update Post](/documentation/readme_images/post-edit-page.png)
 
 * When a user is logged in, they are able to update their post
 </details>
@@ -505,7 +442,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Create Job Post
 </summary>
 
-![Create Job Post](#)
+![Create Job Post](/documentation/readme_images/job-post-create-page.png)
 
 * When a user is logged in and they are an employer, they are able to create a new job post
 </details>
@@ -514,7 +451,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Update Job Post
 </summary>
 
-![Update Job Post](#)
+![Update Job Post](/documentation/readme_images/job-post-edit-page.png)
 
 * When a user is logged in and they are an employer, they are able to update their job post
 </details>
@@ -523,7 +460,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Save Job Post
 </summary>
 
-![Save Job Post](#)
+![Save Job Post](/documentation/readme_images/save-job-post.png)
 
 * When a user is logged in, they are able to save job posts
 </details>
@@ -532,7 +469,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Like posts, job posts
 </summary>
 
-![Like posts, job post](#)
+![Like posts, job post](/documentation/readme_images/like-posts.png)
 
 * When a user is logged in, they are able to like posts and job posts
 </details>
@@ -541,7 +478,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Comment on posts and job posts
 </summary>
 
-![Comment on posts and job post](#)
+![Comment on posts and job post](/documentation/readme_images/comment-on-posts.png)
 
 * When a user is logged in, they are able to comment on posts and job posts
 </details>
@@ -550,7 +487,7 @@ Entity Relationship Diagrams (ERD)
 <summary> Reply to comments on posts and job posts
 </summary>
 
-![Reply to comments on posts and job post](#)
+![Reply to comments on posts and job post](/documentation/readme_images/reply-to-comments.png)
 
 * When a user is logged in, they are able to reply to comments on posts and job posts
 </details>
@@ -559,7 +496,7 @@ Entity Relationship Diagrams (ERD)
 <summary> Profile Page
 </summary>
 
-![Profile Page](#)
+![Profile Page](/documentation/readme_images/profile-page.png)
 
 * Any user can access this page, but when it is a logged in user they can follow another user using this page or by the most followed profiles.
 * Account status will be displayed under users name
@@ -571,9 +508,19 @@ Entity Relationship Diagrams (ERD)
 <summary>  Edit Profile
 </summary>
 
-![Edit Profile](#)
+![Edit Profile](/documentation/readme_images/profile-edit-page.png)
 
 * The logged in user can access this by going to their profile page and click on the drop down menu, they can change their profile image, bio and change their account type from regular to employer, if they do they will get a warning modal that will display that if they do they won't be able to revert back to regular user, but will get access to job posting.
+
+</details>
+
+<details>
+<summary>  Edit Account Type
+</summary>
+
+![Edit Account Type](/documentation/readme_images/edit-account-type.png)
+
+* The logged in user can access this by going to their profile page and click on the drop down menu, they can change their account type from regular to employer, if they do they will get a warning modal that will display that if they do they won't be able to revert back to regular user, but will get access to job posting.
 
 </details>
 
@@ -581,7 +528,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Edit Username
 </summary>
 
-![Edit Username](#)
+![Edit Username](/documentation/readme_images/edit-username.png)
 
 * The logged in user can access this by going to their profile page and click on the drop down menu, they can change their username in this page which will already be populated with their current username.
 
@@ -591,7 +538,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Edit Password
 </summary>
 
-![Edit Password](#)
+![Edit Password](/documentation/readme_images/edit-password.png)
 
 * The logged in user can access this by going to their profile page and click on the drop down menu, they can change their password in this page.
 
@@ -601,7 +548,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Add Skills
 </summary>
 
-![Add Skills](#)
+![Add Skills](/documentation/readme_images/add-skills.png)
 
 * The logged in user can access profile page and click on add skills button which will allow regular users to add skills to their profile page by filling in a form.
 
@@ -611,7 +558,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Add Company Bio
 </summary>
 
-![Add Company Bio](#)
+![Add Company Bio](/documentation/readme_images/add-company-bio.png)
 
 * The logged in user that is an employer can access profile page and click on add company bio button which will allow employer users to add company bio to their profile page by filling in a form.
 
@@ -621,7 +568,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Most followed profiles
 </summary>
 
-![Most followed profiles](#)
+![Most followed profiles](/documentation/readme_images/most-followed-profiles.png)
 
 * Users will be able too see most followed profiles, and follow them
 
@@ -631,7 +578,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Edit/Delete Skills/Company-bio
 </summary>
 
-![Dropdown](#)
+![Dropdown](/documentation/readme_images/dropdown-menu.png)
 
 * The logged in user can access profile page and click dropdown to edit or delete skills/company-bio
 
@@ -641,7 +588,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Most Recent Jobs
 </summary>
 
-![Most Recent Jobs](#)
+![Most Recent Jobs](/documentation/readme_images/most-recent-jobs.png)
 
 * Users will be able too see most recent jobs, and view them
 * Location of the job and title are provided
@@ -652,7 +599,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  The search bar adapts its search based on the specific page it is displayed on.
 </summary>
 
-![Search bar](#)
+![Search bar](/documentation/readme_images/search-bar.png)
 
 * Users will be able too search for posts, job posts, liked, saved jobs
 
@@ -662,7 +609,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  Alert messages
 </summary>
 
-![Alert messages](#)
+![Alert messages](/documentation/readme_images/alert-messages.png)
 
 * Users will be notified whenever they make a change
 * CRUD on post or job posts, comments, replies
@@ -678,7 +625,7 @@ Entity Relationship Diagrams (ERD)
 <summary>  404 Error
 </summary>
 
-![404 Error](#)
+![404 Error](/documentation/readme_images/404-page.png)
 
 * If the page doesn't exits users will be directed to 404 custom error page that contains a button to go back
 
