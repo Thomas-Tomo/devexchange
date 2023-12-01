@@ -670,10 +670,10 @@ Entity Relationship Diagrams (ERD)
 * [CSS Validation Service](https://jigsaw.w3.org/css-validator/) - Used to validate CSS
 * [CI Python Linter](https://pep8ci.herokuapp.com/) - Used to validate Python
 * [Colormind](http://colormind.io/) - Color Scheme
-* [Favicon](https://favicon.io/)
-* [NPM](https://www.npmjs.com/)
-* [Axios](https://axios-http.com/)
-* [Font Awesome](https://fontawesome.com/)
+* [Favicon](https://favicon.io/) - used to create a favicon
+* [NPM](https://www.npmjs.com/) - package manager to install dependencies
+* [Axios](https://axios-http.com/) - used as a HTTP client
+* [Font Awesome](https://fontawesome.com/) - used to add icons
 
 ### Custom components
 
@@ -747,7 +747,7 @@ This is a unified project, first step is to set up React app inside DRF project 
 #### Adjust React Proxy
 
 * Open package.json in the frontend directory.
-* Add "proxy": "http://localhost:8000/" at the bottom.
+* Add "proxy": `http://localhost:8000/` at the bottom.
 
 #### Create axiosDefaults.js
 
@@ -799,7 +799,7 @@ Both DRF and React frontend will be running in the same workspace and project is
 
 ## Testing
 
-Please see  [TESTING.md]() for all the detailed testing performed.
+Please see  [TESTING.md](TESTING.md) for all the detailed testing performed.
 
 ## References
 
