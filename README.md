@@ -229,10 +229,10 @@ The "AR One Sans" font is specified as the primary font, and the sans-serif font
 </details>
 
 <details>
-<summary> Post edit page
+<summary> Post create page
 </summary>
 
-![Post edit page](#)
+![Post create page](#)
 </details>
 
 <details>
@@ -463,23 +463,15 @@ Entity Relationship Diagrams (ERD)
 
 * It differs if its a regular user, visitor or employer
 
-![Regular User](#)
+![Registered User](#)
 
-* Regular user
-
-![Employer](#)
-
-* Employer
+* Registered user
 
 </details>
 
 <details>
 <summary> Side Bar
 </summary>
-
-![Visitor](#)
-
-* It differs if its a regular user, visitor or employer
 
 ![Regular User](#)
 
@@ -632,6 +624,16 @@ Entity Relationship Diagrams (ERD)
 ![Most followed profiles](#)
 
 * Users will be able too see most followed profiles, and follow them
+
+</details>
+
+<details>
+<summary>  Edit/Delete Skills/Company-bio
+</summary>
+
+![Dropdown](#)
+
+* The logged in user can access profile page and click dropdown to edit or delete skills/company-bio
 
 </details>
 
