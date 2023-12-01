@@ -4,7 +4,7 @@ The DevExchange website is a robust platform designed for developers and employe
 
 ![Home Screen](#)
 
-[View DevExchange live website here](#)
+[View DevExchange live website here](https://devexchange-0c8785c813be.herokuapp.com/)
 - - -
 
 ## Table of Contents
@@ -146,7 +146,7 @@ Agile Methodology was used to help prioritize and organize tasks, writting the u
 * Job posts
 * Company Bio
 
-Detailed look can be found in the [project board](#)
+Detailed look can be found in the [DevExchange project board](https://github.com/users/Thomas-Tomo/projects/3)
 
 ### Target Audience
 
@@ -192,7 +192,7 @@ The platform's design is characterized by a modern and sleek layout that priorit
 
 ### Logo
 
-Logo was created using [Figma](#) to match the colors of the navigation bar and to compliment overall design.
+Logo was created using [Figma](https://www.figma.com/) to match the colors of the navigation bar and to compliment overall design.
 
 ### Typography
 
@@ -452,7 +452,7 @@ Entity Relationship Diagrams (ERD)
 
 ![Logo](#)
 
-* Logo was created using [Figma](#) to match the colors of the navigation bar and to compliment overall design.
+* Logo was created using [Figma](https://www.figma.com/) to match the colors of the navigation bar and to compliment overall design.
 </details>
 
 <details>
@@ -704,9 +704,9 @@ Entity Relationship Diagrams (ERD)
 
 ### Frameworks Used
 
-* [Django REST framework](#)
-* [React Bootstrap](#)
-* [React](#) - frontend library
+* [Django REST framework](https://www.django-rest-framework.org/)
+* [React Bootstrap](https://react-bootstrap.netlify.app/)
+* [React](https://react.dev/) - frontend library
 
 ### Programs Used
 
@@ -721,23 +721,57 @@ Entity Relationship Diagrams (ERD)
 * [CSS Validation Service](https://jigsaw.w3.org/css-validator/) - Used to validate CSS
 * [CI Python Linter](https://pep8ci.herokuapp.com/) - Used to validate Python
 * [Colormind](http://colormind.io/) - Color Scheme
-* [Favicons](#)
-* [NPM](#)
-* [Axios](#)
-* [Font Awesome](#)
+* [Favicon](https://favicon.io/)
+* [NPM](https://www.npmjs.com/)
+* [Axios](https://axios-http.com/)
+* [Font Awesome](https://fontawesome.com/)
 
 ### Custom components
-* 
+
+Custom components were created to reuse code, and functionality throughout the website
+
+* [AlertPopup.js](frontend/src/components/AlertPopup.js) - designed to notify users whenever they make alterations, ensuring they are promptly alerted about any modifications they've made.
+
+* [Asset.js](frontend/src/components/Asset.js) - essentially creates a container that can display a spinner, an image, and/or a message based on the props it receives, allowing for flexible content display depending on the provided data.
+
+* [Avatar.js](frontend/src/components/Avatar.js) - displays users profile image throughout the website
+
+* [MoreDropdown.js](frontend/src/components/MoreDropdown.js) - displays an edit and delete buttons, so users can make action on content, it is used throughout the website
+
+* [NavBar.js](frontend/src/components/NavBar.js) - displays navigations links based on the user account type, and login status
+
+* [NotFound.js](frontend/src/components/NotFound.js) - displays a message for a 404 error page to the user, notifiying them that the page does not exist, and has a go back button
+
+* [SideBar.js](frontend/src/components/SideBar.js) - displayed just under the navigation bar, based on user account type and login status it displays add post, add job buttons
+
+* [PopularProfiles.js](frontend/src/pages/profiles/PopularProfiles.js) - displays most followed profiles on the website
+
+* [MostRecentJobs.js](frontend/src/pages/job_posts/MostRecentJobs.js) - displays most recently created jobs on the website
+
 
 ### Custom hooks
-* 
+
+* [useRedirect.js](frontend/src/hooks/useRedirect.js) - created to redirect users to the homepage based on their login status
+
+* [useClickOutsideToggle.js](frontend/src/hooks/useClickOutsideToggle.js) - created to close expanded menu when there is a click event outside of the menu box throughout the website
+
+* [useAlert.js](frontend/src/hooks/useAlert.js) - created to access the alert functionality from AlertContext 
 
 ### Custom context
-* 
+
+* [CurrentUserContext.js](frontend/src/contexts/CurrentUserContext.js) - created to get current users authentication state and redirect user to sign in page if they are not signed in
+
+* [ProfileDataContext.js](frontend/src/contexts/ProfileDataContext.js) - created to access the data of handleFollow, handleUnfollow, setProfileData
+
+* [AlertContext.js](frontend/src/contexts/AlertContext.js) - created to manage alerts, their type and their message
+
+* [RecentJobsContext.js](frontend/src/contexts/RecentJobsContext.js) - created to fetch most recent job posts and pass them on
+
+* [UserTypeContext.js](frontend/src/contexts/UserTypeContext.js) - created to access user type from the user profile data, to manage employer, and regular user instaces for custom website rendering based on the user type
 
 ## Deployment and Local Developement
 
-Live deployment can be found on this [View DevExchange live website here](#)
+Live deployment can be found on this [View DevExchange live website here](https://devexchange-0c8785c813be.herokuapp.com/)
 
 ### Deployment 
 
@@ -825,13 +859,15 @@ Please see  [TESTING.md]() for all the detailed testing performed.
 * [Stack Overflow](https://stackoverflow.com/)
 * [Code Institute](https://learn.codeinstitute.net/dashboard)
 * [Django docs](https://docs.djangoproject.com/en/4.2/releases/3.2/)
+* [Django REST framework](https://www.django-rest-framework.org/)
 * [Cloudinary](https://cloudinary.com/documentation/diagnosing_error_codes_tutorial)
 * [Google](https://www.google.com/)
+* [Slack](https://slack.com/)
 
 ### Content
 
 * Content can be made by any user who uses the website
-* Idea for the project was my developers, me, Thomas-Tomo Domitrovic.
+* Idea for the project was developers, mine, Thomas-Tomo Domitrovic.
 
 ### Acknowledgments
 
