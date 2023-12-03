@@ -58,6 +58,11 @@ function PostEditForm() {
     }
   };
 
+  const handleCancel = (event) => {
+    event.preventDefault();
+    history.goBack(); // Navigate back to the previous page in history
+  };
+
   // Handle form submission for updating the post
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -156,7 +161,7 @@ function PostEditForm() {
           <button className={`${btnStyles.Button} mr-2`} type="submit">
             Update
           </button>
-          <button className={btnStyles.Button} onClick={() => history.goBack()}>
+          <button className={btnStyles.Button} onClick={handleCancel}>
             Cancel
           </button>
         </div>

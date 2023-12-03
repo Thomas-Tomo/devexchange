@@ -83,6 +83,11 @@ const ProfileEditForm = () => {
     setShowModal(false); // Hide the modal
   };
 
+  const handleCancelEdit = (event) => {
+    event.preventDefault();
+    history.goBack(); // Navigate back to the previous page in history
+  };
+
   // Handling form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -183,7 +188,7 @@ const ProfileEditForm = () => {
           {message}
         </Alert>
       ))}
-      <button className={btnStyles.Button} onClick={() => history.goBack()}>
+      <button className={btnStyles.Button} onClick={handleCancelEdit}>
         cancel
       </button>
       <button className={btnStyles.Button} type="submit">

@@ -79,6 +79,11 @@ function UserSkillsEditForm() {
     });
   };
 
+  const handleCancel = (event) => {
+    event.preventDefault();
+    history.goBack(); // Navigate back to the previous page in history
+  };
+
   // Handle form submission to update user skills
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -236,7 +241,7 @@ function UserSkillsEditForm() {
           <button className={`${btnStyles.Button} mr-2`} type="submit">
             Update
           </button>
-          <button className={btnStyles.Button} onClick={() => history.goBack()}>
+          <button className={btnStyles.Button} onClick={handleCancel}>
             Cancel
           </button>
         </div>
