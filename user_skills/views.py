@@ -9,6 +9,9 @@ from .serializers import UserSkillSerializer
 
 
 class UserSkillList(generics.ListCreateAPIView):
+    """
+    API view to list or create UserSkill instances.
+    """
     queryset = UserSkill.objects.all()
     serializer_class = UserSkillSerializer
     permission_classes = [IsRegularOrReadOnly]
@@ -32,6 +35,9 @@ class UserSkillList(generics.ListCreateAPIView):
 
 
 class UserSkillDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API view to retrieve, update, or delete a specific UserSkill instance.
+    """
     queryset = UserSkill.objects.all()
     serializer_class = UserSkillSerializer
     permission_classes = [IsOwnerOrReadOnly]

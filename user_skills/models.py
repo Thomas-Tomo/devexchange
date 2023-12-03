@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 
 class UserSkill(models.Model):
+    """
+    Model to store user skills and related information.
+    """
     owner = models.OneToOneField(User, on_delete=models.CASCADE, default=1)
     education = models.TextField(blank=True)
     work_experience = models.TextField(blank=True)

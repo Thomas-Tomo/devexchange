@@ -6,6 +6,9 @@ from comments.models import Comment, JobPostComment
 
 
 class Like(models.Model):
+    """
+    Model representing a general 'Like' action on a Post.
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(
         Post, related_name='likes', on_delete=models.CASCADE
@@ -21,6 +24,9 @@ class Like(models.Model):
 
 
 class CommentLike(models.Model):
+    """
+    Model representing a 'Like' action on a Comment.
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.ForeignKey(
         Comment, related_name='likes', on_delete=models.CASCADE
@@ -36,6 +42,9 @@ class CommentLike(models.Model):
 
 
 class JobPostLike(models.Model):
+    """
+    Model representing a 'Like' action on a JobPost.
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     job_post = models.ForeignKey(
         JobPost, related_name='likes', on_delete=models.CASCADE
@@ -51,6 +60,9 @@ class JobPostLike(models.Model):
 
 
 class JobPostCommentLike(models.Model):
+    """
+    Model representing a 'Like' action on a JobPostComment.
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     job_post_comment = models.ForeignKey(
         JobPostComment, related_name='likes', on_delete=models.CASCADE
@@ -66,6 +78,9 @@ class JobPostCommentLike(models.Model):
 
 
 class JobPostSaved(models.Model):
+    """
+    Model representing a 'Save' action on a JobPost.
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     job_post = models.ForeignKey(
         JobPost, related_name='saved', on_delete=models.CASCADE

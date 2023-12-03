@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 
 class JobPost(models.Model):
+    """
+    Model representing a job post.
+    """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -8,6 +8,9 @@ from devexchange.permissions import IsOwnerOrReadOnly
 
 
 class ProfileList(generics.ListAPIView):
+    """
+    API endpoint that allows listing profiles.
+    """
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.annotate(
         posts_count=Count('owner__post', distinct=True),
@@ -39,6 +42,9 @@ class ProfileList(generics.ListAPIView):
 
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):
+    """
+    API endpoint that allows retrieval and updating of a single profile.
+    """
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.annotate(

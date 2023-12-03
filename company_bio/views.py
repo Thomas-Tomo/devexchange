@@ -9,6 +9,9 @@ from .serializers import CompanyBioSerializer
 
 
 class CompanyBioList(generics.ListCreateAPIView):
+    """
+    API endpoint to list and create CompanyBio instances.
+    """
     queryset = CompanyBio.objects.all()
     serializer_class = CompanyBioSerializer
     permission_classes = [IsEmployerOrReadOnly]
@@ -32,6 +35,9 @@ class CompanyBioList(generics.ListCreateAPIView):
 
 
 class CompanyBioDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint to retrieve, update, or delete a specific CompanyBio instance.
+    """
     queryset = CompanyBio.objects.all()
     serializer_class = CompanyBioSerializer
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]

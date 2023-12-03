@@ -13,6 +13,9 @@ from .serializers import (
 
 
 class CommentList(generics.ListCreateAPIView):
+    """
+    API endpoint that allows listing and creating comments.
+    """
     serializer_class = CommentSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Comment.objects.annotate(
@@ -34,6 +37,9 @@ class CommentList(generics.ListCreateAPIView):
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint that allows retrieving, updating, and deleting a comment.
+    """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = CommentDetailSerializer
     queryset = Comment.objects.annotate(
@@ -42,6 +48,9 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ReplyList(generics.ListCreateAPIView):
+    """
+    API endpoint that allows listing and creating replies for a comment.
+    """
     serializer_class = ReplySerializer
     permission_classes = [IsOwnerOrReadOnly]
 
@@ -73,12 +82,18 @@ class ReplyList(generics.ListCreateAPIView):
 
 
 class ReplyDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint that allows retrieving, updating, and deleting a reply.
+    """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ReplySerializer
     queryset = Reply.objects.all()
 
 
 class JobPostCommentList(generics.ListCreateAPIView):
+    """
+    API endpoint that allows listing and creating comments.
+    """
     serializer_class = JobPostCommentSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = JobPostComment.objects.annotate(
@@ -100,12 +115,18 @@ class JobPostCommentList(generics.ListCreateAPIView):
 
 
 class JobPostCommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint that allows retrieving, updating, and deleting comment.
+    """
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = JobPostCommentDetailSerializer
     queryset = JobPostComment.objects.all()
 
 
 class JobPostCommentReplyList(generics.ListCreateAPIView):
+    """
+    API endpoint that allows listing and creating replies for comments.
+    """
     serializer_class = JobPostCommentReplySerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
@@ -137,6 +158,9 @@ class JobPostCommentReplyList(generics.ListCreateAPIView):
 
 
 class JobPostCommentReplyDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint that allows retrieving, updating, and deleting comment reply.
+    """
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = JobPostCommentReplySerializer
     queryset = JobPostCommentReply.objects.all()

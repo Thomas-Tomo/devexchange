@@ -1,9 +1,14 @@
 from django.db import IntegrityError
 from rest_framework import serializers
-from likes.models import Like, CommentLike, JobPostLike, JobPostCommentLike, JobPostSaved
+from likes.models import (
+    Like, CommentLike, JobPostLike, JobPostCommentLike, JobPostSaved
+    )
 
 
 class LikeSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Like model.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
@@ -25,6 +30,9 @@ class LikeSerializer(serializers.ModelSerializer):
 
 
 class CommentLikeSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the CommentLike model.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
@@ -46,6 +54,9 @@ class CommentLikeSerializer(serializers.ModelSerializer):
 
 
 class JobPostLikeSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the JobPostLike model.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
@@ -67,6 +78,9 @@ class JobPostLikeSerializer(serializers.ModelSerializer):
 
 
 class JobPostCommentLikeSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the JobPostCommentLike model.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
@@ -88,6 +102,9 @@ class JobPostCommentLikeSerializer(serializers.ModelSerializer):
 
 
 class JobPostSavedSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the JobPostSaved model.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:

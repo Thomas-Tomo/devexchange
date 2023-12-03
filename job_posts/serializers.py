@@ -4,6 +4,9 @@ from likes.models import JobPostLike, JobPostSaved
 
 
 class JobPostSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the JobPost model to serialize/deserialize its data.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')

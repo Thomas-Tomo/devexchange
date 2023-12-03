@@ -3,6 +3,9 @@ from .models import UserSkill
 
 
 class UserSkillSerializer(serializers.ModelSerializer):
+    """
+    Serializer to handle UserSkill model data.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     education = serializers.CharField(

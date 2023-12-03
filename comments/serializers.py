@@ -15,6 +15,7 @@ class CommentSerializer(serializers.ModelSerializer):
     comment_likes_count = serializers.ReadOnlyField()
     replies = serializers.SerializerMethodField()
 
+    # Method to check if the user is the owner of the comment
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
@@ -25,6 +26,7 @@ class CommentSerializer(serializers.ModelSerializer):
     def get_updated_at(self, obj):
         return naturaltime(obj.updated_at)
 
+    # Retrieve the like ID
     def get_comment_like_id(self, obj):
         user = self.context['request'].user
         if user.is_authenticated:
@@ -101,6 +103,7 @@ class JobPostCommentSerializer(serializers.ModelSerializer):
     comment_likes_count = serializers.ReadOnlyField()
     replies = serializers.SerializerMethodField()
 
+    # Method to check if the user is the owner of the job post comment
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
@@ -111,6 +114,7 @@ class JobPostCommentSerializer(serializers.ModelSerializer):
     def get_updated_at(self, obj):
         return naturaltime(obj.updated_at)
 
+    # Retrieve the like ID
     def get_comment_like_id(self, obj):
         user = self.context['request'].user
         if user.is_authenticated:
@@ -148,7 +152,8 @@ class JobPostCommentSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'owner', 'is_owner', 'job_post', 'profile_id',
             'profile_image', 'updated_at',
-            'created_at', 'content', 'comment_like_id', 'comment_likes_count', 'replies')
+            'created_at', 'content', 'comment_like_id',
+            'comment_likes_count', 'replies')
 
 
 class JobPostCommentDetailSerializer(JobPostCommentSerializer):

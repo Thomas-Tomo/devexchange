@@ -7,6 +7,9 @@ from .serializers import PostSerializer
 
 
 class PostList(generics.ListCreateAPIView):
+    """
+    API Endpoint for listing and creating posts.
+    """
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Post.objects.annotate(
@@ -39,6 +42,9 @@ class PostList(generics.ListCreateAPIView):
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API Endpoint for retrieving, updating, and deleting a specific post.
+    """
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Post.objects.annotate(

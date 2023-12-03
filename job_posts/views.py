@@ -8,6 +8,9 @@ from .serializers import JobPostSerializer
 
 
 class JobPostList(generics.ListCreateAPIView):
+    """
+    API endpoint to list and create JobPost instances.
+    """
     serializer_class = JobPostSerializer
     permission_classes = [IsEmployerOrReadOnly]
     queryset = JobPost.objects.annotate(
@@ -43,6 +46,9 @@ class JobPostList(generics.ListCreateAPIView):
 
 
 class JobPostDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint to retrieve, update, or delete a specific JobPost instance.
+    """
     serializer_class = JobPostSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = JobPost.objects.annotate(

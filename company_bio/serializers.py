@@ -3,6 +3,9 @@ from .models import CompanyBio
 
 
 class CompanyBioSerializer(serializers.ModelSerializer):
+    """
+    Serializer for CompanyBio model to serialize/deserialize its data.
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     company_name = serializers.CharField(max_length=255, required=False)
