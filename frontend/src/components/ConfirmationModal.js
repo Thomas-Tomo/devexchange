@@ -3,6 +3,8 @@ import Modal from "react-bootstrap/Modal";
 import styles from "../styles/ConfirmationModal.module.css";
 import btnStyles from "../styles/Button.module.css";
 
+
+// Confirmation modal to confirm, post or job post deletion
 const ConfirmationModal = ({ show, onHide, onConfirm }) => {
   return (
     <Modal show={show} onHide={onHide} centered>

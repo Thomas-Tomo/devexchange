@@ -1,18 +1,18 @@
 .Modal {
-    margin-top: 10rem;
-    color: #121212;
-  }
-  
-  .ModalHeader {
-    background-color: #28a745;
-    color: #ffffff;
-  }
-  
-  .ModalBody {
-    background-color: #ffffff;
-    color: #121212;
-  }
-  
-  .ModalFooter {
-    background-color: #ffffff;
-  }
+  margin-top: 10rem;
+  color: #121212;
+}
+
+.ModalHeader {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.ModalBody {
+  background-color: #ffffff;
+  color: #121212;
+}
+
+.ModalFooter {
+  background-color: #ffffff;
+}

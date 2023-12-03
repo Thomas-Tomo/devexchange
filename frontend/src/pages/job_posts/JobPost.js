@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/JobPost.module.css";
 import Media from "react-bootstrap/Media";
@@ -10,6 +10,7 @@ import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import useAlert from "../../hooks/useAlert";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 const JobPost = (props) => {
   const {
@@ -44,14 +45,19 @@ const JobPost = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
   const { setAlert } = useAlert();
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   // Function to redirect to the job post edit page
   const handleEdit = () => {
     history.push(`/job-posts/${id}/edit`);
   };
 
-  // Function to delete the job post
   const handleDelete = async () => {
+    setShowConfirmation(true);
+  };
+
+  // Function to handle job post deletion
+  const confirmDelete = async () => {
     try {
       await axiosRes.delete(`/job-posts/${id}/`);
       history.goBack();
@@ -59,6 +65,7 @@ const JobPost = (props) => {
     } catch (err) {
       // console.log(err);
     }
+    setShowConfirmation(false);
   };
 
   // Function to handle liking a job post
@@ -171,6 +178,11 @@ const JobPost = (props) => {
           {is_owner && jobPostPage && (
             <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
           )}
+          <ConfirmationModal
+            show={showConfirmation}
+            onHide={() => setShowConfirmation(false)}
+            onConfirm={confirmDelete}
+          />
         </div>
       </Media>
       {/* Job post content */}

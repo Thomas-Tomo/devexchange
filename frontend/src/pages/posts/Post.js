@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -10,6 +10,7 @@ import styles from "../../styles/Post.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import useAlert from "../../hooks/useAlert";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 const Post = (props) => {
   const {
@@ -32,14 +33,19 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
   const { setAlert } = useAlert();
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   // Function to navigate to edit page for the post
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
   };
 
-  // Function to delete the post
   const handleDelete = async () => {
+    setShowConfirmation(true);
+  };
+
+  // Function to handle post deletion
+  const confirmDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
@@ -47,6 +53,7 @@ const Post = (props) => {
     } catch (err) {
       // console.log(err);
     }
+    setShowConfirmation(false);
   };
 
   // Function to handle liking a post
@@ -103,6 +110,11 @@ const Post = (props) => {
           {is_owner && postPage && (
             <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
           )}
+          <ConfirmationModal
+            show={showConfirmation}
+            onHide={() => setShowConfirmation(false)}
+            onConfirm={confirmDelete}
+          />
         </div>
       </Media>
       <Card.Body className={styles.PostContent}>
