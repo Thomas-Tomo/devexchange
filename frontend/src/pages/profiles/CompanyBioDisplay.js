@@ -90,7 +90,7 @@ const CompanyBioDisplay = ({ companyBio, profile, currentUser }) => {
                       </p>
                     </div>
                   </li>
-                )
+                ),
             )}
           </ul>
         </div>

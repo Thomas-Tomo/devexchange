@@ -20,7 +20,7 @@ export const UserTypeProvider = ({ children }) => {
     const fetchProfileData = async () => {
       try {
         const response = await axios.get(
-          `/profiles/${currentUser?.profile_id}/`
+          `/profiles/${currentUser?.profile_id}/`,
         );
         const profileData = response.data;
         const fetchedUserType = profileData.user_type;

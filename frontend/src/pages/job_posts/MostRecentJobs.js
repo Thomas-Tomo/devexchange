@@ -41,14 +41,14 @@ const MostRecentJobs = () => {
           <ul>
             {recentJobs.slice(0, 4).map(
               (
-                job // Limit to the first four jobs
+                job, // Limit to the first four jobs
               ) => (
                 <Link to={`/job-posts/${job.id}`} key={job.id}>
                   <li key={job.id}>{job.title}</li>
                   <li>Location: {job.location}</li>
                   <hr></hr>
                 </Link>
-              )
+              ),
             )}
           </ul>
         )}

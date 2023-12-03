@@ -15,7 +15,7 @@ export const handlers = [
         profile_id: 4,
         profile_image:
           "https://res.cloudinary.com/dtmyhmzcf/image/upload/v1/media/../default_profile_icon_dq1crk",
-      })
+      }),
     );
   }),
   rest.post(`${baseURL}dj-rest-auth/logout/`, (req, res, ctx) => {

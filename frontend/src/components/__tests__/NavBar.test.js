@@ -7,7 +7,7 @@ test("renders NavBar", () => {
   render(
     <Router>
       <NavBar />
-    </Router>
+    </Router>,
   );
 
   // screen.debug();
@@ -21,7 +21,7 @@ test("renders link to the user profile for a logged in user", async () => {
       <CurrentUserProvider>
         <NavBar />
       </CurrentUserProvider>
-    </Router>
+    </Router>,
   );
 
   const profileAvatar = await screen.findByText("Admin");
@@ -34,7 +34,7 @@ test("renders Sign in and Sign up buttons again on logout", async () => {
       <CurrentUserProvider>
         <NavBar />
       </CurrentUserProvider>
-    </Router>
+    </Router>,
   );
 
   const signOutLink = await screen.findByRole("link", { name: "Sign Out" });

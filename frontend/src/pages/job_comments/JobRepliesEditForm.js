@@ -25,14 +25,14 @@ function JobRepliesEditForm(props) {
         {
           content: formContent.trim(),
           parent_comment: parentCommentId,
-        }
+        },
       );
       setReplies((prevReplies) =>
         prevReplies.map((reply) =>
           reply.id === replyId
             ? { ...reply, content: formContent.trim(), updated_at: "now" }
-            : reply
-        )
+            : reply,
+        ),
       );
       setShowEditForm(false);
       setAlert("Reply Updated!", "success");

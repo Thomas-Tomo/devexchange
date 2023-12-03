@@ -28,7 +28,7 @@ function JobPostsPage({ message, filter = "" }) {
       try {
         // Fetch job posts based on the filter and search query
         const { data } = await axiosReq.get(
-          `/job-posts/?${filter}search=${query}`
+          `/job-posts/?${filter}search=${query}`,
         );
         setJobPosts(data);
         setHasLoaded(true);

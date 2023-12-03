@@ -63,22 +63,22 @@ function ProfilePage() {
         }));
 
         const { data: profilePosts } = await axiosReq.get(
-          `/posts/?owner__profile=${id}`
+          `/posts/?owner__profile=${id}`,
         );
         setProfilePosts(profilePosts);
 
         const { data: profileJobPosts } = await axiosReq.get(
-          `/job-posts/?owner__profile=${id}`
+          `/job-posts/?owner__profile=${id}`,
         );
         setProfileJobPosts(profileJobPosts);
 
         const { data: userSkills } = await axiosReq.get(
-          `/user-skills/?owner__profile=${id}`
+          `/user-skills/?owner__profile=${id}`,
         );
         setUserSkills(userSkills.results);
 
         const { data: companyBio } = await axiosReq.get(
-          `/company-bio/?owner__profile=${id}`
+          `/company-bio/?owner__profile=${id}`,
         );
         setCompanyBio(companyBio.results);
 

@@ -63,7 +63,7 @@ const Replies = (props) => {
     try {
       await axiosRes.delete(`/replies/${parentCommentId}/${replyId}/`);
       setReplies((prevReplies) =>
-        prevReplies.filter((reply) => reply.id !== replyId)
+        prevReplies.filter((reply) => reply.id !== replyId),
       );
       setAlert("Reply Deleted!", "danger");
     } catch (error) {

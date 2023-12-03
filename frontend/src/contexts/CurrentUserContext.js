@@ -54,7 +54,7 @@ export const CurrentUserProvider = ({ children }) => {
       },
       (err) => {
         return Promise.reject(err);
-      }
+      },
     );
 
     axiosRes.interceptors.response.use(
@@ -75,7 +75,7 @@ export const CurrentUserProvider = ({ children }) => {
           return axios(err.config);
         }
         return Promise.reject(err);
-      }
+      },
     );
   }, [history]);
 

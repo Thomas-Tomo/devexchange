@@ -28,8 +28,8 @@ function RepliesEditForm(props) {
         prevReplies.map((reply) =>
           reply.id === replyId
             ? { ...reply, content: formContent.trim(), updated_at: "now" }
-            : reply
-        )
+            : reply,
+        ),
       );
       setShowEditForm(false);
       setAlert("Reply Updated!", "success");

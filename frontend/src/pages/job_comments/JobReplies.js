@@ -30,7 +30,7 @@ const JobReplies = (props) => {
     const fetchReplies = async () => {
       try {
         const { data } = await axiosRes.get(
-          `/job-post-comment-replies/${parentCommentId}/`
+          `/job-post-comment-replies/${parentCommentId}/`,
         );
         setReplies(data);
       } catch (error) {
@@ -49,7 +49,7 @@ const JobReplies = (props) => {
         {
           content,
           parent_comment: parentCommentId,
-        }
+        },
       );
       const newReply = response.data;
       setReplies((prevReplies) => [...prevReplies, newReply]);
@@ -65,10 +65,10 @@ const JobReplies = (props) => {
   const handleDelete = async (replyId) => {
     try {
       await axiosRes.delete(
-        `/job-post-comment-replies/${parentCommentId}/${replyId}/`
+        `/job-post-comment-replies/${parentCommentId}/${replyId}/`,
       );
       setReplies((prevReplies) =>
-        prevReplies.filter((reply) => reply.id !== replyId)
+        prevReplies.filter((reply) => reply.id !== replyId),
       );
       setAlert("Reply Deleted!", "danger");
     } catch (error) {

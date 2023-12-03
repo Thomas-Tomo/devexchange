@@ -92,27 +92,27 @@ const UserSkillsDisplay = ({ userSkills, profile, currentUser }) => {
                           <strong>LinkedIn Profile:</strong>{" "}
                           {renderClickableLink(
                             skill.linkedin_profile,
-                            skill.linkedin_profile
+                            skill.linkedin_profile,
                           )}
                         </p>
                         <p>
                           <strong>Github Profile:</strong>{" "}
                           {renderClickableLink(
                             skill.github_profile,
-                            skill.github_profile
+                            skill.github_profile,
                           )}
                         </p>
                         <p>
                           <strong>Portfolio Website:</strong>{" "}
                           {renderClickableLink(
                             skill.portfolio_website,
-                            skill.portfolio_website
+                            skill.portfolio_website,
                           )}
                         </p>
                       </div>
                     </div>
                   </li>
-                )
+                ),
             )}
           </ul>
         </div>

@@ -46,7 +46,7 @@ const JobComment = (props) => {
       setJobComments((prevJobComments) => ({
         ...prevJobComments,
         results: prevJobComments.results.filter(
-          (job_post_comment) => job_post_comment.id !== id
+          (job_post_comment) => job_post_comment.id !== id,
         ),
       }));
       setAlert("Comment Deleted!", "danger");

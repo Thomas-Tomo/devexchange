@@ -28,15 +28,15 @@ export const followHelper = (profile, clickedProfile, following_id) => {
         following_id,
       }
     : profile.is_owner
-    ? // This is the profile of the logged in user
-      // update its following count
-      {
-        ...profile,
-        following_count: profile.following_count + 1,
-      }
-    : // this is not the profile the user clicked on or the profile
-      // the user owns, so just return it unchanged
-      profile;
+      ? // This is the profile of the logged in user
+        // update its following count
+        {
+          ...profile,
+          following_count: profile.following_count + 1,
+        }
+      : // this is not the profile the user clicked on or the profile
+        // the user owns, so just return it unchanged
+        profile;
 };
 
 export const unfollowHelper = (profile, clickedProfile) => {
@@ -49,12 +49,12 @@ export const unfollowHelper = (profile, clickedProfile) => {
         following_id: null,
       }
     : profile.is_owner
-    ? // This is the profile of the logged in user
-      // update its following count
-      { ...profile, following_count: profile.following_count - 1 }
-    : // this is not the profile the user clicked on or the profile
-      // the user owns, so just return it unchanged
-      profile;
+      ? // This is the profile of the logged in user
+        // update its following count
+        { ...profile, following_count: profile.following_count - 1 }
+      : // this is not the profile the user clicked on or the profile
+        // the user owns, so just return it unchanged
+        profile;
 };
 
 export const setTokenTimeStamp = (data) => {
