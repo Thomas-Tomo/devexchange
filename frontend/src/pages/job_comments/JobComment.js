@@ -50,7 +50,9 @@ const JobComment = (props) => {
         ),
       }));
       setAlert("Comment Deleted!", "danger");
-    } catch (err) {}
+    } catch (err) {
+      // console.log(err)
+    }
   };
 
   // Function to handle like a comment

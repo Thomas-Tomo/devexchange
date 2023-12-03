@@ -3,7 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import styles from "../styles/ConfirmationModal.module.css";
 import btnStyles from "../styles/Button.module.css";
 
-
 // Confirmation modal to confirm, post or job post deletion
 const ConfirmationModal = ({ show, onHide, onConfirm }) => {
   return (
@@ -15,18 +14,10 @@ const ConfirmationModal = ({ show, onHide, onConfirm }) => {
         <p>Please confirm to delete</p>
       </Modal.Body>
       <Modal.Footer className={styles.ModalFooter}>
-        <button
-          variant="secondary"
-          onClick={onHide}
-          className={btnStyles.Button}
-        >
+        <button onClick={onHide} className={btnStyles.Button}>
           Cancel
         </button>
-        <button
-          variant="danger"
-          onClick={onConfirm}
-          className={btnStyles.Button}
-        >
+        <button onClick={onConfirm} className={btnStyles.Button}>
           Delete
         </button>
       </Modal.Footer>

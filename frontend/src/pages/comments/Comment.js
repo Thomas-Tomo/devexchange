@@ -48,7 +48,9 @@ const Comment = (props) => {
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
       setAlert("Comment Deleted!", "danger");
-    } catch (err) {}
+    } catch (err) {
+      // console.log(err)
+    }
   };
 
   // Function to handle liking a comment
