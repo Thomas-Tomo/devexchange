@@ -493,6 +493,15 @@ Entity Relationship Diagrams (ERD)
 </details>
 
 <details>
+<summary>  Delete posts, job posts
+</summary>
+
+![Delete posts, job posts](/documentation/readme_images/confirm-delete.png)
+
+* When a user is logged in, they are able to delete their own posts and job posts, but before the post is deleted, the will have to confirm to delete
+</details>
+
+<details>
 <summary> Profile Page
 </summary>
 
@@ -670,10 +679,12 @@ Entity Relationship Diagrams (ERD)
 * [CSS Validation Service](https://jigsaw.w3.org/css-validator/) - Used to validate CSS
 * [CI Python Linter](https://pep8ci.herokuapp.com/) - Used to validate Python
 * [Colormind](http://colormind.io/) - Color Scheme
-* [Favicon](https://favicon.io/) - used to create a favicon
-* [NPM](https://www.npmjs.com/) - package manager to install dependencies
-* [Axios](https://axios-http.com/) - used as a HTTP client
-* [Font Awesome](https://fontawesome.com/) - used to add icons
+* [Favicon](https://favicon.io/) - Used to create a favicon
+* [NPM](https://www.npmjs.com/) - Package manager to install dependencies
+* [Axios](https://axios-http.com/) - Used as a HTTP client
+* [Font Awesome](https://fontawesome.com/) - Used to add icons
+* [ESLint](https://eslint.org/) - Used to validate React code
+* [Craiyon](https://www.craiyon.com/) - Used to create AI images for fake profiles and posts for visual representation of the website
 
 ### Custom components
 
@@ -717,6 +728,10 @@ Custom components were created to reuse code, and functionality throughout the w
 * [RecentJobsContext.js](frontend/src/contexts/RecentJobsContext.js) - created to fetch most recent job posts and pass them on
 
 * [UserTypeContext.js](frontend/src/contexts/UserTypeContext.js) - created to access user type from the user profile data, to manage employer, and regular user instaces for custom website rendering based on the user type
+
+## Testing
+
+Please see  [TESTING.md](TESTING.md) for all the detailed testing performed.
 
 ## Deployment and Local Developement
 
@@ -797,11 +812,10 @@ Both DRF and React frontend will be running in the same workspace and project is
 * Deploy your application from the Deploy tab in your Heroku dashboard
     * Use manual or auto deployments
 
-## Testing
-
-Please see  [TESTING.md](TESTING.md) for all the detailed testing performed.
-
 ## References
+
+* Code Institute walkthrough project Moments has been a great starting stone to develop this project.
+* [Alert Popup](https://dev.to/jeffreythecoder/set-up-react-global-alert-popup-in-10mins-36l3) - helped alot to create the alert popup for and user changes on the frontend.
 
 ### Docs
 
@@ -812,6 +826,8 @@ Please see  [TESTING.md](TESTING.md) for all the detailed testing performed.
 * [Cloudinary](https://cloudinary.com/documentation/diagnosing_error_codes_tutorial)
 * [Google](https://www.google.com/)
 * [Slack](https://slack.com/)
+* [React Bootstrap](https://react-bootstrap.netlify.app/)
+* [React](https://react.dev/learn)
 
 ### Content
 
