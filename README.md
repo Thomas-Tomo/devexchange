@@ -708,6 +708,8 @@ Custom components were created to reuse code, and functionality throughout the w
 
 * [MostRecentJobs.js](frontend/src/pages/job_posts/MostRecentJobs.js) - displays most recently created jobs on the website
 
+* [ConfirmationModal.js](frontend/src/components/ConfirmationModal.js) - displays a modal to user when they want to delete a post or a job post to prevent accidental deletion
+
 
 ### Custom hooks
 
