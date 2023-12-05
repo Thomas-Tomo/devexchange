@@ -4,7 +4,7 @@
   font-size: 1rem;
   font-weight: 700;
   border: 3px solid #333333;
-  align-items: right;
+  align-items: flex-end;
 }
 
 .NavLink {
