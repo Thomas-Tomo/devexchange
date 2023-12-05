@@ -71,13 +71,9 @@ const CompanyBioDisplay = ({ companyBio, profile, currentUser }) => {
                       <p>
                         <strong>Recruiting Status:</strong>{" "}
                         {bio.recruiting_status ? (
-                          bio.recruiting_status ? (
-                            <span>Active</span>
-                          ) : (
-                            <span>Inactive</span>
-                          )
+                          <span>Active</span>
                         ) : (
-                          "/"
+                          <span>Inactive</span>
                         )}
                       </p>
                       <p>
@@ -90,7 +86,7 @@ const CompanyBioDisplay = ({ companyBio, profile, currentUser }) => {
                       </p>
                     </div>
                   </li>
-                ),
+                )
             )}
           </ul>
         </div>
