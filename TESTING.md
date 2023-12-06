@@ -188,7 +188,61 @@ Device testing was conducted on a variety of phone models, including Samsung Gal
 
 | Page          | User Action   | Expected Result  | Notes            |
 |---------------|---------------|------------------|------------------|
-| Home Page     |               |                  |                  |
+| Home Page     |   Click on Logo            |       Redirect to Home Page           |      PASS            |
+|               |        Click on Sign Up button       |        Redirect to Sign Up page          |         PASS         |
+|               |       Click on Sign In button        |      Redirect to Sign In page            |           PASS       |
+|               |    View posts           |          Posts are displayed        |        PASS          |
+|               |         Click on post      |          Open post page        |        PASS          |
+|               |         View likes count    |      Post displays likes count          |        PASS          |
+|               |           Click like button on a post    |       Have to be logged in to like           |       PASS           |
+|               |        View comment count      |        Post displays comment count          |         PASS         |
+|               |       Click on comment icon on a post        |        Opens post page and comments          |       PASS           |
+|               |       Click on owner's Avatar on the post        |        Redirect to post owners profile          |        PASS          |
+|               |       View post created date        |     Displays correct date             |             PASS     |
+|               |         View most followed profiles component      |        Displays 6 most followed profiles          |            PASS      |
+|               |        Click on any of the displayed profiles       |         Opens profile of the clicked profile         |        PASS          |
+|               |       View most recent jobs component        |       Displays 3 most recent jobs           |       PASS           |
+|               |      Hover over one of the jobs         |         Color changes while hovering the job         |       PASS           |
+|               |          Click on a random most recent job     |       Opens that job post           |          PASS        |
+|               |         View search bar to search posts      |       It is present           |         PASS         |
+|               |      Click on search bar and search for post titles         |         If it exists it is displayed         |         PASS        |
+|               |     Search for non existent posts          |       Displays asset message where it states that the post doesn't exist or to modify our search           |         PASS         |
+|               |          Dev tools to test all screen sizes responsiveness     |           It is working on all screen sizes       |         PASS         |
+|        Home Page (logged in as regular user)       |     Login as regular user        |       Successful login message with profile name displays           |        PASS          |
+|               |     Navigation bar icons displayed          |        home, jobs, feed, liked, saved jobs, profile name, sign out          |       PASS           |
+|               |        Click on Jobs       |     Redirect to jobs page             |      PASS            |
+|               |        Click on Feed       |         Redirect to feed page        |      PASS           |
+|               |       Click on Liked   |          Redirect to liked page        |         PASS         |
+|               |           Click on Saved Jobs    |      Redirect to saved jobs page            |           PASS       |
+|               |       Navigation bar active link, (page we are on)      |         It is lit white         |      PASS            |
+|               |       Click on Profile (users)        |        Redirect to own profile page     |          PASS        |
+|               |        Sidebar is visible       |       It displays only Add Post button          |        PASS       |
+|               |         Click on Add Post button      |      Redirect to Create post form           |       PASS           |
+|               |         Sidebar displays developers information      |        Displays name and social links          |          PASS        |
+|               |        Click on linkedIn icon      |      Opens new tab with developers linkedIn profile            |           PASS       |
+|               |        Click on github icon      |       Opens new tab with developers github profile           |          PASS        |
+|               |       Most followed profiles component view        |      Now displays follow, unfollow buttons             |         PASS         |
+|               |    Click follow next to the user you wish to follow           |         Follow message and follow count correct      |       PASS           |
+|               |         Click unfollow next to the user you wish to unfollow      |        Unfollow message and followers  count correct          |          PASS        |
+|               |     Click like on a post          |      Like icon fills and count goes up            |      PASS            |
+|               |       Click like on a post again        |        Like icon empties and count goes down          |          PASS        |
+|               |      All other features on logged in home page   |     They work the same as when logged out, we covered those            |         PASS         |
+|    Home Page (logged in as employer user)           |      Login as employer user         |         Login message with users name displays          |         PASS         |
+|               |       View Sidebar      |      Sidebar has additional icon Add Jobs because we are employer user            |            PASS      |
+|               |      Click on Add Job         |          Redirect to Create job post form        |          PASS       |
+|               |      All other features on logged in home page   |     They work the same as when logged in as a regular user, we covered those            |         PASS         |
+|     Create a post          |     Form view          |         It is displayed correctly         |       PASS           |
+|               |       Click create on an empty form        |     Form validation is required             |          PASS        |
+|               |         Add title and press create      |       Must add an image, otherwise form wont submit          |          PASS        |
+|               |     Add title, add image, leave content empty, click create          |     Form submits, content is not mandatory       |           PASS       |
+|               |      Click cancel on a form         |        Redirect to previous page          |       PASS           |
+|               |     Post created          |        Alert message that says post is created         |         PASS         |
+|               |      View owned post         |         Displays data correctly and a dropdown menu         |       PASS           |
+|               |       Click on a dropdown        |        Open edit or delete functionality icons          |          PASS        |
+|               |       Click edit icon        |        Opens an edit post form with all placeholder data          |          PASS        |
+|               |        Click delete icon       |            Opens a confirmation modal to confirm to delete      |        PASS          |
+|               |        Click delete on confirmation modal       |     Post is deleted, alert message displayed            |              PASS    |
+|               |        Click cancel on confirmation modal       |        Post is not deleted and modal closes    |          PASS        |
 |               |               |                  |                  |
 |               |               |                  |                  |
 |               |               |                  |                  |
@@ -205,6 +259,8 @@ Device testing was conducted on a variety of phone models, including Samsung Gal
 |               |               |                  |                  |
 |               |               |                  |                  |
 |               |               |                  |                  |
+
+
 
 ## Backend
 
