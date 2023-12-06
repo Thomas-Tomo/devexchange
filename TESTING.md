@@ -20,21 +20,27 @@ Return to [README](README.md)
 ####  [Code Validation](#code-validation-1)
 * [HTML Validation](#html-validation)
 * [CSS Validation](#css-validation)
-* [ESLint Validation]()
+* [ESLint Validation](#eslint-validation)
 
 #### [Lighthouse Report](#lighthouse-report-1)
 
-#### [Bugs](#bugs-1)
-* [Resolved Bugs](#resolved-bugs)
-* [Unresolved Bugs](#unresolved-bug)
-
 #### [Features Testing](#features-testing-1)
 
-### [Backend Testing](#backend-testing)
+#### [Bugs](#bugs-1)
+* [Resolved Bugs](#resolved-bugs)
+* [Unresolved Bugs](#unresolved-bugs)
+
+### [Backend Testing](#backend-testing-1)
 
 #### [Automated Testing](#automated-testing-3)
 
 #### [Manual Testing](#manual-testing-1)
+
+#### [Python Validation](#python-validation-1)
+
+#### [Bugs](#bugs-3)
+---
+
 
 ## Frontend Testing
 
@@ -55,6 +61,9 @@ After these changes I could start creating my automated tests, to run them on my
 * I ran 4 tests, I used TTD (Test-Driven Development), initially make tests fail, and then write the code that will fulfill expected behaviour to make the tests pass. aiming to meet the desired specifications and improve the code's design and reliability.
 
 * Tests were created for NavBar.test.js to see if the correct navigation links are shown to a logged in user versus a logged out user.
+    * Test to render a navbar
+    * Test to render a link to the user profile for a logged in user
+    * Test to render a Sign In and Sign Up buttons again on logout
 
 ![Automated Testing Frontend PASS](/documentation/validation/frontend-testing.png)
 
@@ -158,6 +167,8 @@ Device testing was conducted on a variety of phone models, including Samsung Gal
 
 * Prettier plugin was also used throughout the development to ensure coding standard was on highest level.
 
+Find python validation down below, [Python Validation](#python-validation-1)
+
 ### Lighthouse Report
 
 <details>
@@ -173,16 +184,6 @@ Device testing was conducted on a variety of phone models, including Samsung Gal
 
 ![Mobile lighthouse report](/documentation/lighthouse_report/mobile-lighthouse.png)
 </details>
-
-### Bugs
-
-#### Resolved Bugs
-
-* 
-
-#### Unresolved Bugs
-
-* 
 
 ### Features Testing
 
@@ -296,42 +297,82 @@ Device testing was conducted on a variety of phone models, including Samsung Gal
 |               |       Employer account, Add Company Bio      |         Opens a create form to add company bio        |         PASS         |
 |               |        Submit an empty company bio form      |       It submits it with placeholder "/", when user comes back to their profile it will give them more thinking to fill it in if they haven't, because of the visual representation           |       PASS           |
 |               |        Edit company bio      |           Edit field and press update       |         PASS         |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
-|               |              |                  |                  |
+|      Edit profile         |        View edit profile form      |       Displays correct data           |           PASS       |
+|               |      Change the image and click save        |       Profile image changed           |           PASS       |
+|               |      Change account type, confirm modal        |          Account type changed        |        PASS          |
+|               |         Add Bio     |        Bio changes after pressing save          |         PASS         |
+|               |         After changing account type     |      Cannot go back to regular anymore            |         PASS         |
+|               |        Edit username      |        Works as expected          |       PASS           |
+|               |         Edit password     |           Works as expected       |         PASS         |
+|               |          User makes changes     |        All alert messages display correctly          |        PASS          |
+|        Sign Up Page       | Type invalid password | Try again | PASS |
+|               | Type valid password | No error | PASS |
+|               | Type password again (different) | Password must be the same | PASS |
+|               | Click Sign Up with empty form | Fill in the form fields | PASS |
+|               | Click Sign In if you have an account | Redirect to Login page | PASS |
+|               | Fill all the form fields | Account created | PASS |
+|        Sign In Page        | Click on Sign Up, if you don't have an account | Redirect to Sign Up page | PASS |
+|               | Try invalid username | Username is not correct | PASS |
+|               | Try invalid password | Password is not correct | PASS |
+|               | Valid password and username | Logs in, message that you signed in | PASS |
+|               | Click Sign In with empty form | Fill in the form fields | PASS |
+|       General tests        |      Copy url while logged in as a user from an edit form, log out and try to paste that url         |       Redirect to Home page           |         PASS         |
+|               |     Permissions tests, such as employer, regular user rendering         |         Checked and they are correctly displaying data         |          PASS        |
 |               |              |                  |                  |
 
+###  Bugs
 
+#### Resolved Bugs
 
+* Follow feature bug was discovered after model migrations, follow button would not work for some profiles because some profiles were deleted and had left over tables inside the database on local development, so once the database was restarted the bug was solved, Completely resolved.
+![Follow bug](/documentation/validation/preview.png)
 
+* Deployment bug, once the site was built with Heroku, it would state that it is successful but it was saying 400 request error, issue was, config var ALLOWED_HOSTS had a typo which was "ALLOWED_HOST", it was missing an S on the end of the var and that was causing that bug, once that typo was fixed, site was deployed as intended.
+![Deployment bug](/documentation/validation/400heroku.png)
 
-## Backend
+* Gitpod bug, local development had an issue with Gitpod IDE if there were more than 10 posts on the page, spinner asset would keep spinning, it would not load them, it is a known issue on Gitpod, and once the site is deployed that issue is no longer present and it is resolved.
+![Gitpod bug](/documentation/validation/spinny.png)
+
+#### Unresolved Bugs
+
+* There are no unresolved bugs. All of the known bug have been fixed.
+
+## Backend Testing
 
 ### Automated Testing
 
 * I create automated test for post views and job post views
+* Created tests:
+    * Test if the API can succesfully list posts
+    * Test if logged in user can create a post
+    * Test if a user who is not logged in cannot create a post
+    * Test if the API can retrieve a post using a valid ID
+    * Test if the API correctly returns 404 status
+    * Test if a user can update their own post
+    * Test if a user cannot update another user's post
 
 To verify that my views are working correctly, I integrated automated testing. Below are the results demonstrating the outcomes of all tests conducted:
 
 ![Automated Testing Backend](/documentation/validation/job-post-automated-testing.png)
 
 ### Manual Testing
+
+* All testing was monitored with dev tools network responses, to make sure that the data inside API is correct on the deployed project.
+
+| Post request          | User Action   | Expected Result  | Notes            |
+|---------------|---------------|------------------|------------------|
+|               |       Create a post request       |         Correct data response          |      PASS            |
+|               |        Create a job post request      |        Correct data response         |         PASS         |
+|               |         Create a comment post request     |        Correct data response         |         PASS         |
+
+* All API testing was also done while the django apps were being created to make sure they are correct.
+
+#### Admin Panel
+* Admin panel works well and API data can be seen in there and changed aswell, admin functionality is completely functional.
+* Needed models have been registered to admin.py file so they can be modified by admin.
+* To access Admin panel, add `/admin` at the end of the url and sign in with admin credentials.
+
+### Python Validation
 
 To validate my code written in Python, I will be using [CI Python Linter](https://pep8ci.herokuapp.com/) to make sure that my code has no errors inside my apps.
 
@@ -557,6 +598,9 @@ To validate my code written in Python, I will be using [CI Python Linter](https:
 ![views](/documentation/validation/user-skills-views-linter.png)
 </details>
 
+
+#### Bugs
+* There are no bugs.
 
 
 
