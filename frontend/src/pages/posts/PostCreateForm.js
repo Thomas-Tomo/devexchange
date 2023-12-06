@@ -47,6 +47,11 @@ function PostCreateForm() {
     }
   };
 
+  const handleCancel = (event) => {
+    event.preventDefault();
+    history.goBack(); // Navigate back to the previous page in history
+  };
+
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -151,7 +156,7 @@ function PostCreateForm() {
           <button className={`${btnStyles.Button} mr-2`} type="submit">
             Create
           </button>
-          <button className={btnStyles.Button} onClick={() => history.goBack()}>
+          <button className={btnStyles.Button} onClick={handleCancel}>
             Cancel
           </button>
         </div>
