@@ -243,22 +243,81 @@ Device testing was conducted on a variety of phone models, including Samsung Gal
 |               |        Click delete icon       |            Opens a confirmation modal to confirm to delete      |        PASS          |
 |               |        Click delete on confirmation modal       |     Post is deleted, alert message displayed            |              PASS    |
 |               |        Click cancel on confirmation modal       |        Post is not deleted and modal closes    |          PASS        |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
-|               |               |                  |                  |
+|               |         Click like on your own post      |         Can't like your own post         |        PASS          |
+|               |       Write a comment, press post     |         Comment is posted and displays correct data         |        PASS          |
+|               |      Press post on an empty comment form         |      It doesn't create a comment          |         PASS         |
+|               |     Click like on your own comment          |       Can't like your own comment           |         PASS         |
+|               |          Click like on someone elses comment     |         Comment like goes up         |        PASS          |
+|               |      Click like again on already liked comment         |           Comment like count goes down       |        PASS          |
+|               |          Click dropdown menu for your own comment     |       Displays edit and delete icons          |           PASS       |
+|               |           Click edit comment icon   |       Opens comment edit form inside of the current page           |      PASS            |
+|               |        Click update comment       |       Alert message shows and comment is updated if we changed any value          |           PASS       |
+|               |    Click cancel on edit comment           |      Form closes            |          PASS        |
+|               |      Click Add Reply to a comment         |    Open a reply form              |          PASS        |
+|               |        Write a reply and press post       |        Reply created and alert message shown          |       PASS           |
+|               |     Click dropdown menu on your own reply          |      Displays edit and delete icons            |          PASS        |
+|               |           Click edit icon to edit reply    |       Opens reply form on the same page           |       PASS           |
+|               |       Click delete icon to delete reply        |        Deletes reply and shows alert message          |        PASS          |
+|               |        Click edit and update reply       |      Reply is updated and alert message is shown            |          PASS        |
+|               |       View all replies on a comment, click view replies, or hide replies        |     It shows or hides replies depending on what we picked          |       PASS           |
+|               |        Edit or delete someone elses reply       |      Can't if we don't own it           |          PASS        |
+|               |           Edit or delete someone elses comment    |    Can't if we don't own it              |             PASS     |
+|               |         If there are no comments yet      |     Paragraph says no comments yet            |           PASS       |
+|        Create a job post       |       Form view        |        Displays correct data          |          PASS        |
+|               |       Click create on an empty form        |     Form validation is required             |          PASS        |
+|               |      Is Active field is defualt active         |        it is active          |             PASS     |
+|               |        Allows Remote Work field is default not checked       |          It is not checked        |         PASS         |
+|               |         All from fields are asking for valid validation      |       That is correct           |       PASS           |
+|               |         Click cancel on Create job post      |        Redirects to a previous page          |        PASS         |
+|               |        Fill in all form fields, click create      |          Job post is created and all data is displayed correctly        |         PASS        |
+|               |       Edit and delete work same as the post edit and delete        |        Same test cases conducted as for post          |          PASS        |
+|               |       Edit and delete work same for comments and replies        |       Same test cases conducted as for post comment and replies          |           PASS       |
+|               |      Likes for the same as post         |        Correctly handles likes          |          PASS        |
+|               |       Click on save job post icon        |       Saves job post to saved jobs page           |        PASS          |
+|               |         Click save job post icon on your own job post      |       Can't save your own job post, its already on your profile           |         PASS         |
+|               |        CLick save job post icon when it was already saved       |         Unsaves the job post         |         PASS         |
+|               |       All alert messages work correctly for job posts        |         All is correct         |          PASS        |
+|      Jobs         |        Click on Jobs link       |       Displays all job posts           |      PASS            |
+|               |         Click on any job post title to view job post     |        Open wanted job post          |         PASS         |
+|               |        Search for a job post       |        If it exists it will displays it, if not displays asset to tell us it doesn't exist or to modify our search          |         PASS         |
+|       Feed        |        Click on Feed link      |     Displays all posts from users you follow             |        PASS          |
+|               |          If you don't follow any users     |        Displays no posts or follow a user to see them          |        PASS          |
+|       Liked        |       Click on Liked link        |       Displays all liked posts or an asset telling us we haven't liked any           |         PASS         |
+|      Saved Jobs         |        Click on Saved Jobs       |       Displays all saved jobs, and if we didin't save any jobs shows an asset that says we haven't saved any yet         |      PASS           |
+|       Profile Page        |      Click on own profile          |       Displays own profile with all correct data           |         PASS         |
+|               |        Employer account have additional job posts counter       |           That is correct       |           PASS       |
+|               |         Click on Show Posts button      |        Shows all profile owners posts and then we can hide them          |          PASS        |
+|               |         Click on show Job Posts      |    Shows all profile owners job posts  and  then we can hide them             |       PASS           |
+|               |      Regular account, Add Skills         |       Opens a create form to add skills           |        PASS          |
+|               |         Submit an empty skills form      |      It submits it with placeholder "/", when user comes back to their profile it will give them more thinking to fill it in if they haven't, because of the visual representation            |      PASS            |
+|               |         Edit skills      |         Edit fields and press update      |        PASS          |
+|               |      Delete skills, click delete icon       |       Skills are deleted and button to add them is back visibile           |        PASS          |
+|               |       Create skills, add all the information       |          All data is displayed correctly and links are clickable        |        PASS          |
+|               |       Employer account, Add Company Bio      |         Opens a create form to add company bio        |         PASS         |
+|               |        Submit an empty company bio form      |       It submits it with placeholder "/", when user comes back to their profile it will give them more thinking to fill it in if they haven't, because of the visual representation           |       PASS           |
+|               |        Edit company bio      |           Edit field and press update       |         PASS         |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+|               |              |                  |                  |
+
+
 
 
 
