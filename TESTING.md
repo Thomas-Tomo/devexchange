@@ -333,6 +333,9 @@ Find python validation down below, [Python Validation](#python-validation-1)
 * Gitpod bug, local development had an issue with Gitpod IDE if there were more than 10 posts on the page, spinner asset would keep spinning, it would not load them, it is a known issue on Gitpod, and once the site is deployed that issue is no longer present and it is resolved.
 ![Gitpod bug](/documentation/validation/spinny.png)
 
+* ESLint bug, after succesfully fixing recommended issues with ESLint, when I tried to build my React app again to deploy it I had some version issue, so I have removed ESLint from the project after it was succesfully used to check javascript and jsx code.
+    * ![ESLint bug](/documentation/validation/bug-eslint.png)
+
 #### Unresolved Bugs
 
 * There are no unresolved bugs. All of the known bug have been fixed.
